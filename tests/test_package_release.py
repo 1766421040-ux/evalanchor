@@ -71,6 +71,7 @@ def test_secrets_dependencies_databases_and_weights_are_excluded_without_reading
         "examples/package-lock.lock", "docs/.DS_Store", "weights/model.bin",
         "experiments/test-v2/calls/duplicate-response.json", "experiments/test-v2/journal.sqlite3",
         "experiments/test-v2/private-notes.json", "artifacts/old-release.zip", "docs/nested/dist/archive.zip",
+        "evidence/parts/transport.b64", "evidence/objects/legacy.gz",
     ]
     for name in excluded:
         path = project / name

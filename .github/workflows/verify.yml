@@ -37,6 +37,7 @@ jobs:
           node-version: '24'
       - run: python -m pip install -e '.[test]' 'inspect-ai==0.3.286'
       - run: npm install --prefix .cache/promptfoo --no-audit --no-fund promptfoo@0.125.1
+      - run: python scripts/restore_evidence.py
       - run: python -m pytest tests/test_adapters.py -q
       - name: Real Inspect and Promptfoo fixture execution (zero model calls)
         run: |

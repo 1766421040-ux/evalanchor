@@ -11,8 +11,8 @@
     "policy": "Require Python 3.12+ for exact frozen sum(float) replay. Preserve raw records and strict equality; do not rescore or widen comparison tolerance."
   },
   "known_test_checkpoint": {
-    "passed": 649,
+    "passed": 664,
     "subtests_passed": 13,
-    "note": "Final local suite passed on CPython 3.12.14, including loopback HTTP tests. Remote CI is verified separately."
+    "note": "Final local suite passed on CPython 3.12.14, including loopback HTTP tests and bounded base64 evidence transport. Remote CI is verified separately."
   }
 }

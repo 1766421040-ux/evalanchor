@@ -110,6 +110,8 @@ def excluded(relative: PurePosixPath) -> bool:
     """Filename-only filtering: excluded secrets are never opened to inspect."""
     if len(relative.parts) == 1 and relative.name in ROOT_FILES:
         return False
+    if len(relative.parts) >= 2 and relative.parts[0] == "evidence" and relative.parts[1] in {"objects", "parts"}:
+        return True
     if relative.parts and relative.parts[0] == "experiments":
         if len(relative.parts) > 3 or (len(relative.parts) == 3 and relative.name not in EXPERIMENT_FILES):
             return True

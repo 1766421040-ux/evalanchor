@@ -12,9 +12,9 @@ PYTHONPATH=src python3 scripts/verify_release.py
 PYTHONPATH=src python3 -m evalanchor arena serve --workspace experiments --port 8780
 ```
 
-恢复器是 macOS/Linux 的标准库程序。只接受清单中的 `experiments/<id>/experiment.json`、`budget-receipt.json`、最终 campaign 预算和指定的 v2 HTML 报告，不接受任意目标路径。它核验压缩对象 SHA256/大小，流式解压，限制单文件及总大小，再核验原始 SHA256/大小并原子创建目的文件。遇到符号链接、目录穿越或内容不同的已存在文件时停止；不会替你删除、覆盖或修复证据。内容相同的文件直接核验后跳过。
+恢复器是 macOS/Linux 的标准库程序。只接受清单中的 `experiments/<id>/experiment.json`、`budget-receipt.json`、最终 campaign 预算、指定的 v2 HTML 报告，以及源码中逐项列出的五份大日志或报告，不接受任意目标路径。它核验传输分块、完整压缩流及原始文件的 SHA256/大小，限制单文件及总大小，再原子创建目的文件。遇到缺块、符号链接、目录穿越或内容不同的已存在文件时停止；不会替你删除、覆盖或修复证据。内容相同的文件直接核验后跳过。
 
-原始大 JSON 的恢复路径和哈希见 [公开证据清单](../evidence/manifest.json)；这些明文路径在 Git 中忽略，因此使用恢复后的本地文件，不把它们当作 GitHub 网页链接。
+原始大 JSON/HTML 的恢复路径和哈希见 [公开证据清单](../evidence/manifest.json)；这些明文路径在 Git 中忽略，因此使用恢复后的本地文件，不把它们当作 GitHub 网页链接。额外五份文件是 v1 演示 HTML、Inspect 指定原生日志、Promptfoo 原始结果，以及 v2 的 `horizon-comparison.json` 和 `results-summary.json`。路径白名单见 [`restore_evidence.py`](../scripts/restore_evidence.py) 的 `PUBLIC_TRANSPORT_FILES`，不匹配同目录其他任意文件。
 
 `python scripts/restore_evidence.py --verify-only` 只检查已经恢复的明文文件，不创建或修改任何文件。SHA256 是清单一致性检查，不构成签名或生成过程真实性证明。
 
@@ -45,7 +45,9 @@ python scripts/build_evidence_bundle.py
 python scripts/build_evidence_bundle.py --report artifacts/orderops-v2/index.html
 ```
 
-该脚本仅读取白名单公开证据。压缩对象以自身 SHA256 命名，manifest 同时记录原始路径、原始/压缩字节数及各自 SHA256。新增结果后应重新生成清单；不要手工改清单以掩盖结果变化。明文实验及完整预算流水通过压缩对象进入 Git，`analysis.json`、小型成本汇总和冻结协议可直接浏览；冗余调用缓存和数据库不进入发布包。
+该脚本仅读取白名单公开证据。当前 manifest schema 2 将每个确定性 gzip 流切成最多 128 KiB 的块，再编码为 `evidence/parts/*.b64` ASCII 文件，每个文件最多 174,764 字节，便于受限上传接口传输。每块记录存储字节数/hash、解码字节数/hash；清单另外记录完整 gzip 和原始文件的字节数/hash，并严格绑定分块顺序、数量和字节总和。恢复先严格校验规范 base64，再核验完整压缩流，最后流式解压并核验原始文件。schema 1 的单个 gzip 对象仍可读取。
+
+新增结果后应重新生成清单；不要手工改清单以掩盖结果变化。base64 只改变传输方式，原始日志、费用、分析和评分不变。明文实验及完整预算流水通过分块进入 Git，`analysis.json`、冻结协议等小文件可直接浏览；冗余调用缓存和数据库不进入发布包。旧的 `evidence/objects/` 被 Git 忽略，新发布只引用当前清单列出的 `parts/`，不上传残留旧对象。
 
 ## wheel、源码包与完整交付 ZIP
 
@@ -62,7 +64,7 @@ wheel 仅安装库、CLI 和两个 HTML 模板。源码发行包和完整 ZIP �
 
 本版本的输出名称分别为 `dist/evalanchor-0.2.0-py3-none-any.whl`、`dist/evalanchor-0.2.0.tar.gz` 和 `dist/evalanchor-0.2.0.zip`。wheel 是安装包；后两者是不同格式的源码交付，解压后均从 `evalanchor-0.2.0/` 根目录复核。
 
-完整 ZIP 已包含明文证据和恢复清单，因此恢复命令可以直接检查已存在的正确文件，不需要重复保存压缩对象。源代码归档中的命令仍以归档根目录为起点。
+完整 ZIP 已包含明文证据和恢复清单，因此恢复命令可以直接检查已存在的正确文件，不需要重复保存 gzip 或 base64 分块。源代码归档中的命令仍以归档根目录为起点。
 
 CI 会先恢复证据，再进行单元测试与离线复核；构建工作在新的安装环境检查 wheel 和完整 ZIP 的可用性。离线核验和测试不发送模型请求。Inspect / Promptfoo 集成 CI 只运行本地合成 provider，结果不能当作模型表现。复现框架夹具所需的依赖下载属于安装步骤，与模型调用分开。
 

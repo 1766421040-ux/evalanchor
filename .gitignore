@@ -21,3 +21,9 @@ experiments/*/budget-receipt.json
 artifacts/orderops-v2/campaign-budget.json
 artifacts/orderops-v2/index.html
 artifacts/orderops-v2/dashboard.html
+artifacts/demo/index.html
+artifacts/orderops-v2/horizon-comparison.json
+artifacts/orderops-v2/results-summary.json
+examples/integrations/verified/inspect/logs/2026-10-29T13-36-54-00-00_task_Ar8s4H6rxqXoDBN5bK9paQ.json
+examples/integrations/verified/promptfoo/results.json
+evidence/objects/

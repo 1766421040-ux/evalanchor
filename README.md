@@ -1,5 +1,7 @@
 # EvalAnchor 0.2
 
+[![Verify evidence and software](https://github.com/1766421040-ux/evalanchor/actions/workflows/verify.yml/badge.svg)](https://github.com/1766421040-ux/evalanchor/actions/workflows/verify.yml)
+
 **用真实业务状态、原始工具轨迹和成本证据，判断一次客服 Agent 升级是否值得。**
 
 Agent 说“退款完成”，不代表钱退到了正确订单；平均分提高，也可能掩盖越权尝试或重复提交。EvalAnchor 在本地 OrderOps 订单沙盒中运行多轮 Agent，真实执行工具，再从初始状态重放全部操作，复算任务结果和行为违规，比较模型、提示词与执行预算。
@@ -15,7 +17,9 @@ Agent 说“退款完成”，不代表钱退到了正确订单；平均分提�
 macOS / Linux，Python 3.12+。以下命令全部离线，不需要 API 密钥：
 
 ```bash
-# 在克隆后的项目根目录运行。
+# Python 3.12+
+git clone https://github.com/1766421040-ux/evalanchor.git
+cd evalanchor
 python3 scripts/restore_evidence.py
 PYTHONPATH=src python3 scripts/verify_release.py
 PYTHONPATH=src python3 -m evalanchor arena serve --workspace experiments --port 8780
@@ -23,7 +27,7 @@ PYTHONPATH=src python3 -m evalanchor arena serve --workspace experiments --port 
 
 打开 <http://127.0.0.1:8780>。工作台可切换实验，查看配置矩阵、成本—成功率图、任务族切片，搜索失败并逐步查看模型请求、工具参数、返回值和最终状态。人工审核保存在本地独立 SQLite 中，不修改原始评分，也不触发模型调用。
 
-实验较大，Git 仓库用 [证据清单](evidence/manifest.json) 和 gzip 对象保存原始 `experiment.json` 及完整预算流水；小型 `analysis.json` 可直接浏览。恢复器校验压缩与解压后的大小、SHA256，拒绝路径穿越、符号链接及覆盖内容不同的文件。完整源码 ZIP 已含明文证据；运行同一恢复命令会校验并跳过已存在的正确文件。
+实验较大，Git 仓库用 [证据清单](evidence/manifest.json) 和分片压缩证据保存原始轨迹、预算流水及较大的报告；小型 `analysis.json` 可直接浏览。每片为最多 128 KiB 压缩数据的 base64 文本，避免大文件上传失败。恢复器校验每片、拼接压缩文件与解压原件的大小和 SHA256，拒绝缺片、乱序、非规范编码、路径穿越、符号链接及覆盖内容不同的文件。完整源码 ZIP 已含明文证据；运行同一恢复命令会校验并跳过已存在的正确文件。
 
 v0.2 严格复核历史轨迹费用需要 Python 3.12+：3.12 的浮点求和实现与较早版本可能产生末位差异。本项目保留原始费用和冻结执行器，核验不会用放宽容差绕过这个兼容要求。
 
@@ -65,7 +69,7 @@ OrderOps 使用虚构订单、客户会话、政策、物流信息和用户事�
 
 在当前主测试的通过配置中，Luna direct 观测成本最低（每条约 $0.000262）；Terra direct 多完成 3/96 条，平均每条约 $0.002240。合理下一步是复核低成本方案的失败，再用新留出数据检验是否值得升级。12 步实验在时间上后运行，缓存命中结构也不同；实际费用更低**不能归因于增加步数**。这些是有限自建套件的描述性结果，不是模型通用能力排名或生产放行证明。
 
-[完整结果与消融](docs/orderops-results.md) · [全部失败 CSV](artifacts/orderops-v2/failure-details.csv) · [冻结协议](artifacts/orderops-v2/frozen-protocol.json) · [轮数配对分析](artifacts/orderops-v2/horizon-comparison.json)
+[完整结果与消融](docs/orderops-results.md) · [全部失败 CSV](artifacts/orderops-v2/failure-details.csv) · [冻结协议](artifacts/orderops-v2/frozen-protocol.json)。完整轮数配对 JSON 位于恢复后的 `artifacts/orderops-v2/horizon-comparison.json`。
 
 ![任务族与执行预算的交互](docs/figures/orderops-results.png)
 <!-- V2_RESULTS_END -->
@@ -145,4 +149,4 @@ scripts/             恢复、离线核验、框架验收与可复现打包
 
 `python scripts/verify_release.py` 默认同时核验 v1 与完整 v2 交付，缺失必需实验会失败，不会静默跳过。`python scripts/package_release.py` 生成带逐文件 SHA256 清单的源码与证据 ZIP，排除密钥、依赖、权重、数据库、冗余调用缓存和嵌套发布包。wheel 用于安装运行库，完整 ZIP 提供研究、测试与可离线重放的证据。
 
-本地完整测试通过 **649 项测试与 13 项子测试**；72/72 个环境任务参考策略可达。CI 配置包括多 Python 版本单元测试、离线证据复核、双框架 fixture 往返及打包后安装验证。配置存在不等于远端运行成功，远端状态以 GitHub Actions 的实际记录为准。源代码和自建数据采用 MIT；上游和模型权利边界见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
+本地完整测试通过 **664 项测试与 13 项子测试**；72/72 个环境任务参考策略可达。CI 配置包括多 Python 版本单元测试、离线证据复核、双框架 fixture 往返及打包后安装验证。配置存在不等于远端运行成功，远端状态以 GitHub Actions 的实际记录为准。源代码和自建数据采用 MIT；上游和模型权利边界见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。

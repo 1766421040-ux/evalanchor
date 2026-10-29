@@ -1,0 +1,19 @@
+{
+  "kind": "plot_from_complete_replay_audited_orderops_evidence",
+  "report_fingerprint": "6a113ff7abe2f04ae1f0627585a9e002fb358f694bbead187b9a8ee1cd034254",
+  "frozen_protocol_fingerprint": "dc8d9a90e2b0c3ce8b24e21483479c445a8db636312a19ca99aaae6c0d7bd942",
+  "sources": {
+    "test-v2": {
+      "sha256": "9d4a6a2cd6236decfd1c9a466cf7ea424b7f76255b616d65bab3a715e85faaaf",
+      "path": "experiments/test-v2/experiment.json",
+      "observed_episodes": 384
+    },
+    "test-long-v2": {
+      "sha256": "c646d1246fca8e4f3000d311e3eb08ac2fb6223ef526ad013c93c0c0565e9865",
+      "path": "experiments/test-long-v2/experiment.json",
+      "observed_episodes": 384
+    }
+  },
+  "population_inference": false,
+  "matplotlib_version": "3.11.2"
+}

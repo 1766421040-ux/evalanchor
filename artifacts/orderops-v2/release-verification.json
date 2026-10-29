@@ -1,0 +1,218 @@
+{
+  "verified": true,
+  "version": "0.2.0",
+  "v1": {
+    "verified": true,
+    "checks": [
+      "inspect-ai",
+      "promptfoo",
+      "demo-candidate",
+      "demo-fixed",
+      "local-qwen-final",
+      "openai-luna-smoke",
+      "qwen-openai-comparison"
+    ],
+    "note": "Saved v0.1 evidence recomputed; no new model inference or paid calls."
+  },
+  "v2": {
+    "verified": true,
+    "release_verified": true,
+    "scope": "v0.2_release",
+    "experiments": [
+      {
+        "id": "pilot-v2",
+        "verified": true,
+        "episodes": 16,
+        "model_steps": 99,
+        "split": "dev",
+        "benchmark_hash": "856133b33bd98f549aa551b8a7c5da8f1ef881bd0e1e79a5392ded1fc55b1908",
+        "audit": {
+          "verified": true,
+          "episodes": 16,
+          "expected": 16
+        },
+        "budget_audit": {
+          "verified": true,
+          "attempts": 99,
+          "event_counts": {
+            "reserved": 99,
+            "dispatched": 99,
+            "settled": 99
+          },
+          "known_spent_nanodollars": 53337280,
+          "unknown_reserved_nanodollars": 0,
+          "active_reserved_nanodollars": 0,
+          "cap_nanodollars": 4750000000,
+          "peak_committed_nanodollars": 121331509
+        },
+        "episode_step_cost_nanodollars": 53337280,
+        "other_attempt_keys_retained_in_budget": [],
+        "config_decisions": {
+          "luna-direct": "inconclusive",
+          "luna-checklist": "inconclusive",
+          "terra-direct": "inconclusive",
+          "terra-checklist": "inconclusive"
+        }
+      },
+      {
+        "id": "dev-v2",
+        "verified": true,
+        "episodes": 96,
+        "model_steps": 437,
+        "split": "dev",
+        "benchmark_hash": "856133b33bd98f549aa551b8a7c5da8f1ef881bd0e1e79a5392ded1fc55b1908",
+        "audit": {
+          "verified": true,
+          "episodes": 96,
+          "expected": 96
+        },
+        "budget_audit": {
+          "verified": true,
+          "attempts": 536,
+          "event_counts": {
+            "reserved": 536,
+            "dispatched": 536,
+            "settled": 536
+          },
+          "known_spent_nanodollars": 296074525,
+          "unknown_reserved_nanodollars": 0,
+          "active_reserved_nanodollars": 0,
+          "cap_nanodollars": 4750000000,
+          "peak_committed_nanodollars": 450479701
+        },
+        "episode_step_cost_nanodollars": 242737245,
+        "other_attempt_keys_retained_in_budget": [],
+        "config_decisions": {
+          "luna-direct": "inconclusive",
+          "luna-checklist": "inconclusive",
+          "terra-direct": "inconclusive",
+          "terra-checklist": "inconclusive"
+        }
+      },
+      {
+        "id": "dev-terminal-v2",
+        "verified": true,
+        "episodes": 16,
+        "model_steps": 70,
+        "split": "dev",
+        "benchmark_hash": "856133b33bd98f549aa551b8a7c5da8f1ef881bd0e1e79a5392ded1fc55b1908",
+        "audit": {
+          "verified": true,
+          "episodes": 16,
+          "expected": 16
+        },
+        "budget_audit": {
+          "verified": true,
+          "attempts": 606,
+          "event_counts": {
+            "reserved": 606,
+            "dispatched": 606,
+            "settled": 606
+          },
+          "known_spent_nanodollars": 323054106,
+          "unknown_reserved_nanodollars": 0,
+          "active_reserved_nanodollars": 0,
+          "cap_nanodollars": 4750000000,
+          "peak_committed_nanodollars": 487662709
+        },
+        "episode_step_cost_nanodollars": 26979581,
+        "other_attempt_keys_retained_in_budget": [],
+        "config_decisions": {
+          "luna-direct": "inconclusive",
+          "luna-checklist": "inconclusive",
+          "terra-direct": "inconclusive",
+          "terra-checklist": "inconclusive"
+        }
+      },
+      {
+        "id": "test-v2",
+        "verified": true,
+        "episodes": 384,
+        "model_steps": 2045,
+        "split": "test",
+        "benchmark_hash": "856133b33bd98f549aa551b8a7c5da8f1ef881bd0e1e79a5392ded1fc55b1908",
+        "audit": {
+          "verified": true,
+          "episodes": 384,
+          "expected": 384
+        },
+        "budget_audit": {
+          "verified": true,
+          "attempts": 2651,
+          "event_counts": {
+            "reserved": 2651,
+            "dispatched": 2651,
+            "settled": 2651
+          },
+          "known_spent_nanodollars": 851273952,
+          "unknown_reserved_nanodollars": 0,
+          "active_reserved_nanodollars": 0,
+          "cap_nanodollars": 4750000000,
+          "peak_committed_nanodollars": 1039725008
+        },
+        "episode_step_cost_nanodollars": 528219846,
+        "other_attempt_keys_retained_in_budget": [],
+        "config_decisions": {
+          "luna-direct": "pass",
+          "luna-checklist": "fail",
+          "terra-direct": "pass",
+          "terra-checklist": "pass"
+        }
+      },
+      {
+        "id": "test-long-v2",
+        "verified": true,
+        "episodes": 384,
+        "model_steps": 2076,
+        "split": "test",
+        "benchmark_hash": "856133b33bd98f549aa551b8a7c5da8f1ef881bd0e1e79a5392ded1fc55b1908",
+        "audit": {
+          "verified": true,
+          "episodes": 384,
+          "expected": 384
+        },
+        "budget_audit": {
+          "verified": true,
+          "attempts": 4727,
+          "event_counts": {
+            "reserved": 4727,
+            "dispatched": 4727,
+            "settled": 4727
+          },
+          "known_spent_nanodollars": 1321334688,
+          "unknown_reserved_nanodollars": 0,
+          "active_reserved_nanodollars": 0,
+          "cap_nanodollars": 4750000000,
+          "peak_committed_nanodollars": 1465920273
+        },
+        "episode_step_cost_nanodollars": 470060736,
+        "other_attempt_keys_retained_in_budget": [],
+        "config_decisions": {
+          "luna-direct": "pass",
+          "luna-checklist": "pass",
+          "terra-direct": "pass",
+          "terra-checklist": "pass"
+        }
+      }
+    ],
+    "note": "Original tools replayed; saved analyses recomputed; public budget JSON audited. No API calls or local caches required.",
+    "campaign": {
+      "verified": true,
+      "attempts": 4727,
+      "event_counts": {
+        "reserved": 4727,
+        "dispatched": 4727,
+        "settled": 4727
+      },
+      "known_spent_nanodollars": 1321334688,
+      "unknown_reserved_nanodollars": 0,
+      "active_reserved_nanodollars": 0,
+      "cap_nanodollars": 4750000000,
+      "peak_committed_nanodollars": 1465920273
+    },
+    "frozen_protocol_sha256": "3253d63eef3b4cd0b7387beb75a06c8bbcaaadc0564283cf79ce6765603c5428",
+    "horizon_comparison_verified": true,
+    "horizon_launch_check_verified": true
+  },
+  "release_verified": true
+}

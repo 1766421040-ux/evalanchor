@@ -1,0 +1,7 @@
+{
+  "id": "candidate",
+  "provider": "replay",
+  "model": "synthetic-fixture",
+  "revision": "v1",
+  "outputs_hash": "c902bf959e6b9fe0a575d591eb2a10954b51c4a87939c0add488e2c437909931"
+}

@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "total_cases": 4,
+  "total_verdicts": 8,
+  "valid_verdicts": 7,
+  "invalid_verdicts": 1,
+  "verdict_coverage": 0.875,
+  "valid_pairs": 3,
+  "invalid_pairs": 1,
+  "pair_coverage": 0.75,
+  "position_disagreements": 1,
+  "position_disagreement_rate": 0.3333333333333333,
+  "position_disagreement_rate_denominator": 3,
+  "gold_cases": 4,
+  "reference_coverage": 1.0,
+  "invalid_references": 0,
+  "gold_verdicts_expected": 8,
+  "gold_valid_verdicts": 7,
+  "gold_coverage": 0.875,
+  "gold_matches": 6,
+  "gold_agreement": 0.8571428571428571,
+  "gold_agreement_denominator": 7,
+  "gold_agreement_all": 0.75,
+  "gold_agreement_all_denominator": 8,
+  "rows": [
+    {
+      "case_id": "stable-a",
+      "winner_ab": "A",
+      "winner_ba": "B",
+      "winner_ba_normalized": "A",
+      "valid_pair": true,
+      "position_disagreement": false,
+      "reference": "A",
+      "invalid_reference": false,
+      "gold_ab_match": true,
+      "gold_ba_match": true
+    },
+    {
+      "case_id": "position-biased",
+      "winner_ab": "A",
+      "winner_ba": "A",
+      "winner_ba_normalized": "B",
+      "valid_pair": true,
+      "position_disagreement": true,
+      "reference": "B",
+      "invalid_reference": false,
+      "gold_ab_match": false,
+      "gold_ba_match": true
+    },
+    {
+      "case_id": "invalid-response",
+      "winner_ab": "invalid",
+      "winner_ba": "B",
+      "winner_ba_normalized": "A",
+      "valid_pair": false,
+      "position_disagreement": null,
+      "reference": "A",
+      "invalid_reference": false,
+      "gold_ab_match": null,
+      "gold_ba_match": true
+    },
+    {
+      "case_id": "stable-tie",
+      "winner_ab": "tie",
+      "winner_ba": "tie",
+      "winner_ba_normalized": "tie",
+      "valid_pair": true,
+      "position_disagreement": false,
+      "reference": "tie",
+      "invalid_reference": false,
+      "gold_ab_match": true,
+      "gold_ba_match": true
+    }
+  ],
+  "warnings": [
+    "Judge preference is not task correctness.",
+    "Agreement is conditional on the supplied reference labels; this function does not certify human annotation.",
+    "Invalid judgments remain in total and coverage denominators; empty denominators return null."
+  ],
+  "provenance": "Synthetic diagnostic decisions, not real model judges or human annotations"
+}

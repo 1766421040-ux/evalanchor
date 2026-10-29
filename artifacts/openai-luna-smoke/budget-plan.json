@@ -1,0 +1,17 @@
+{
+  "model": "gpt-6-luna",
+  "endpoint": "https://api.openai.com/v1/responses",
+  "planned_calls": 16,
+  "repeats": 1,
+  "retries": 0,
+  "reasoning_effort": "none",
+  "max_output_tokens": 256,
+  "service_tier": "default",
+  "max_reserved_input_tokens_per_call": 2579,
+  "conservative_estimate_usd": 0.01187625,
+  "budget_allowance_usd": 0.05,
+  "pricing_checked_on": "2026-10-29",
+  "input_reserve_usd_per_million": 0.25,
+  "output_usd_per_million": 0.5,
+  "budget_note": "UTF-8 byte count plus 2048 framing tokens per input, priced at the 12h cache-write rate. This is a conservative estimate, not an account billing cap; failed requests may incur unknown charges."
+}

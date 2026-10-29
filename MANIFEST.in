@@ -1,0 +1,26 @@
+include LICENSE THIRD_PARTY_NOTICES.md CONTRIBUTING.md Makefile requirements-tested.txt .env.example .gitignore
+recursive-include .github *.yml
+recursive-include docs *.md *.jpg *.png *.svg *.html *.json *.pdf
+recursive-include research *.md
+recursive-include examples *.json *.py *.md *.eval *.txt
+recursive-include scripts *.py
+recursive-include artifacts *.json *.html *.csv
+recursive-include tests *.py
+include experiments/*/experiment.json
+include experiments/*/analysis.json
+include experiments/*/budget-receipt.json
+include experiments/*/failed-requests.json
+include experiments/*/index.html
+include experiments/*/dashboard.html
+include evidence/manifest.json
+recursive-exclude examples/integrations/verified/inspect/.runtime *
+recursive-exclude examples/integrations/verified/promptfoo/.runtime *
+global-exclude *.sqlite3 *.sqlite3-wal *.sqlite3-shm *.db *.lock *.pyc trace.log* *.zip *.whl *.tar *.gz *.pem *.key
+global-exclude .env .env.local auth.json token.json tokens.json */calls/* */secrets/* */credentials/* */密钥/*
+prune 密钥
+prune dist
+prune build
+prune .cache
+prune .venv
+prune .git
+prune node_modules

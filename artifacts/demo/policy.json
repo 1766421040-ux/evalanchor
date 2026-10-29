@@ -1,0 +1,13 @@
+{
+  "alpha": 0.05,
+  "margin": 0.05,
+  "required_tags": [],
+  "critical_tags": [
+    "critical"
+  ],
+  "assume_independent_groups": false,
+  "min_groups": 10,
+  "bootstrap_samples": 2000,
+  "seed": 20261029,
+  "max_error_rate": 0.0
+}

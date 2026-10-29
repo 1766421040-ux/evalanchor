@@ -1,0 +1,12 @@
+{
+  "id": "openai-gpt6-luna-responses-smoke",
+  "provider": "openai-responses",
+  "model": "gpt-6-luna",
+  "revision": "remote-alias-responses-reasoning-none-2026-10-29:provider-sha256=c8e8e66ba9251869f6987c04db0b4a2cecb2960339c45c5eb7d30c1bdf5ad19e",
+  "base_url": "https://api.openai.com/v1",
+  "api_key_env": "OPENAI_API_KEY",
+  "max_tokens": 256,
+  "timeout": 60,
+  "input_usd_per_million": 0.1,
+  "output_usd_per_million": 0.5
+}

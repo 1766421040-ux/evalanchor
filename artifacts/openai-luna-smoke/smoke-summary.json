@@ -1,0 +1,15 @@
+{
+  "calls_attempted": 16,
+  "records": 16,
+  "valid_response_records": 16,
+  "completed_responses": 16,
+  "incomplete_responses": 0,
+  "contract_passes": 15.0,
+  "known_cost_subtotal_usd": 0.000332,
+  "unknown_cost_records": 0,
+  "observed_models": [
+    "gpt-6-luna"
+  ],
+  "output": "/Users/galaxy/Documents/ChatGPT/实习/evalanchor/artifacts/openai-luna-smoke",
+  "note": "Real API outputs on 16 synthetic scenarios; no population-level model ranking. Remote alias is not proof of immutable weights."
+}

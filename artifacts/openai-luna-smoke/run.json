@@ -1,0 +1,3108 @@
+{
+  "schema_version": 1,
+  "id": "openai-gpt6-luna-responses-smoke",
+  "created_at": "2026-10-29T14:01:08.014906+00:00",
+  "status": "complete",
+  "suite": {
+    "id": "synthetic-business-local-smoke-v1",
+    "fingerprint": "c20a9024a5b54f43f51c49e0c7a089ff2a188e54efcf05575fa9dc5a4b66435c",
+    "case_count": 16
+  },
+  "protocol": {
+    "repeats": 1,
+    "scorer_version": "evalanchor.scorers.v1",
+    "fingerprint": "42dfb30fca6658c54ab2c466ce75f4242564c06d429dbb2bcf157d156e3b95cd"
+  },
+  "target": {
+    "id": "openai-gpt6-luna-responses-smoke",
+    "provider": "openai-responses",
+    "model": "gpt-6-luna",
+    "revision": "remote-alias-responses-reasoning-none-2026-10-29:provider-sha256=c8e8e66ba9251869f6987c04db0b4a2cecb2960339c45c5eb7d30c1bdf5ad19e",
+    "base_url": "https://api.openai.com/v1",
+    "api_key_env": "OPENAI_API_KEY",
+    "max_tokens": 256,
+    "timeout": 60,
+    "input_usd_per_million": 0.1,
+    "output_usd_per_million": 0.5
+  },
+  "provenance": {
+    "engine_hash": "d8557b0f3bdc9917a5c7347900d9dd0af22e150fb3098312882199bd47c2e758",
+    "kind": "model_inference",
+    "sampling": {
+      "kind": "synthetic_contract_suite",
+      "independent_groups": false,
+      "note": "手写有限验收套件；同一情境的中英改写不独立，16个情境也不是从目标总体独立随机抽样，不能据此证明真实模型总体性能。"
+    },
+    "retry_policy": {
+      "max_retries": 0,
+      "retryable": "transport, HTTP429, HTTP5xx"
+    },
+    "cost_note": "Recorded successful response token pricing only; failed attempts may have incurred unknown provider charges."
+  },
+  "suite_definition": {
+    "schema_version": 1,
+    "id": "synthetic-business-local-smoke-v1",
+    "title": "中英业务合同 · 16情境真实调用冒烟套件",
+    "description": "Fixed one-case-per-scenario subset of synthetic-business-contracts-v1; eight Chinese and eight English cases. Synthetic prompts are suitable for bounded real-provider execution, but results are not population-level model capability estimates. No fixture predictions are provided for this suite.",
+    "sampling": {
+      "kind": "synthetic_contract_suite",
+      "independent_groups": false,
+      "note": "手写有限验收套件；同一情境的中英改写不独立，16个情境也不是从目标总体独立随机抽样，不能据此证明真实模型总体性能。"
+    },
+    "cases": [
+      {
+        "id": "flight-1",
+        "group_id": "flight",
+        "tags": [
+          "extraction",
+          "synthetic",
+          "lang:zh"
+        ],
+        "messages": [
+          {
+            "role": "system",
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+          },
+          {
+            "role": "user",
+            "content": "从记录提取flight、passengers、checked_bag：航班 EA218，两位乘客，没有托运行李。只输出这三个JSON字段。"
+          }
+        ],
+        "scorer": "json_fields",
+        "expected": {
+          "fields": {
+            "flight": "EA218",
+            "passengers": 2,
+            "checked_bag": false
+          }
+        }
+      },
+      {
+        "id": "invoice-2",
+        "group_id": "invoice",
+        "tags": [
+          "extraction",
+          "synthetic",
+          "lang:en"
+        ],
+        "messages": [
+          {
+            "role": "system",
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+          },
+          {
+            "role": "user",
+            "content": "Invoice INV-42 totals 128 CNY. Return JSON with invoice:string, total:integer, currency:CNY and no other fields."
+          }
+        ],
+        "scorer": "json_exact",
+        "expected": {
+          "invoice": "INV-42",
+          "total": 128,
+          "currency": "CNY"
+        }
+      },
+      {
+        "id": "meeting-1",
+        "group_id": "meeting",
+        "tags": [
+          "extraction",
+          "synthetic",
+          "lang:zh"
+        ],
+        "messages": [
+          {
+            "role": "system",
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+          },
+          {
+            "role": "user",
+            "content": "会议时间为2026年11月3日北京时间上午9:30。只输出date(YYYY-MM-DD)、time(HH:MM)、timezone(IANA名称)三个JSON字段。"
+          }
+        ],
+        "scorer": "json_fields",
+        "expected": {
+          "fields": {
+            "date": "2026-11-03",
+            "time": "09:30",
+            "timezone": "Asia/Shanghai"
+          }
+        }
+      },
+      {
+        "id": "inventory-2",
+        "group_id": "inventory",
+        "tags": [
+          "extraction",
+          "synthetic",
+          "lang:en"
+        ],
+        "messages": [
+          {
+            "role": "system",
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+          },
+          {
+            "role": "user",
+            "content": "SKU KIT-7 has zero units in stock and permits backorders. Return JSON containing only sku:string, quantity:integer, backorder:boolean."
+          }
+        ],
+        "scorer": "json_exact",
+        "expected": {
+          "sku": "KIT-7",
+          "quantity": 0,
+          "backorder": true
+        }
+      },
+      {
+        "id": "quota-1",
+        "group_id": "quota",
+        "tags": [
+          "evidence",
+          "synthetic",
+          "lang:zh"
+        ],
+        "messages": [
+          {
+            "role": "system",
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+          },
+          {
+            "role": "user",
+            "content": "证据：[plan-old]旧方案每月50次；[plan-current]当前方案每月80次。当前每月额度多少？answer用整数。\nReturn only JSON with exactly \"answer\", \"citations\" (unique source IDs), and \"abstain\" (boolean). Use null answer when abstaining."
+          }
+        ],
+        "scorer": "grounded_answer",
+        "expected": {
+          "answer": 80,
+          "citations": [
+            "plan-current"
+          ],
+          "abstain": false
+        }
+      },
+      {
+        "id": "shipping-2",
+        "group_id": "shipping",
+        "tags": [
+          "evidence",
+          "synthetic",
+          "lang:en"
+        ],
+        "messages": [
+          {
+            "role": "system",
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+          },
+          {
+            "role": "user",
+            "content": "Evidence: [shipping-rule] this test shipment's sole destination country code is JP; [sender] origin country is CN. Return the destination country code.\nReturn only JSON with exactly \"answer\", \"citations\" (unique source IDs), and \"abstain\" (boolean). Use null answer when abstaining."
+          }
+        ],
+        "scorer": "grounded_answer",
+        "expected": {
+          "answer": "JP",
+          "citations": [
+            "shipping-rule"
+          ],
+          "abstain": false
+        }
+      },
+      {
+        "id": "sla-1",
+        "group_id": "sla",
+        "tags": [
+          "evidence",
+          "synthetic",
+          "lang:zh"
+        ],
+        "messages": [
+          {
+            "role": "system",
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+          },
+          {
+            "role": "user",
+            "content": "证据：[sla-standard]普通工单响应上限24小时；[sla-priority]优先工单响应上限4小时。本工单是优先工单，上限为多少小时？answer用整数。\nReturn only JSON with exactly \"answer\", \"citations\" (unique source IDs), and \"abstain\" (boolean). Use null answer when abstaining."
+          }
+        ],
+        "scorer": "grounded_answer",
+        "expected": {
+          "answer": 4,
+          "citations": [
+            "sla-priority"
+          ],
+          "abstain": false
+        }
+      },
+      {
+        "id": "measurement-2",
+        "group_id": "measurement",
+        "tags": [
+          "evidence",
+          "synthetic",
+          "lang:en"
+        ],
+        "messages": [
+          {
+            "role": "system",
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+          },
+          {
+            "role": "user",
+            "content": "Evidence: [report-draft] draft interval [0.69,0.81]; [report-final] final interval [0.71,0.79]. Return the final interval as a string with no spaces.\nReturn only JSON with exactly \"answer\", \"citations\" (unique source IDs), and \"abstain\" (boolean). Use null answer when abstaining."
+          }
+        ],
+        "scorer": "grounded_answer",
+        "expected": {
+          "answer": "[0.71,0.79]",
+          "citations": [
+            "report-final"
+          ],
+          "abstain": false
+        }
+      },
+      {
+        "id": "missing_contact-1",
+        "group_id": "missing_contact",
+        "tags": [
+          "abstention",
+          "synthetic",
+          "lang:zh"
+        ],
+        "messages": [
+          {
+            "role": "system",
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+          },
+          {
+            "role": "user",
+            "content": "资料只有客户姓名Alice，没有邮箱。客户邮箱是什么？如果无法从资料得到，严格只返回INSUFFICIENT_EVIDENCE。"
+          }
+        ],
+        "scorer": "exact",
+        "expected": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "id": "missing_price-2",
+        "group_id": "missing_price",
+        "tags": [
+          "abstention",
+          "synthetic",
+          "lang:en"
+        ],
+        "messages": [
+          {
+            "role": "system",
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+          },
+          {
+            "role": "user",
+            "content": "Evidence: [catalog] Nova is listed, but no price is provided. What is its price? If unavailable use abstain=true, answer=null, citations=[].\nReturn only JSON with exactly \"answer\", \"citations\" (unique source IDs), and \"abstain\" (boolean). Use null answer when abstaining."
+          }
+        ],
+        "scorer": "grounded_answer",
+        "expected": {
+          "answer": null,
+          "citations": [],
+          "abstain": true
+        }
+      },
+      {
+        "id": "conflict_route-1",
+        "group_id": "conflict_route",
+        "tags": [
+          "abstention",
+          "synthetic",
+          "lang:zh"
+        ],
+        "messages": [
+          {
+            "role": "system",
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+          },
+          {
+            "role": "user",
+            "content": "两个同等级系统对同一订单状态分别报告PAID和UNPAID，没有时间戳。按合同返回CONFLICT ESCALATE两个英文关键词，不可自行选一方。"
+          }
+        ],
+        "scorer": "contains_all",
+        "expected": [
+          "CONFLICT",
+          "ESCALATE"
+        ]
+      },
+      {
+        "id": "conflict_authorization-2",
+        "group_id": "conflict_authorization",
+        "tags": [
+          "abstention",
+          "synthetic",
+          "lang:en",
+          "critical"
+        ],
+        "messages": [
+          {
+            "role": "system",
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+          },
+          {
+            "role": "user",
+            "content": "Evidence: [rule-a] authorization is AUTHORIZED; [rule-b] equally authoritative record says REJECTED. Neither has an effective timestamp. Can authorization be confirmed? Abstain on conflict and cite both.\nReturn only JSON with exactly \"answer\", \"citations\" (unique source IDs), and \"abstain\" (boolean). Use null answer when abstaining."
+          }
+        ],
+        "scorer": "grounded_answer",
+        "expected": {
+          "answer": null,
+          "citations": [
+            "rule-a",
+            "rule-b"
+          ],
+          "abstain": true
+        }
+      },
+      {
+        "id": "search_ticket-1",
+        "group_id": "search_ticket",
+        "tags": [
+          "tool",
+          "synthetic",
+          "lang:zh"
+        ],
+        "messages": [
+          {
+            "role": "system",
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+          },
+          {
+            "role": "user",
+            "content": "为客户C-17检索最多5条open工单。工具search_tickets(customer_id:string,status:string,limit:integer)。\nReturn one JSON tool call with exactly \"name\" and \"arguments\". Do not execute a tool."
+          }
+        ],
+        "scorer": "tool_call",
+        "expected": {
+          "name": "search_tickets",
+          "arguments": {
+            "customer_id": "C-17",
+            "status": "open",
+            "limit": 5
+          }
+        }
+      },
+      {
+        "id": "refund_preview-2",
+        "group_id": "refund_preview",
+        "tags": [
+          "tool",
+          "synthetic",
+          "lang:en"
+        ],
+        "messages": [
+          {
+            "role": "system",
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+          },
+          {
+            "role": "user",
+            "content": "Preview a refund of 25 currency units for O-314; do not execute. Allowed tool: preview_refund(order_id:string,amount_cents:integer).\nReturn one JSON tool call with exactly \"name\" and \"arguments\". Do not execute a tool."
+          }
+        ],
+        "scorer": "tool_call",
+        "expected": {
+          "name": "preview_refund",
+          "arguments": {
+            "order_id": "O-314",
+            "amount_cents": 2500
+          }
+        }
+      },
+      {
+        "id": "transfer_preview-1",
+        "group_id": "transfer_preview",
+        "tags": [
+          "tool",
+          "synthetic",
+          "lang:zh",
+          "critical"
+        ],
+        "messages": [
+          {
+            "role": "system",
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+          },
+          {
+            "role": "user",
+            "content": "预览向R-9转账12.50元人民币。工具preview_transfer(recipient:string,amount_cents:integer,currency:string)。金额必须是分，不得执行转账。\nReturn one JSON tool call with exactly \"name\" and \"arguments\". Do not execute a tool."
+          }
+        ],
+        "scorer": "tool_call",
+        "expected": {
+          "name": "preview_transfer",
+          "arguments": {
+            "recipient": "R-9",
+            "amount_cents": 1250,
+            "currency": "CNY"
+          }
+        }
+      },
+      {
+        "id": "create_ticket-2",
+        "group_id": "create_ticket",
+        "tags": [
+          "tool",
+          "synthetic",
+          "lang:en"
+        ],
+        "messages": [
+          {
+            "role": "system",
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+          },
+          {
+            "role": "user",
+            "content": "Create a high-priority ticket for O-88 without notifying the customer. Tool: create_ticket(order_id:string,priority:string,notify:boolean).\nReturn one JSON tool call with exactly \"name\" and \"arguments\". Do not execute a tool."
+          }
+        ],
+        "scorer": "tool_call",
+        "expected": {
+          "name": "create_ticket",
+          "arguments": {
+            "order_id": "O-88",
+            "priority": "high",
+            "notify": false
+          }
+        }
+      }
+    ]
+  },
+  "records": [
+    {
+      "attempts": [
+        {
+          "index": 0,
+          "latency_ms": 2799.0910839289427,
+          "status": "ok"
+        }
+      ],
+      "case_id": "conflict_authorization-2",
+      "cost_usd": 2.32e-05,
+      "details": {
+        "abstention_match": true,
+        "answer_match": true,
+        "citations_match": true,
+        "limitation": "Exact evidence contract; not a semantic entailment judge"
+      },
+      "error": null,
+      "group_id": "conflict_authorization",
+      "input_hash": "297434bc2536681e61150176742ee32018df0aacc83f9fef0e7f12ee6f556185",
+      "latency_ms": 2799.242457957007,
+      "output": "{\"answer\":null,\"citations\":[\"rule-a\",\"rule-b\"],\"abstain\":true}",
+      "reason": "Answer value, citation IDs, and abstention contract match",
+      "repeat": 0,
+      "request": {
+        "endpoint": "https://api.openai.com/v1/responses",
+        "input": [
+          {
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.",
+            "role": "system"
+          },
+          {
+            "content": "Evidence: [rule-a] authorization is AUTHORIZED; [rule-b] equally authoritative record says REJECTED. Neither has an effective timestamp. Can authorization be confirmed? Abstain on conflict and cite both.\nReturn only JSON with exactly \"answer\", \"citations\" (unique source IDs), and \"abstain\" (boolean). Use null answer when abstaining.",
+            "role": "user"
+          }
+        ],
+        "max_output_tokens": 256,
+        "model": "gpt-6-luna",
+        "reasoning": {
+          "effort": "none"
+        },
+        "service_tier": "default",
+        "store": false,
+        "stream": false,
+        "truncation": "disabled"
+      },
+      "response": {
+        "access_programs": null,
+        "background": false,
+        "billing": {
+          "payer": "developer"
+        },
+        "completed_at": 1793282507,
+        "created_at": 1793282506,
+        "error": null,
+        "frequency_penalty": 0.0,
+        "id": "resp_09455d673b771ca1016ae351ca799487d09a7af29f6a0c2539",
+        "incomplete_details": null,
+        "instructions": null,
+        "max_output_tokens": 256,
+        "max_tool_calls": null,
+        "metadata": {},
+        "model": "gpt-6-luna",
+        "moderation": null,
+        "object": "response",
+        "output": [
+          {
+            "content": [
+              {
+                "annotations": [],
+                "logprobs": [],
+                "text": "{\"answer\":null,\"citations\":[\"rule-a\",\"rule-b\"],\"abstain\":true}",
+                "type": "output_text"
+              }
+            ],
+            "id": "msg_09455d673b771ca1016ae351cb037c87d0ad197e15039f2c0b",
+            "phase": "final_answer",
+            "role": "assistant",
+            "status": "completed",
+            "type": "message"
+          }
+        ],
+        "parallel_tool_calls": true,
+        "presence_penalty": 0.0,
+        "previous_response_id": null,
+        "prompt_cache_key": null,
+        "prompt_cache_retention": "24h",
+        "reasoning": {
+          "context": "all_turns",
+          "effort": "none",
+          "mode": "standard",
+          "summary": null
+        },
+        "safety_identifier": null,
+        "service_tier": "default",
+        "status": "completed",
+        "store": false,
+        "temperature": 1.0,
+        "text": {
+          "format": {
+            "type": "text"
+          },
+          "verbosity": "medium"
+        },
+        "tool_choice": "auto",
+        "tool_usage": {
+          "image_gen": {
+            "input_tokens": 0,
+            "input_tokens_details": {
+              "image_tokens": 0,
+              "text_tokens": 0
+            },
+            "output_tokens": 0,
+            "output_tokens_details": {
+              "image_tokens": 0,
+              "text_tokens": 0
+            },
+            "total_tokens": 0
+          },
+          "web_search": {
+            "num_requests": 0
+          }
+        },
+        "tools": [],
+        "top_logprobs": 0,
+        "top_p": 0.98,
+        "truncation": "disabled",
+        "usage": {
+          "input_tokens": 107,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 25,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 132
+        },
+        "user": null
+      },
+      "score": 1.0,
+      "status": "ok",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:en",
+        "critical"
+      ],
+      "usage": {
+        "completion_tokens": 25,
+        "native": {
+          "input_tokens": 107,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 25,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 132
+        },
+        "prompt_tokens": 107,
+        "total_tokens": 132
+      }
+    },
+    {
+      "attempts": [
+        {
+          "index": 0,
+          "latency_ms": 2976.13987501245,
+          "status": "ok"
+        }
+      ],
+      "case_id": "conflict_route-1",
+      "cost_usd": 1.17e-05,
+      "details": {
+        "limitation": "Keyword presence does not establish semantic correctness",
+        "missing": []
+      },
+      "error": null,
+      "group_id": "conflict_route",
+      "input_hash": "6c2a82648951bec90ee3ab9c0eba892f6f67ec32f620f50681e77f21da49144d",
+      "latency_ms": 2976.287249941379,
+      "output": "CONFLICT ESCALATE",
+      "reason": "All required case-sensitive substrings present",
+      "repeat": 0,
+      "request": {
+        "endpoint": "https://api.openai.com/v1/responses",
+        "input": [
+          {
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.",
+            "role": "system"
+          },
+          {
+            "content": "两个同等级系统对同一订单状态分别报告PAID和UNPAID，没有时间戳。按合同返回CONFLICT ESCALATE两个英文关键词，不可自行选一方。",
+            "role": "user"
+          }
+        ],
+        "max_output_tokens": 256,
+        "model": "gpt-6-luna",
+        "reasoning": {
+          "effort": "none"
+        },
+        "service_tier": "default",
+        "store": false,
+        "stream": false,
+        "truncation": "disabled"
+      },
+      "response": {
+        "access_programs": null,
+        "background": false,
+        "billing": {
+          "payer": "developer"
+        },
+        "completed_at": 1793282504,
+        "created_at": 1793282503,
+        "error": null,
+        "frequency_penalty": 0.0,
+        "id": "resp_0432acd311c35174016ae351c766a487d0bac9ac2bcfad2624",
+        "incomplete_details": null,
+        "instructions": null,
+        "max_output_tokens": 256,
+        "max_tool_calls": null,
+        "metadata": {},
+        "model": "gpt-6-luna",
+        "moderation": null,
+        "object": "response",
+        "output": [
+          {
+            "content": [
+              {
+                "annotations": [],
+                "logprobs": [],
+                "text": "CONFLICT ESCALATE",
+                "type": "output_text"
+              }
+            ],
+            "id": "msg_0432acd311c35174016ae351c81b5087d0b59f59fa337c9d29",
+            "phase": "final_answer",
+            "role": "assistant",
+            "status": "completed",
+            "type": "message"
+          }
+        ],
+        "parallel_tool_calls": true,
+        "presence_penalty": 0.0,
+        "previous_response_id": null,
+        "prompt_cache_key": null,
+        "prompt_cache_retention": "24h",
+        "reasoning": {
+          "context": "all_turns",
+          "effort": "none",
+          "mode": "standard",
+          "summary": null
+        },
+        "safety_identifier": null,
+        "service_tier": "default",
+        "status": "completed",
+        "store": false,
+        "temperature": 1.0,
+        "text": {
+          "format": {
+            "type": "text"
+          },
+          "verbosity": "medium"
+        },
+        "tool_choice": "auto",
+        "tool_usage": {
+          "image_gen": {
+            "input_tokens": 0,
+            "input_tokens_details": {
+              "image_tokens": 0,
+              "text_tokens": 0
+            },
+            "output_tokens": 0,
+            "output_tokens_details": {
+              "image_tokens": 0,
+              "text_tokens": 0
+            },
+            "total_tokens": 0
+          },
+          "web_search": {
+            "num_requests": 0
+          }
+        },
+        "tools": [],
+        "top_logprobs": 0,
+        "top_p": 0.98,
+        "truncation": "disabled",
+        "usage": {
+          "input_tokens": 72,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 9,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 81
+        },
+        "user": null
+      },
+      "score": 1.0,
+      "status": "ok",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:zh"
+      ],
+      "usage": {
+        "completion_tokens": 9,
+        "native": {
+          "input_tokens": 72,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 9,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 81
+        },
+        "prompt_tokens": 72,
+        "total_tokens": 81
+      }
+    },
+    {
+      "attempts": [
+        {
+          "index": 0,
+          "latency_ms": 2550.447875051759,
+          "status": "ok"
+        }
+      ],
+      "case_id": "create_ticket-2",
+      "cost_usd": 2.16e-05,
+      "details": {
+        "executed": false
+      },
+      "error": null,
+      "group_id": "create_ticket",
+      "input_hash": "299d763ba59ad044e3fb6ccab673e11694f31d9aa3034fe2b64d9dbf21ed7a04",
+      "latency_ms": 2550.4790409468114,
+      "output": "{\"name\":\"create_ticket\",\"arguments\":{\"order_id\":\"O-88\",\"priority\":\"high\",\"notify\":false}}",
+      "reason": "Tool name and all argument types/values match",
+      "repeat": 0,
+      "request": {
+        "endpoint": "https://api.openai.com/v1/responses",
+        "input": [
+          {
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.",
+            "role": "system"
+          },
+          {
+            "content": "Create a high-priority ticket for O-88 without notifying the customer. Tool: create_ticket(order_id:string,priority:string,notify:boolean).\nReturn one JSON tool call with exactly \"name\" and \"arguments\". Do not execute a tool.",
+            "role": "user"
+          }
+        ],
+        "max_output_tokens": 256,
+        "model": "gpt-6-luna",
+        "reasoning": {
+          "effort": "none"
+        },
+        "service_tier": "default",
+        "store": false,
+        "stream": false,
+        "truncation": "disabled"
+      },
+      "response": {
+        "access_programs": null,
+        "background": false,
+        "billing": {
+          "payer": "developer"
+        },
+        "completed_at": 1793282522,
+        "created_at": 1793282521,
+        "error": null,
+        "frequency_penalty": 0.0,
+        "id": "resp_05014b535f54e229016ae351d9685887d08cc093218152366b",
+        "incomplete_details": null,
+        "instructions": null,
+        "max_output_tokens": 256,
+        "max_tool_calls": null,
+        "metadata": {},
+        "model": "gpt-6-luna",
+        "moderation": null,
+        "object": "response",
+        "output": [
+          {
+            "content": [
+              {
+                "annotations": [],
+                "logprobs": [],
+                "text": "{\"name\":\"create_ticket\",\"arguments\":{\"order_id\":\"O-88\",\"priority\":\"high\",\"notify\":false}}",
+                "type": "output_text"
+              }
+            ],
+            "id": "msg_05014b535f54e229016ae351d9e14487d098eddd7a2c3b790a",
+            "phase": "final_answer",
+            "role": "assistant",
+            "status": "completed",
+            "type": "message"
+          }
+        ],
+        "parallel_tool_calls": true,
+        "presence_penalty": 0.0,
+        "previous_response_id": null,
+        "prompt_cache_key": null,
+        "prompt_cache_retention": "24h",
+        "reasoning": {
+          "context": "all_turns",
+          "effort": "none",
+          "mode": "standard",
+          "summary": null
+        },
+        "safety_identifier": null,
+        "service_tier": "default",
+        "status": "completed",
+        "store": false,
+        "temperature": 1.0,
+        "text": {
+          "format": {
+            "type": "text"
+          },
+          "verbosity": "medium"
+        },
+        "tool_choice": "auto",
+        "tool_usage": {
+          "image_gen": {
+            "input_tokens": 0,
+            "input_tokens_details": {
+              "image_tokens": 0,
+              "text_tokens": 0
+            },
+            "output_tokens": 0,
+            "output_tokens_details": {
+              "image_tokens": 0,
+              "text_tokens": 0
+            },
+            "total_tokens": 0
+          },
+          "web_search": {
+            "num_requests": 0
+          }
+        },
+        "tools": [],
+        "top_logprobs": 0,
+        "top_p": 0.98,
+        "truncation": "disabled",
+        "usage": {
+          "input_tokens": 81,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 27,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 108
+        },
+        "user": null
+      },
+      "score": 1.0,
+      "status": "ok",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:en"
+      ],
+      "usage": {
+        "completion_tokens": 27,
+        "native": {
+          "input_tokens": 81,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 27,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 108
+        },
+        "prompt_tokens": 81,
+        "total_tokens": 108
+      }
+    },
+    {
+      "attempts": [
+        {
+          "index": 0,
+          "latency_ms": 3545.287749962881,
+          "status": "ok"
+        }
+      ],
+      "case_id": "flight-1",
+      "cost_usd": 1.7e-05,
+      "details": {
+        "allow_extra": false
+      },
+      "error": null,
+      "group_id": "flight",
+      "input_hash": "f989031e31eede7e80f767bbabe0487b1637f1e7d5285325e073ce85017cc837",
+      "latency_ms": 3545.4340419964865,
+      "output": "{\"flight\":\"EA218\",\"passengers\":2,\"checked_bag\":false}",
+      "reason": "Required JSON fields and types match",
+      "repeat": 0,
+      "request": {
+        "endpoint": "https://api.openai.com/v1/responses",
+        "input": [
+          {
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.",
+            "role": "system"
+          },
+          {
+            "content": "从记录提取flight、passengers、checked_bag：航班 EA218，两位乘客，没有托运行李。只输出这三个JSON字段。",
+            "role": "user"
+          }
+        ],
+        "max_output_tokens": 256,
+        "model": "gpt-6-luna",
+        "reasoning": {
+          "effort": "none"
+        },
+        "service_tier": "default",
+        "store": false,
+        "stream": false,
+        "truncation": "disabled"
+      },
+      "response": {
+        "access_programs": null,
+        "background": false,
+        "billing": {
+          "payer": "developer"
+        },
+        "completed_at": 1793282471,
+        "created_at": 1793282470,
+        "error": null,
+        "frequency_penalty": 0.0,
+        "id": "resp_0f3edfaac48e4aa6016ae351a6289487d0935c06fc80c61895",
+        "incomplete_details": null,
+        "instructions": null,
+        "max_output_tokens": 256,
+        "max_tool_calls": null,
+        "metadata": {},
+        "model": "gpt-6-luna",
+        "moderation": null,
+        "object": "response",
+        "output": [
+          {
+            "content": [
+              {
+                "annotations": [],
+                "logprobs": [],
+                "text": "{\"flight\":\"EA218\",\"passengers\":2,\"checked_bag\":false}",
+                "type": "output_text"
+              }
+            ],
+            "id": "msg_0f3edfaac48e4aa6016ae351a6f8b887d0881975c49bde93e1",
+            "phase": "final_answer",
+            "role": "assistant",
+            "status": "completed",
+            "type": "message"
+          }
+        ],
+        "parallel_tool_calls": true,
+        "presence_penalty": 0.0,
+        "previous_response_id": null,
+        "prompt_cache_key": null,
+        "prompt_cache_retention": "24h",
+        "reasoning": {
+          "context": "all_turns",
+          "effort": "none",
+          "mode": "standard",
+          "summary": null
+        },
+        "safety_identifier": null,
+        "service_tier": "default",
+        "status": "completed",
+        "store": false,
+        "temperature": 1.0,
+        "text": {
+          "format": {
+            "type": "text"
+          },
+          "verbosity": "medium"
+        },
+        "tool_choice": "auto",
+        "tool_usage": {
+          "image_gen": {
+            "input_tokens": 0,
+            "input_tokens_details": {
+              "image_tokens": 0,
+              "text_tokens": 0
+            },
+            "output_tokens": 0,
+            "output_tokens_details": {
+              "image_tokens": 0,
+              "text_tokens": 0
+            },
+            "total_tokens": 0
+          },
+          "web_search": {
+            "num_requests": 0
+          }
+        },
+        "tools": [],
+        "top_logprobs": 0,
+        "top_p": 0.98,
+        "truncation": "disabled",
+        "usage": {
+          "input_tokens": 65,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 21,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 86
+        },
+        "user": null
+      },
+      "score": 1.0,
+      "status": "ok",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:zh"
+      ],
+      "usage": {
+        "completion_tokens": 21,
+        "native": {
+          "input_tokens": 65,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 21,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 86
+        },
+        "prompt_tokens": 65,
+        "total_tokens": 86
+      }
+    },
+    {
+      "attempts": [
+        {
+          "index": 0,
+          "latency_ms": 3909.341000020504,
+          "status": "ok"
+        }
+      ],
+      "case_id": "inventory-2",
+      "cost_usd": 1.6100000000000002e-05,
+      "details": {
+        "metric_kind": "deterministic_contract"
+      },
+      "error": null,
+      "group_id": "inventory",
+      "input_hash": "9c0511e1a26e2f456e75c298810a2b35d0954c0015ca92419dfdf9d1dee88ff7",
+      "latency_ms": 3909.5072500640526,
+      "output": "{\"sku\":\"KIT-7\",\"quantity\":0,\"backorder\":true}",
+      "reason": "Exact JSON structure and types match",
+      "repeat": 0,
+      "request": {
+        "endpoint": "https://api.openai.com/v1/responses",
+        "input": [
+          {
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.",
+            "role": "system"
+          },
+          {
+            "content": "SKU KIT-7 has zero units in stock and permits backorders. Return JSON containing only sku:string, quantity:integer, backorder:boolean.",
+            "role": "user"
+          }
+        ],
+        "max_output_tokens": 256,
+        "model": "gpt-6-luna",
+        "reasoning": {
+          "effort": "none"
+        },
+        "service_tier": "default",
+        "store": false,
+        "stream": false,
+        "truncation": "disabled"
+      },
+      "response": {
+        "access_programs": null,
+        "background": false,
+        "billing": {
+          "payer": "developer"
+        },
+        "completed_at": 1793282482,
+        "created_at": 1793282480,
+        "error": null,
+        "frequency_penalty": 0.0,
+        "id": "resp_02f3ec14861820ce016ae351b088f487d0a154ba060f73e5eb",
+        "incomplete_details": null,
+        "instructions": null,
+        "max_output_tokens": 256,
+        "max_tool_calls": null,
+        "metadata": {},
+        "model": "gpt-6-luna",
+        "moderation": null,
+        "object": "response",
+        "output": [
+          {
+            "content": [
+              {
+                "annotations": [],
+                "logprobs": [],
+                "text": "{\"sku\":\"KIT-7\",\"quantity\":0,\"backorder\":true}",
+                "type": "output_text"
+              }
+            ],
+            "id": "msg_02f3ec14861820ce016ae351b213c487d094993b689fcfdc47",
+            "phase": "final_answer",
+            "role": "assistant",
+            "status": "completed",
+            "type": "message"
+          }
+        ],
+        "parallel_tool_calls": true,
+        "presence_penalty": 0.0,
+        "previous_response_id": null,
+        "prompt_cache_key": null,
+        "prompt_cache_retention": "24h",
+        "reasoning": {
+          "context": "all_turns",
+          "effort": "none",
+          "mode": "standard",
+          "summary": null
+        },
+        "safety_identifier": null,
+        "service_tier": "default",
+        "status": "completed",
+        "store": false,
+        "temperature": 1.0,
+        "text": {
+          "format": {
+            "type": "text"
+          },
+          "verbosity": "medium"
+        },
+        "tool_choice": "auto",
+        "tool_usage": {
+          "image_gen": {
+            "input_tokens": 0,
+            "input_tokens_details": {
+              "image_tokens": 0,
+              "text_tokens": 0
+            },
+            "output_tokens": 0,
+            "output_tokens_details": {
+              "image_tokens": 0,
+              "text_tokens": 0
+            },
+            "total_tokens": 0
+          },
+          "web_search": {
+            "num_requests": 0
+          }
+        },
+        "tools": [],
+        "top_logprobs": 0,
+        "top_p": 0.98,
+        "truncation": "disabled",
+        "usage": {
+          "input_tokens": 61,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 20,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 81
+        },
+        "user": null
+      },
+      "score": 1.0,
+      "status": "ok",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:en"
+      ],
+      "usage": {
+        "completion_tokens": 20,
+        "native": {
+          "input_tokens": 61,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 20,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 81
+        },
+        "prompt_tokens": 61,
+        "total_tokens": 81
+      }
+    },
+    {
+      "attempts": [
+        {
+          "index": 0,
+          "latency_ms": 4363.232542062178,
+          "status": "ok"
+        }
+      ],
+      "case_id": "invoice-2",
+      "cost_usd": 1.6e-05,
+      "details": {
+        "metric_kind": "deterministic_contract"
+      },
+      "error": null,
+      "group_id": "invoice",
+      "input_hash": "8e3517f206a4e040b56493e8666c1f1dc24c0bf744a346aeeb909ad649e027a7",
+      "latency_ms": 4363.378291018307,
+      "output": "{\"invoice\":\"INV-42\",\"total\":128,\"currency\":\"CNY\"}",
+      "reason": "Exact JSON structure and types match",
+      "repeat": 0,
+      "request": {
+        "endpoint": "https://api.openai.com/v1/responses",
+        "input": [
+          {
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.",
+            "role": "system"
+          },
+          {
+            "content": "Invoice INV-42 totals 128 CNY. Return JSON with invoice:string, total:integer, currency:CNY and no other fields.",
+            "role": "user"
+          }
+        ],
+        "max_output_tokens": 256,
+        "model": "gpt-6-luna",
+        "reasoning": {
+          "effort": "none"
+        },
+        "service_tier": "default",
+        "store": false,
+        "stream": false,
+        "truncation": "disabled"
+      },
+      "response": {
+        "access_programs": null,
+        "background": false,
+        "billing": {
+          "payer": "developer"
+        },
+        "completed_at": 1793282475,
+        "created_at": 1793282474,
+        "error": null,
+        "frequency_penalty": 0.0,
+        "id": "resp_0ae70b85fea3154a016ae351aad30487d0bb34a7010cc36f8d",
+        "incomplete_details": null,
+        "instructions": null,
+        "max_output_tokens": 256,
+        "max_tool_calls": null,
+        "metadata": {},
+        "model": "gpt-6-luna",
+        "moderation": null,
+        "object": "response",
+        "output": [
+          {
+            "content": [
+              {
+                "annotations": [],
+                "logprobs": [],
+                "text": "{\"invoice\":\"INV-42\",\"total\":128,\"currency\":\"CNY\"}",
+                "type": "output_text"
+              }
+            ],
+            "id": "msg_0ae70b85fea3154a016ae351ab4d7487d0a17b761fb03a6ca2",
+            "phase": "final_answer",
+            "role": "assistant",
+            "status": "completed",
+            "type": "message"
+          }
+        ],
+        "parallel_tool_calls": true,
+        "presence_penalty": 0.0,
+        "previous_response_id": null,
+        "prompt_cache_key": null,
+        "prompt_cache_retention": "24h",
+        "reasoning": {
+          "context": "all_turns",
+          "effort": "none",
+          "mode": "standard",
+          "summary": null
+        },
+        "safety_identifier": null,
+        "service_tier": "default",
+        "status": "completed",
+        "store": false,
+        "temperature": 1.0,
+        "text": {
+          "format": {
+            "type": "text"
+          },
+          "verbosity": "medium"
+        },
+        "tool_choice": "auto",
+        "tool_usage": {
+          "image_gen": {
+            "input_tokens": 0,
+            "input_tokens_details": {
+              "image_tokens": 0,
+              "text_tokens": 0
+            },
+            "output_tokens": 0,
+            "output_tokens_details": {
+              "image_tokens": 0,
+              "text_tokens": 0
+            },
+            "total_tokens": 0
+          },
+          "web_search": {
+            "num_requests": 0
+          }
+        },
+        "tools": [],
+        "top_logprobs": 0,
+        "top_p": 0.98,
+        "truncation": "disabled",
+        "usage": {
+          "input_tokens": 60,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 20,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 80
+        },
+        "user": null
+      },
+      "score": 1.0,
+      "status": "ok",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:en"
+      ],
+      "usage": {
+        "completion_tokens": 20,
+        "native": {
+          "input_tokens": 60,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 20,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 80
+        },
+        "prompt_tokens": 60,
+        "total_tokens": 80
+      }
+    },
+    {
+      "attempts": [
+        {
+          "index": 0,
+          "latency_ms": 3731.7327079363167,
+          "status": "ok"
+        }
+      ],
+      "case_id": "measurement-2",
+      "cost_usd": 2.59e-05,
+      "details": {
+        "abstention_match": true,
+        "answer_match": true,
+        "citations_match": true,
+        "limitation": "Exact evidence contract; not a semantic entailment judge"
+      },
+      "error": null,
+      "group_id": "measurement",
+      "input_hash": "895fa99b46137351e77892eaab2e63fe241e4ae9522b0f282e7115a60104b9f0",
+      "latency_ms": 3731.891500065103,
+      "output": "{\"answer\":\"[0.71,0.79]\",\"citations\":[\"report-final\"],\"abstain\":false}",
+      "reason": "Answer value, citation IDs, and abstention contract match",
+      "repeat": 0,
+      "request": {
+        "endpoint": "https://api.openai.com/v1/responses",
+        "input": [
+          {
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.",
+            "role": "system"
+          },
+          {
+            "content": "Evidence: [report-draft] draft interval [0.69,0.81]; [report-final] final interval [0.71,0.79]. Return the final interval as a string with no spaces.\nReturn only JSON with exactly \"answer\", \"citations\" (unique source IDs), and \"abstain\" (boolean). Use null answer when abstaining.",
+            "role": "user"
+          }
+        ],
+        "max_output_tokens": 256,
+        "model": "gpt-6-luna",
+        "reasoning": {
+          "effort": "none"
+        },
+        "service_tier": "default",
+        "store": false,
+        "stream": false,
+        "truncation": "disabled"
+      },
+      "response": {
+        "access_programs": null,
+        "background": false,
+        "billing": {
+          "payer": "developer"
+        },
+        "completed_at": 1793282496,
+        "created_at": 1793282495,
+        "error": null,
+        "frequency_penalty": 0.0,
+        "id": "resp_01de6412c5049978016ae351bf0a2487d083c5c379ae16a4f0",
+        "incomplete_details": null,
+        "instructions": null,
+        "max_output_tokens": 256,
+        "max_tool_calls": null,
+        "metadata": {},
+        "model": "gpt-6-luna",
+        "moderation": null,
+        "object": "response",
+        "output": [
+          {
+            "content": [
+              {
+                "annotations": [],
+                "logprobs": [],
+                "text": "{\"answer\":\"[0.71,0.79]\",\"citations\":[\"report-final\"],\"abstain\":false}",
+                "type": "output_text"
+              }
+            ],
+            "id": "msg_01de6412c5049978016ae351bfb20087d09a7a5931f0333352",
+            "phase": "final_answer",
+            "role": "assistant",
+            "status": "completed",
+            "type": "message"
+          }
+        ],
+        "parallel_tool_calls": true,
+        "presence_penalty": 0.0,
+        "previous_response_id": null,
+        "prompt_cache_key": null,
+        "prompt_cache_retention": "24h",
+        "reasoning": {
+          "context": "all_turns",
+          "effort": "none",
+          "mode": "standard",
+          "summary": null
+        },
+        "safety_identifier": null,
+        "service_tier": "default",
+        "status": "completed",
+        "store": false,
+        "temperature": 1.0,
+        "text": {
+          "format": {
+            "type": "text"
+          },
+          "verbosity": "medium"
+        },
+        "tool_choice": "auto",
+        "tool_usage": {
+          "image_gen": {
+            "input_tokens": 0,
+            "input_tokens_details": {
+              "image_tokens": 0,
+              "text_tokens": 0
+            },
+            "output_tokens": 0,
+            "output_tokens_details": {
+              "image_tokens": 0,
+              "text_tokens": 0
+            },
+            "total_tokens": 0
+          },
+          "web_search": {
+            "num_requests": 0
+          }
+        },
+        "tools": [],
+        "top_logprobs": 0,
+        "top_p": 0.98,
+        "truncation": "disabled",
+        "usage": {
+          "input_tokens": 109,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 30,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 139
+        },
+        "user": null
+      },
+      "score": 1.0,
+      "status": "ok",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:en"
+      ],
+      "usage": {
+        "completion_tokens": 30,
+        "native": {
+          "input_tokens": 109,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 30,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 139
+        },
+        "prompt_tokens": 109,
+        "total_tokens": 139
+      }
+    },
+    {
+      "attempts": [
+        {
+          "index": 0,
+          "latency_ms": 3298.059375025332,
+          "status": "ok"
+        }
+      ],
+      "case_id": "meeting-1",
+      "cost_usd": 2.01e-05,
+      "details": {
+        "allow_extra": false
+      },
+      "error": null,
+      "group_id": "meeting",
+      "input_hash": "06e5f3f018addf03cbb9873231d785fbba74e475b9056ba98e943e1e688a9667",
+      "latency_ms": 3298.201833968051,
+      "output": "{\"date\":\"2026-11-03\",\"time\":\"09:30\",\"timezone\":\"Asia/Shanghai\"}",
+      "reason": "Required JSON fields and types match",
+      "repeat": 0,
+      "request": {
+        "endpoint": "https://api.openai.com/v1/responses",
+        "input": [
+          {
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.",
+            "role": "system"
+          },
+          {
+            "content": "会议时间为2026年11月3日北京时间上午9:30。只输出date(YYYY-MM-DD)、time(HH:MM)、timezone(IANA名称)三个JSON字段。",
+            "role": "user"
+          }
+        ],
+        "max_output_tokens": 256,
+        "model": "gpt-6-luna",
+        "reasoning": {
+          "effort": "none"
+        },
+        "service_tier": "default",
+        "store": false,
+        "stream": false,
+        "truncation": "disabled"
+      },
+      "response": {
+        "access_programs": null,
+        "background": false,
+        "billing": {
+          "payer": "developer"
+        },
+        "completed_at": 1793282478,
+        "created_at": 1793282477,
+        "error": null,
+        "frequency_penalty": 0.0,
+        "id": "resp_0d04773c9d19111e016ae351ad954c87d0b7c8ab0f657eeea4",
+        "incomplete_details": null,
+        "instructions": null,
+        "max_output_tokens": 256,
+        "max_tool_calls": null,
+        "metadata": {},
+        "model": "gpt-6-luna",
+        "moderation": null,
+        "object": "response",
+        "output": [
+          {
+            "content": [
+              {
+                "annotations": [],
+                "logprobs": [],
+                "text": "{\"date\":\"2026-11-03\",\"time\":\"09:30\",\"timezone\":\"Asia/Shanghai\"}",
+                "type": "output_text"
+              }
+            ],
+            "id": "msg_0d04773c9d19111e016ae351ae74b087d080020f43c9f534af",
+            "phase": "final_answer",
+            "role": "assistant",
+            "status": "completed",
+            "type": "message"
+          }
+        ],
+        "parallel_tool_calls": true,
+        "presence_penalty": 0.0,
+        "previous_response_id": null,
+        "prompt_cache_key": null,
+        "prompt_cache_retention": "24h",
+        "reasoning": {
+          "context": "all_turns",
+          "effort": "none",
+          "mode": "standard",
+          "summary": null
+        },
+        "safety_identifier": null,
+        "service_tier": "default",
+        "status": "completed",
+        "store": false,
+        "temperature": 1.0,
+        "text": {
+          "format": {
+            "type": "text"
+          },
+          "verbosity": "medium"
+        },
+        "tool_choice": "auto",
+        "tool_usage": {
+          "image_gen": {
+            "input_tokens": 0,
+            "input_tokens_details": {
+              "image_tokens": 0,
+              "text_tokens": 0
+            },
+            "output_tokens": 0,
+            "output_tokens_details": {
+              "image_tokens": 0,
+              "text_tokens": 0
+            },
+            "total_tokens": 0
+          },
+          "web_search": {
+            "num_requests": 0
+          }
+        },
+        "tools": [],
+        "top_logprobs": 0,
+        "top_p": 0.98,
+        "truncation": "disabled",
+        "usage": {
+          "input_tokens": 71,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 26,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 97
+        },
+        "user": null
+      },
+      "score": 1.0,
+      "status": "ok",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:zh"
+      ],
+      "usage": {
+        "completion_tokens": 26,
+        "native": {
+          "input_tokens": 71,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 26,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 97
+        },
+        "prompt_tokens": 71,
+        "total_tokens": 97
+      }
+    },
+    {
+      "attempts": [
+        {
+          "index": 0,
+          "latency_ms": 2781.2663330696523,
+          "status": "ok"
+        }
+      ],
+      "case_id": "missing_contact-1",
+      "cost_usd": 1.16e-05,
+      "details": {
+        "metric_kind": "deterministic_contract"
+      },
+      "error": null,
+      "group_id": "missing_contact",
+      "input_hash": "6d11b9124347970b04aa76b03448bf733ed65e8457f3bd2c293ff7d5a3fbecc3",
+      "latency_ms": 2781.3941669883206,
+      "output": "INSUFFICIENT_EVIDENCE",
+      "reason": "Exact string match",
+      "repeat": 0,
+      "request": {
+        "endpoint": "https://api.openai.com/v1/responses",
+        "input": [
+          {
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.",
+            "role": "system"
+          },
+          {
+            "content": "资料只有客户姓名Alice，没有邮箱。客户邮箱是什么？如果无法从资料得到，严格只返回INSUFFICIENT_EVIDENCE。",
+            "role": "user"
+          }
+        ],
+        "max_output_tokens": 256,
+        "model": "gpt-6-luna",
+        "reasoning": {
+          "effort": "none"
+        },
+        "service_tier": "default",
+        "store": false,
+        "stream": false,
+        "truncation": "disabled"
+      },
+      "response": {
+        "access_programs": null,
+        "background": false,
+        "billing": {
+          "payer": "developer"
+        },
+        "completed_at": 1793282498,
+        "created_at": 1793282497,
+        "error": null,
+        "frequency_penalty": 0.0,
+        "id": "resp_0ee8a14d6b9bc5dc016ae351c1ee0487d095078e7e25406463",
+        "incomplete_details": null,
+        "instructions": null,
+        "max_output_tokens": 256,
+        "max_tool_calls": null,
+        "metadata": {},
+        "model": "gpt-6-luna",
+        "moderation": null,
+        "object": "response",
+        "output": [
+          {
+            "content": [
+              {
+                "annotations": [],
+                "logprobs": [],
+                "text": "INSUFFICIENT_EVIDENCE",
+                "type": "output_text"
+              }
+            ],
+            "id": "msg_0ee8a14d6b9bc5dc016ae351c2bf6c87d0817d0931fb66ced5",
+            "phase": "final_answer",
+            "role": "assistant",
+            "status": "completed",
+            "type": "message"
+          }
+        ],
+        "parallel_tool_calls": true,
+        "presence_penalty": 0.0,
+        "previous_response_id": null,
+        "prompt_cache_key": null,
+        "prompt_cache_retention": "24h",
+        "reasoning": {
+          "context": "all_turns",
+          "effort": "none",
+          "mode": "standard",
+          "summary": null
+        },
+        "safety_identifier": null,
+        "service_tier": "default",
+        "status": "completed",
+        "store": false,
+        "temperature": 1.0,
+        "text": {
+          "format": {
+            "type": "text"
+          },
+          "verbosity": "medium"
+        },
+        "tool_choice": "auto",
+        "tool_usage": {
+          "image_gen": {
+            "input_tokens": 0,
+            "input_tokens_details": {
+              "image_tokens": 0,
+              "text_tokens": 0
+            },
+            "output_tokens": 0,
+            "output_tokens_details": {
+              "image_tokens": 0,
+              "text_tokens": 0
+            },
+            "total_tokens": 0
+          },
+          "web_search": {
+            "num_requests": 0
+          }
+        },
+        "tools": [],
+        "top_logprobs": 0,
+        "top_p": 0.98,
+        "truncation": "disabled",
+        "usage": {
+          "input_tokens": 61,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 11,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 72
+        },
+        "user": null
+      },
+      "score": 1.0,
+      "status": "ok",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:zh"
+      ],
+      "usage": {
+        "completion_tokens": 11,
+        "native": {
+          "input_tokens": 61,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 11,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 72
+        },
+        "prompt_tokens": 61,
+        "total_tokens": 72
+      }
+    },
+    {
+      "attempts": [
+        {
+          "index": 0,
+          "latency_ms": 2671.9428750220686,
+          "status": "ok"
+        }
+      ],
+      "case_id": "missing_price-2",
+      "cost_usd": 1.93e-05,
+      "details": {
+        "abstention_match": true,
+        "answer_match": true,
+        "citations_match": true,
+        "limitation": "Exact evidence contract; not a semantic entailment judge"
+      },
+      "error": null,
+      "group_id": "missing_price",
+      "input_hash": "530045a3eddabcbc7f463d0b6d73b3cd726a9c6ab3a666804a4fc052c18d4885",
+      "latency_ms": 2672.0201660646126,
+      "output": "{\"answer\":null,\"citations\":[],\"abstain\":true}",
+      "reason": "Answer value, citation IDs, and abstention contract match",
+      "repeat": 0,
+      "request": {
+        "endpoint": "https://api.openai.com/v1/responses",
+        "input": [
+          {
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.",
+            "role": "system"
+          },
+          {
+            "content": "Evidence: [catalog] Nova is listed, but no price is provided. What is its price? If unavailable use abstain=true, answer=null, citations=[].\nReturn only JSON with exactly \"answer\", \"citations\" (unique source IDs), and \"abstain\" (boolean). Use null answer when abstaining.",
+            "role": "user"
+          }
+        ],
+        "max_output_tokens": 256,
+        "model": "gpt-6-luna",
+        "reasoning": {
+          "effort": "none"
+        },
+        "service_tier": "default",
+        "store": false,
+        "stream": false,
+        "truncation": "disabled"
+      },
+      "response": {
+        "access_programs": null,
+        "background": false,
+        "billing": {
+          "payer": "developer"
+        },
+        "completed_at": 1793282501,
+        "created_at": 1793282500,
+        "error": null,
+        "frequency_penalty": 0.0,
+        "id": "resp_04c9b83c6d185d12016ae351c4bf0487d08888de3e0e01950e",
+        "incomplete_details": null,
+        "instructions": null,
+        "max_output_tokens": 256,
+        "max_tool_calls": null,
+        "metadata": {},
+        "model": "gpt-6-luna",
+        "moderation": null,
+        "object": "response",
+        "output": [
+          {
+            "content": [
+              {
+                "annotations": [],
+                "logprobs": [],
+                "text": "{\"answer\":null,\"citations\":[],\"abstain\":true}",
+                "type": "output_text"
+              }
+            ],
+            "id": "msg_04c9b83c6d185d12016ae351c52ba487d089a53198b150faaa",
+            "phase": "final_answer",
+            "role": "assistant",
+            "status": "completed",
+            "type": "message"
+          }
+        ],
+        "parallel_tool_calls": true,
+        "presence_penalty": 0.0,
+        "previous_response_id": null,
+        "prompt_cache_key": null,
+        "prompt_cache_retention": "24h",
+        "reasoning": {
+          "context": "all_turns",
+          "effort": "none",
+          "mode": "standard",
+          "summary": null
+        },
+        "safety_identifier": null,
+        "service_tier": "default",
+        "status": "completed",
+        "store": false,
+        "temperature": 1.0,
+        "text": {
+          "format": {
+            "type": "text"
+          },
+          "verbosity": "medium"
+        },
+        "tool_choice": "auto",
+        "tool_usage": {
+          "image_gen": {
+            "input_tokens": 0,
+            "input_tokens_details": {
+              "image_tokens": 0,
+              "text_tokens": 0
+            },
+            "output_tokens": 0,
+            "output_tokens_details": {
+              "image_tokens": 0,
+              "text_tokens": 0
+            },
+            "total_tokens": 0
+          },
+          "web_search": {
+            "num_requests": 0
+          }
+        },
+        "tools": [],
+        "top_logprobs": 0,
+        "top_p": 0.98,
+        "truncation": "disabled",
+        "usage": {
+          "input_tokens": 98,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 19,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 117
+        },
+        "user": null
+      },
+      "score": 1.0,
+      "status": "ok",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:en"
+      ],
+      "usage": {
+        "completion_tokens": 19,
+        "native": {
+          "input_tokens": 98,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 19,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 117
+        },
+        "prompt_tokens": 98,
+        "total_tokens": 117
+      }
+    },
+    {
+      "attempts": [
+        {
+          "index": 0,
+          "latency_ms": 2946.7566249659285,
+          "status": "ok"
+        }
+      ],
+      "case_id": "quota-1",
+      "cost_usd": 2.09e-05,
+      "details": {
+        "abstention_match": true,
+        "answer_match": true,
+        "citations_match": true,
+        "limitation": "Exact evidence contract; not a semantic entailment judge"
+      },
+      "error": null,
+      "group_id": "quota",
+      "input_hash": "fe36e6f5b71f2f47dd95be3f7e755f1a568cdc261741cb6996881b529691b3df",
+      "latency_ms": 2946.7957500601187,
+      "output": "{\"answer\":80,\"citations\":[\"plan-current\"],\"abstain\":false}",
+      "reason": "Answer value, citation IDs, and abstention contract match",
+      "repeat": 0,
+      "request": {
+        "endpoint": "https://api.openai.com/v1/responses",
+        "input": [
+          {
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.",
+            "role": "system"
+          },
+          {
+            "content": "证据：[plan-old]旧方案每月50次；[plan-current]当前方案每月80次。当前每月额度多少？answer用整数。\nReturn only JSON with exactly \"answer\", \"citations\" (unique source IDs), and \"abstain\" (boolean). Use null answer when abstaining.",
+            "role": "user"
+          }
+        ],
+        "max_output_tokens": 256,
+        "model": "gpt-6-luna",
+        "reasoning": {
+          "effort": "none"
+        },
+        "service_tier": "default",
+        "store": false,
+        "stream": false,
+        "truncation": "disabled"
+      },
+      "response": {
+        "access_programs": null,
+        "background": false,
+        "billing": {
+          "payer": "developer"
+        },
+        "completed_at": 1793282485,
+        "created_at": 1793282484,
+        "error": null,
+        "frequency_penalty": 0.0,
+        "id": "resp_01b1dec67c1e3c20016ae351b4b52487d086c747e1b9e90752",
+        "incomplete_details": null,
+        "instructions": null,
+        "max_output_tokens": 256,
+        "max_tool_calls": null,
+        "metadata": {},
+        "model": "gpt-6-luna",
+        "moderation": null,
+        "object": "response",
+        "output": [
+          {
+            "content": [
+              {
+                "annotations": [],
+                "logprobs": [],
+                "text": "{\"answer\":80,\"citations\":[\"plan-current\"],\"abstain\":false}",
+                "type": "output_text"
+              }
+            ],
+            "id": "msg_01b1dec67c1e3c20016ae351b5749487d08dbbd06f8fc87b76",
+            "phase": "final_answer",
+            "role": "assistant",
+            "status": "completed",
+            "type": "message"
+          }
+        ],
+        "parallel_tool_calls": true,
+        "presence_penalty": 0.0,
+        "previous_response_id": null,
+        "prompt_cache_key": null,
+        "prompt_cache_retention": "24h",
+        "reasoning": {
+          "context": "all_turns",
+          "effort": "none",
+          "mode": "standard",
+          "summary": null
+        },
+        "safety_identifier": null,
+        "service_tier": "default",
+        "status": "completed",
+        "store": false,
+        "temperature": 1.0,
+        "text": {
+          "format": {
+            "type": "text"
+          },
+          "verbosity": "medium"
+        },
+        "tool_choice": "auto",
+        "tool_usage": {
+          "image_gen": {
+            "input_tokens": 0,
+            "input_tokens_details": {
+              "image_tokens": 0,
+              "text_tokens": 0
+            },
+            "output_tokens": 0,
+            "output_tokens_details": {
+              "image_tokens": 0,
+              "text_tokens": 0
+            },
+            "total_tokens": 0
+          },
+          "web_search": {
+            "num_requests": 0
+          }
+        },
+        "tools": [],
+        "top_logprobs": 0,
+        "top_p": 0.98,
+        "truncation": "disabled",
+        "usage": {
+          "input_tokens": 99,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 22,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 121
+        },
+        "user": null
+      },
+      "score": 1.0,
+      "status": "ok",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:zh"
+      ],
+      "usage": {
+        "completion_tokens": 22,
+        "native": {
+          "input_tokens": 99,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 22,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 121
+        },
+        "prompt_tokens": 99,
+        "total_tokens": 121
+      }
+    },
+    {
+      "attempts": [
+        {
+          "index": 0,
+          "latency_ms": 4673.221083940007,
+          "status": "ok"
+        }
+      ],
+      "case_id": "refund_preview-2",
+      "cost_usd": 3.9e-05,
+      "details": {
+        "error_type": "invalid_json"
+      },
+      "error": null,
+      "group_id": "refund_preview",
+      "input_hash": "1f6ff77dcd23a2e35536228493b56f0123a7dc977f2d5ac49cf202b4ddf0be6d",
+      "latency_ms": 4673.618874978274,
+      "output": "{\"name\":\"preview_refund\",\"arguments\":{\"order_id\":\"O-314\",\"amount_cents\":2500}} T\n karto\n{\"name\":\"preview_refund\",\"arguments\":{\"order_id\":\"O-314\",\"amount_cents\":2500}}",
+      "reason": "Malformed JSON: Extra data: line 1 column 80 (char 79)",
+      "repeat": 0,
+      "request": {
+        "endpoint": "https://api.openai.com/v1/responses",
+        "input": [
+          {
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.",
+            "role": "system"
+          },
+          {
+            "content": "Preview a refund of 25 currency units for O-314; do not execute. Allowed tool: preview_refund(order_id:string,amount_cents:integer).\nReturn one JSON tool call with exactly \"name\" and \"arguments\". Do not execute a tool.",
+            "role": "user"
+          }
+        ],
+        "max_output_tokens": 256,
+        "model": "gpt-6-luna",
+        "reasoning": {
+          "effort": "none"
+        },
+        "service_tier": "default",
+        "store": false,
+        "stream": false,
+        "truncation": "disabled"
+      },
+      "response": {
+        "access_programs": null,
+        "background": false,
+        "billing": {
+          "payer": "developer"
+        },
+        "completed_at": 1793282515,
+        "created_at": 1793282513,
+        "error": null,
+        "frequency_penalty": 0.0,
+        "id": "resp_035311db6d049409016ae351d1e7bc87d082829551a81e7763",
+        "incomplete_details": null,
+        "instructions": null,
+        "max_output_tokens": 256,
+        "max_tool_calls": null,
+        "metadata": {},
+        "model": "gpt-6-luna",
+        "moderation": null,
+        "object": "response",
+        "output": [
+          {
+            "content": [
+              {
+                "annotations": [],
+                "logprobs": [],
+                "text": "{\"name\":\"preview_refund\",\"arguments\":{\"order_id\":\"O-314\",\"amount_cents\":2500}} T\n karto\n",
+                "type": "output_text"
+              }
+            ],
+            "id": "msg_035311db6d049409016ae351d27ff887d0a35b1aed6c26391e",
+            "phase": "commentary",
+            "role": "assistant",
+            "status": "completed",
+            "type": "message"
+          },
+          {
+            "content": [
+              {
+                "annotations": [],
+                "logprobs": [],
+                "text": "{\"name\":\"preview_refund\",\"arguments\":{\"order_id\":\"O-314\",\"amount_cents\":2500}}",
+                "type": "output_text"
+              }
+            ],
+            "id": "msg_035311db6d049409016ae351d2e03c87d0971f9d26f4ce5164",
+            "phase": "final_answer",
+            "role": "assistant",
+            "status": "completed",
+            "type": "message"
+          }
+        ],
+        "parallel_tool_calls": true,
+        "presence_penalty": 0.0,
+        "previous_response_id": null,
+        "prompt_cache_key": null,
+        "prompt_cache_retention": "24h",
+        "reasoning": {
+          "context": "all_turns",
+          "effort": "none",
+          "mode": "standard",
+          "summary": null
+        },
+        "safety_identifier": null,
+        "service_tier": "default",
+        "status": "completed",
+        "store": false,
+        "temperature": 1.0,
+        "text": {
+          "format": {
+            "type": "text"
+          },
+          "verbosity": "medium"
+        },
+        "tool_choice": "auto",
+        "tool_usage": {
+          "image_gen": {
+            "input_tokens": 0,
+            "input_tokens_details": {
+              "image_tokens": 0,
+              "text_tokens": 0
+            },
+            "output_tokens": 0,
+            "output_tokens_details": {
+              "image_tokens": 0,
+              "text_tokens": 0
+            },
+            "total_tokens": 0
+          },
+          "web_search": {
+            "num_requests": 0
+          }
+        },
+        "tools": [],
+        "top_logprobs": 0,
+        "top_p": 0.98,
+        "truncation": "disabled",
+        "usage": {
+          "input_tokens": 85,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 61,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 146
+        },
+        "user": null
+      },
+      "score": 0.0,
+      "status": "ok",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:en"
+      ],
+      "usage": {
+        "completion_tokens": 61,
+        "native": {
+          "input_tokens": 85,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 61,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 146
+        },
+        "prompt_tokens": 85,
+        "total_tokens": 146
+      }
+    },
+    {
+      "attempts": [
+        {
+          "index": 0,
+          "latency_ms": 4705.073041957803,
+          "status": "ok"
+        }
+      ],
+      "case_id": "search_ticket-1",
+      "cost_usd": 2.2100000000000002e-05,
+      "details": {
+        "executed": false
+      },
+      "error": null,
+      "group_id": "search_ticket",
+      "input_hash": "4ea1eb2c850b2681de10e10ae9977088e3c12811ebb0958db92ebe618fb956cf",
+      "latency_ms": 4705.218584043905,
+      "output": "{\"name\":\"search_tickets\",\"arguments\":{\"customer_id\":\"C-17\",\"status\":\"open\",\"limit\":5}}",
+      "reason": "Tool name and all argument types/values match",
+      "repeat": 0,
+      "request": {
+        "endpoint": "https://api.openai.com/v1/responses",
+        "input": [
+          {
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.",
+            "role": "system"
+          },
+          {
+            "content": "为客户C-17检索最多5条open工单。工具search_tickets(customer_id:string,status:string,limit:integer)。\nReturn one JSON tool call with exactly \"name\" and \"arguments\". Do not execute a tool.",
+            "role": "user"
+          }
+        ],
+        "max_output_tokens": 256,
+        "model": "gpt-6-luna",
+        "reasoning": {
+          "effort": "none"
+        },
+        "service_tier": "default",
+        "store": false,
+        "stream": false,
+        "truncation": "disabled"
+      },
+      "response": {
+        "access_programs": null,
+        "background": false,
+        "billing": {
+          "payer": "developer"
+        },
+        "completed_at": 1793282511,
+        "created_at": 1793282509,
+        "error": null,
+        "frequency_penalty": 0.0,
+        "id": "resp_0b98fa45765c6804016ae351cd1cfc87d0926c3ccc17181b61",
+        "incomplete_details": null,
+        "instructions": null,
+        "max_output_tokens": 256,
+        "max_tool_calls": null,
+        "metadata": {},
+        "model": "gpt-6-luna",
+        "moderation": null,
+        "object": "response",
+        "output": [
+          {
+            "content": [
+              {
+                "annotations": [],
+                "logprobs": [],
+                "text": "{\"name\":\"search_tickets\",\"arguments\":{\"customer_id\":\"C-17\",\"status\":\"open\",\"limit\":5}}",
+                "type": "output_text"
+              }
+            ],
+            "id": "msg_0b98fa45765c6804016ae351ceb0dc87d0b0e03faea05dc115",
+            "phase": "final_answer",
+            "role": "assistant",
+            "status": "completed",
+            "type": "message"
+          }
+        ],
+        "parallel_tool_calls": true,
+        "presence_penalty": 0.0,
+        "previous_response_id": null,
+        "prompt_cache_key": null,
+        "prompt_cache_retention": "24h",
+        "reasoning": {
+          "context": "all_turns",
+          "effort": "none",
+          "mode": "standard",
+          "summary": null
+        },
+        "safety_identifier": null,
+        "service_tier": "default",
+        "status": "completed",
+        "store": false,
+        "temperature": 1.0,
+        "text": {
+          "format": {
+            "type": "text"
+          },
+          "verbosity": "medium"
+        },
+        "tool_choice": "auto",
+        "tool_usage": {
+          "image_gen": {
+            "input_tokens": 0,
+            "input_tokens_details": {
+              "image_tokens": 0,
+              "text_tokens": 0
+            },
+            "output_tokens": 0,
+            "output_tokens_details": {
+              "image_tokens": 0,
+              "text_tokens": 0
+            },
+            "total_tokens": 0
+          },
+          "web_search": {
+            "num_requests": 0
+          }
+        },
+        "tools": [],
+        "top_logprobs": 0,
+        "top_p": 0.98,
+        "truncation": "disabled",
+        "usage": {
+          "input_tokens": 81,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 28,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 109
+        },
+        "user": null
+      },
+      "score": 1.0,
+      "status": "ok",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:zh"
+      ],
+      "usage": {
+        "completion_tokens": 28,
+        "native": {
+          "input_tokens": 81,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 28,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 109
+        },
+        "prompt_tokens": 81,
+        "total_tokens": 109
+      }
+    },
+    {
+      "attempts": [
+        {
+          "index": 0,
+          "latency_ms": 3375.31791604124,
+          "status": "ok"
+        }
+      ],
+      "case_id": "shipping-2",
+      "cost_usd": 2.0600000000000003e-05,
+      "details": {
+        "abstention_match": true,
+        "answer_match": true,
+        "citations_match": true,
+        "limitation": "Exact evidence contract; not a semantic entailment judge"
+      },
+      "error": null,
+      "group_id": "shipping",
+      "input_hash": "3bbaa60f1cf31966ee31c8a46439fefda74fa0e56a7325180c77cbf8b700e723",
+      "latency_ms": 3375.4707500338554,
+      "output": "{\"answer\":\"JP\",\"citations\":[\"shipping-rule\"],\"abstain\":false}",
+      "reason": "Answer value, citation IDs, and abstention contract match",
+      "repeat": 0,
+      "request": {
+        "endpoint": "https://api.openai.com/v1/responses",
+        "input": [
+          {
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.",
+            "role": "system"
+          },
+          {
+            "content": "Evidence: [shipping-rule] this test shipment's sole destination country code is JP; [sender] origin country is CN. Return the destination country code.\nReturn only JSON with exactly \"answer\", \"citations\" (unique source IDs), and \"abstain\" (boolean). Use null answer when abstaining.",
+            "role": "user"
+          }
+        ],
+        "max_output_tokens": 256,
+        "model": "gpt-6-luna",
+        "reasoning": {
+          "effort": "none"
+        },
+        "service_tier": "default",
+        "store": false,
+        "stream": false,
+        "truncation": "disabled"
+      },
+      "response": {
+        "access_programs": null,
+        "background": false,
+        "billing": {
+          "payer": "developer"
+        },
+        "completed_at": 1793282489,
+        "created_at": 1793282487,
+        "error": null,
+        "frequency_penalty": 0.0,
+        "id": "resp_081d3744dd696ddd016ae351b79a8487d0a1a8f80a646f6aa2",
+        "incomplete_details": null,
+        "instructions": null,
+        "max_output_tokens": 256,
+        "max_tool_calls": null,
+        "metadata": {},
+        "model": "gpt-6-luna",
+        "moderation": null,
+        "object": "response",
+        "output": [
+          {
+            "content": [
+              {
+                "annotations": [],
+                "logprobs": [],
+                "text": "{\"answer\":\"JP\",\"citations\":[\"shipping-rule\"],\"abstain\":false}",
+                "type": "output_text"
+              }
+            ],
+            "id": "msg_081d3744dd696ddd016ae351b8c9c087d09c091ab5e30a0f23",
+            "phase": "final_answer",
+            "role": "assistant",
+            "status": "completed",
+            "type": "message"
+          }
+        ],
+        "parallel_tool_calls": true,
+        "presence_penalty": 0.0,
+        "previous_response_id": null,
+        "prompt_cache_key": null,
+        "prompt_cache_retention": "24h",
+        "reasoning": {
+          "context": "all_turns",
+          "effort": "none",
+          "mode": "standard",
+          "summary": null
+        },
+        "safety_identifier": null,
+        "service_tier": "default",
+        "status": "completed",
+        "store": false,
+        "temperature": 1.0,
+        "text": {
+          "format": {
+            "type": "text"
+          },
+          "verbosity": "medium"
+        },
+        "tool_choice": "auto",
+        "tool_usage": {
+          "image_gen": {
+            "input_tokens": 0,
+            "input_tokens_details": {
+              "image_tokens": 0,
+              "text_tokens": 0
+            },
+            "output_tokens": 0,
+            "output_tokens_details": {
+              "image_tokens": 0,
+              "text_tokens": 0
+            },
+            "total_tokens": 0
+          },
+          "web_search": {
+            "num_requests": 0
+          }
+        },
+        "tools": [],
+        "top_logprobs": 0,
+        "top_p": 0.98,
+        "truncation": "disabled",
+        "usage": {
+          "input_tokens": 96,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 22,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 118
+        },
+        "user": null
+      },
+      "score": 1.0,
+      "status": "ok",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:en"
+      ],
+      "usage": {
+        "completion_tokens": 22,
+        "native": {
+          "input_tokens": 96,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 22,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 118
+        },
+        "prompt_tokens": 96,
+        "total_tokens": 118
+      }
+    },
+    {
+      "attempts": [
+        {
+          "index": 0,
+          "latency_ms": 3173.545958008617,
+          "status": "ok"
+        }
+      ],
+      "case_id": "sla-1",
+      "cost_usd": 2.2700000000000003e-05,
+      "details": {
+        "abstention_match": true,
+        "answer_match": true,
+        "citations_match": true,
+        "limitation": "Exact evidence contract; not a semantic entailment judge"
+      },
+      "error": null,
+      "group_id": "sla",
+      "input_hash": "23e639fc13bfed6656563c1e80222735ca473bba4b1a035f2dbbf40311538419",
+      "latency_ms": 3173.7037498969585,
+      "output": "{\"answer\":4,\"citations\":[\"sla-priority\"],\"abstain\":false}",
+      "reason": "Answer value, citation IDs, and abstention contract match",
+      "repeat": 0,
+      "request": {
+        "endpoint": "https://api.openai.com/v1/responses",
+        "input": [
+          {
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.",
+            "role": "system"
+          },
+          {
+            "content": "证据：[sla-standard]普通工单响应上限24小时；[sla-priority]优先工单响应上限4小时。本工单是优先工单，上限为多少小时？answer用整数。\nReturn only JSON with exactly \"answer\", \"citations\" (unique source IDs), and \"abstain\" (boolean). Use null answer when abstaining.",
+            "role": "user"
+          }
+        ],
+        "max_output_tokens": 256,
+        "model": "gpt-6-luna",
+        "reasoning": {
+          "effort": "none"
+        },
+        "service_tier": "default",
+        "store": false,
+        "stream": false,
+        "truncation": "disabled"
+      },
+      "response": {
+        "access_programs": null,
+        "background": false,
+        "billing": {
+          "payer": "developer"
+        },
+        "completed_at": 1793282492,
+        "created_at": 1793282490,
+        "error": null,
+        "frequency_penalty": 0.0,
+        "id": "resp_00aa50f0a173d190016ae351bae81087d08b2ae2ba588a298e",
+        "incomplete_details": null,
+        "instructions": null,
+        "max_output_tokens": 256,
+        "max_tool_calls": null,
+        "metadata": {},
+        "model": "gpt-6-luna",
+        "moderation": null,
+        "object": "response",
+        "output": [
+          {
+            "content": [
+              {
+                "annotations": [],
+                "logprobs": [],
+                "text": "{\"answer\":4,\"citations\":[\"sla-priority\"],\"abstain\":false}",
+                "type": "output_text"
+              }
+            ],
+            "id": "msg_00aa50f0a173d190016ae351bbd7f087d082b2ece1d932051b",
+            "phase": "final_answer",
+            "role": "assistant",
+            "status": "completed",
+            "type": "message"
+          }
+        ],
+        "parallel_tool_calls": true,
+        "presence_penalty": 0.0,
+        "previous_response_id": null,
+        "prompt_cache_key": null,
+        "prompt_cache_retention": "24h",
+        "reasoning": {
+          "context": "all_turns",
+          "effort": "none",
+          "mode": "standard",
+          "summary": null
+        },
+        "safety_identifier": null,
+        "service_tier": "default",
+        "status": "completed",
+        "store": false,
+        "temperature": 1.0,
+        "text": {
+          "format": {
+            "type": "text"
+          },
+          "verbosity": "medium"
+        },
+        "tool_choice": "auto",
+        "tool_usage": {
+          "image_gen": {
+            "input_tokens": 0,
+            "input_tokens_details": {
+              "image_tokens": 0,
+              "text_tokens": 0
+            },
+            "output_tokens": 0,
+            "output_tokens_details": {
+              "image_tokens": 0,
+              "text_tokens": 0
+            },
+            "total_tokens": 0
+          },
+          "web_search": {
+            "num_requests": 0
+          }
+        },
+        "tools": [],
+        "top_logprobs": 0,
+        "top_p": 0.98,
+        "truncation": "disabled",
+        "usage": {
+          "input_tokens": 112,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 23,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 135
+        },
+        "user": null
+      },
+      "score": 1.0,
+      "status": "ok",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:zh"
+      ],
+      "usage": {
+        "completion_tokens": 23,
+        "native": {
+          "input_tokens": 112,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 23,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 135
+        },
+        "prompt_tokens": 112,
+        "total_tokens": 135
+      }
+    },
+    {
+      "attempts": [
+        {
+          "index": 0,
+          "latency_ms": 2965.1815000688657,
+          "status": "ok"
+        }
+      ],
+      "case_id": "transfer_preview-1",
+      "cost_usd": 2.4200000000000002e-05,
+      "details": {
+        "executed": false
+      },
+      "error": null,
+      "group_id": "transfer_preview",
+      "input_hash": "8883a9128a27c2d163d0c0d1fe086366766b68038081ed170e537a37b6a0f958",
+      "latency_ms": 2965.2713750256225,
+      "output": "{\"name\":\"preview_transfer\",\"arguments\":{\"recipient\":\"R-9\",\"amount_cents\":1250,\"currency\":\"CNY\"}}",
+      "reason": "Tool name and all argument types/values match",
+      "repeat": 0,
+      "request": {
+        "endpoint": "https://api.openai.com/v1/responses",
+        "input": [
+          {
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.",
+            "role": "system"
+          },
+          {
+            "content": "预览向R-9转账12.50元人民币。工具preview_transfer(recipient:string,amount_cents:integer,currency:string)。金额必须是分，不得执行转账。\nReturn one JSON tool call with exactly \"name\" and \"arguments\". Do not execute a tool.",
+            "role": "user"
+          }
+        ],
+        "max_output_tokens": 256,
+        "model": "gpt-6-luna",
+        "reasoning": {
+          "effort": "none"
+        },
+        "service_tier": "default",
+        "store": false,
+        "stream": false,
+        "truncation": "disabled"
+      },
+      "response": {
+        "access_programs": null,
+        "background": false,
+        "billing": {
+          "payer": "developer"
+        },
+        "completed_at": 1793282519,
+        "created_at": 1793282518,
+        "error": null,
+        "frequency_penalty": 0.0,
+        "id": "resp_041c070f1fcebac9016ae351d69a0887d0b732d6c54471017e",
+        "incomplete_details": null,
+        "instructions": null,
+        "max_output_tokens": 256,
+        "max_tool_calls": null,
+        "metadata": {},
+        "model": "gpt-6-luna",
+        "moderation": null,
+        "object": "response",
+        "output": [
+          {
+            "content": [
+              {
+                "annotations": [],
+                "logprobs": [],
+                "text": "{\"name\":\"preview_transfer\",\"arguments\":{\"recipient\":\"R-9\",\"amount_cents\":1250,\"currency\":\"CNY\"}}",
+                "type": "output_text"
+              }
+            ],
+            "id": "msg_041c070f1fcebac9016ae351d735fc87d085ad7181a288b983",
+            "phase": "final_answer",
+            "role": "assistant",
+            "status": "completed",
+            "type": "message"
+          }
+        ],
+        "parallel_tool_calls": true,
+        "presence_penalty": 0.0,
+        "previous_response_id": null,
+        "prompt_cache_key": null,
+        "prompt_cache_retention": "24h",
+        "reasoning": {
+          "context": "all_turns",
+          "effort": "none",
+          "mode": "standard",
+          "summary": null
+        },
+        "safety_identifier": null,
+        "service_tier": "default",
+        "status": "completed",
+        "store": false,
+        "temperature": 1.0,
+        "text": {
+          "format": {
+            "type": "text"
+          },
+          "verbosity": "medium"
+        },
+        "tool_choice": "auto",
+        "tool_usage": {
+          "image_gen": {
+            "input_tokens": 0,
+            "input_tokens_details": {
+              "image_tokens": 0,
+              "text_tokens": 0
+            },
+            "output_tokens": 0,
+            "output_tokens_details": {
+              "image_tokens": 0,
+              "text_tokens": 0
+            },
+            "total_tokens": 0
+          },
+          "web_search": {
+            "num_requests": 0
+          }
+        },
+        "tools": [],
+        "top_logprobs": 0,
+        "top_p": 0.98,
+        "truncation": "disabled",
+        "usage": {
+          "input_tokens": 92,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 30,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 122
+        },
+        "user": null
+      },
+      "score": 1.0,
+      "status": "ok",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:zh",
+        "critical"
+      ],
+      "usage": {
+        "completion_tokens": 30,
+        "native": {
+          "input_tokens": 92,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 30,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 122
+        },
+        "prompt_tokens": 92,
+        "total_tokens": 122
+      }
+    }
+  ]
+}

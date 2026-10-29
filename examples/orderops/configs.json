@@ -1,0 +1,26 @@
+[
+  {
+    "id": "luna-direct",
+    "model": "gpt-6-luna",
+    "prompt_strategy": "direct",
+    "max_output_tokens": 512
+  },
+  {
+    "id": "luna-checklist",
+    "model": "gpt-6-luna",
+    "prompt_strategy": "checklist",
+    "max_output_tokens": 512
+  },
+  {
+    "id": "terra-direct",
+    "model": "gpt-6.1-terra",
+    "prompt_strategy": "direct",
+    "max_output_tokens": 512
+  },
+  {
+    "id": "terra-checklist",
+    "model": "gpt-6.1-terra",
+    "prompt_strategy": "checklist",
+    "max_output_tokens": 512
+  }
+]

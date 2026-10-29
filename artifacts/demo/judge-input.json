@@ -1,0 +1,26 @@
+[
+  {
+    "case_id": "stable-a",
+    "winner_ab": "A",
+    "winner_ba": "B",
+    "reference": "A"
+  },
+  {
+    "case_id": "position-biased",
+    "winner_ab": "A",
+    "winner_ba": "A",
+    "reference": "B"
+  },
+  {
+    "case_id": "invalid-response",
+    "winner_ab": "invalid",
+    "winner_ba": "B",
+    "reference": "A"
+  },
+  {
+    "case_id": "stable-tie",
+    "winner_ab": "tie",
+    "winner_ba": "tie",
+    "reference": "tie"
+  }
+]

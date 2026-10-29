@@ -1,0 +1,1319 @@
+{
+  "schema_version": 1,
+  "baseline_id": "qwen2.5-0.5b-greedy",
+  "candidate_id": "openai-gpt6-luna-responses-smoke",
+  "decision": "inconclusive",
+  "decision_basis": "insufficient_evidence",
+  "reasons": [
+    "Population inference is not enabled: policy and both run sampling declarations must explicitly claim independent groups; declarations are not proof."
+  ],
+  "warnings": [
+    "Bootstrap intervals are descriptive approximations and never determine the release decision.",
+    "Group identifiers and hashes verify organization/identity, not independence, representative sampling, correctness, or absence of training contamination.",
+    "Coverage assumes the policy, sample size, groups and slices were fixed before inspecting outcomes; repeated peeking or tuning until passage is unsupported.",
+    "A pass concerns these scores and the specified tolerance, not global model superiority or production safety.",
+    "Synthetic scenario inputs measure only the observed outputs on these finite contracts; they do not establish general model capability or IID population evidence."
+  ],
+  "policy": {
+    "alpha": 0.05,
+    "margin": 0.05,
+    "required_tags": [],
+    "critical_tags": [
+      "critical"
+    ],
+    "assume_independent_groups": false,
+    "min_groups": 10,
+    "bootstrap_samples": 2000,
+    "seed": 20261029,
+    "max_error_rate": 0.0
+  },
+  "overall": {
+    "tag": null,
+    "n_groups": 16,
+    "n_cases": 16,
+    "n_pairs": 16,
+    "groups": [
+      {
+        "group_id": "conflict_authorization",
+        "n_cases": 1,
+        "n_pairs": 1,
+        "baseline_mean": 0.0,
+        "candidate_mean": 1.0,
+        "delta": 1.0
+      },
+      {
+        "group_id": "conflict_route",
+        "n_cases": 1,
+        "n_pairs": 1,
+        "baseline_mean": 0.0,
+        "candidate_mean": 1.0,
+        "delta": 1.0
+      },
+      {
+        "group_id": "create_ticket",
+        "n_cases": 1,
+        "n_pairs": 1,
+        "baseline_mean": 1.0,
+        "candidate_mean": 1.0,
+        "delta": 0.0
+      },
+      {
+        "group_id": "flight",
+        "n_cases": 1,
+        "n_pairs": 1,
+        "baseline_mean": 0.0,
+        "candidate_mean": 1.0,
+        "delta": 1.0
+      },
+      {
+        "group_id": "inventory",
+        "n_cases": 1,
+        "n_pairs": 1,
+        "baseline_mean": 0.0,
+        "candidate_mean": 1.0,
+        "delta": 1.0
+      },
+      {
+        "group_id": "invoice",
+        "n_cases": 1,
+        "n_pairs": 1,
+        "baseline_mean": 0.0,
+        "candidate_mean": 1.0,
+        "delta": 1.0
+      },
+      {
+        "group_id": "measurement",
+        "n_cases": 1,
+        "n_pairs": 1,
+        "baseline_mean": 0.0,
+        "candidate_mean": 1.0,
+        "delta": 1.0
+      },
+      {
+        "group_id": "meeting",
+        "n_cases": 1,
+        "n_pairs": 1,
+        "baseline_mean": 0.0,
+        "candidate_mean": 1.0,
+        "delta": 1.0
+      },
+      {
+        "group_id": "missing_contact",
+        "n_cases": 1,
+        "n_pairs": 1,
+        "baseline_mean": 1.0,
+        "candidate_mean": 1.0,
+        "delta": 0.0
+      },
+      {
+        "group_id": "missing_price",
+        "n_cases": 1,
+        "n_pairs": 1,
+        "baseline_mean": 0.0,
+        "candidate_mean": 1.0,
+        "delta": 1.0
+      },
+      {
+        "group_id": "quota",
+        "n_cases": 1,
+        "n_pairs": 1,
+        "baseline_mean": 0.0,
+        "candidate_mean": 1.0,
+        "delta": 1.0
+      },
+      {
+        "group_id": "refund_preview",
+        "n_cases": 1,
+        "n_pairs": 1,
+        "baseline_mean": 0.0,
+        "candidate_mean": 0.0,
+        "delta": 0.0
+      },
+      {
+        "group_id": "search_ticket",
+        "n_cases": 1,
+        "n_pairs": 1,
+        "baseline_mean": 0.0,
+        "candidate_mean": 1.0,
+        "delta": 1.0
+      },
+      {
+        "group_id": "shipping",
+        "n_cases": 1,
+        "n_pairs": 1,
+        "baseline_mean": 0.0,
+        "candidate_mean": 1.0,
+        "delta": 1.0
+      },
+      {
+        "group_id": "sla",
+        "n_cases": 1,
+        "n_pairs": 1,
+        "baseline_mean": 0.0,
+        "candidate_mean": 1.0,
+        "delta": 1.0
+      },
+      {
+        "group_id": "transfer_preview",
+        "n_cases": 1,
+        "n_pairs": 1,
+        "baseline_mean": 0.0,
+        "candidate_mean": 1.0,
+        "delta": 1.0
+      }
+    ],
+    "weighting": "equal_groups_equal_cases_equal_repeats",
+    "baseline_mean": 0.125,
+    "candidate_mean": 0.9375,
+    "delta": 0.8125,
+    "formal_interval": {
+      "lower": -0.045266287476530165,
+      "upper": 1.0,
+      "radius": 0.8577662874765302,
+      "alpha": 0.005555555555555556,
+      "method": "hoeffding_bonferroni",
+      "unit": "group",
+      "requires_independent_groups": true
+    },
+    "bootstrap_interval": {
+      "lower": 0.625,
+      "upper": 1.0,
+      "method": "paired_group_percentile",
+      "descriptive_only": true,
+      "alpha": 0.05,
+      "samples": 2000,
+      "seed": 20261029,
+      "degenerate": false
+    },
+    "conditional_decision": "pass",
+    "insufficient_groups": false
+  },
+  "slices": [
+    {
+      "tag": "abstention",
+      "n_groups": 4,
+      "n_cases": 4,
+      "n_pairs": 4,
+      "groups": [
+        {
+          "group_id": "conflict_authorization",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "conflict_route",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "missing_contact",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 1.0,
+          "candidate_mean": 1.0,
+          "delta": 0.0
+        },
+        {
+          "group_id": "missing_price",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        }
+      ],
+      "weighting": "equal_groups_equal_cases_equal_repeats",
+      "baseline_mean": 0.25,
+      "candidate_mean": 1.0,
+      "delta": 0.75,
+      "formal_interval": {
+        "lower": -0.9655325749530603,
+        "upper": 1.0,
+        "radius": 1.7155325749530603,
+        "alpha": 0.005555555555555556,
+        "method": "hoeffding_bonferroni",
+        "unit": "group",
+        "requires_independent_groups": true
+      },
+      "bootstrap_interval": {
+        "lower": 0.25,
+        "upper": 1.0,
+        "method": "paired_group_percentile",
+        "descriptive_only": true,
+        "alpha": 0.05,
+        "samples": 2000,
+        "seed": 20261029,
+        "degenerate": false
+      },
+      "conditional_decision": "inconclusive",
+      "insufficient_groups": true
+    },
+    {
+      "tag": "critical",
+      "n_groups": 2,
+      "n_cases": 2,
+      "n_pairs": 2,
+      "groups": [
+        {
+          "group_id": "conflict_authorization",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "transfer_preview",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        }
+      ],
+      "weighting": "equal_groups_equal_cases_equal_repeats",
+      "baseline_mean": 0.0,
+      "candidate_mean": 1.0,
+      "delta": 1.0,
+      "formal_interval": {
+        "lower": -1.0,
+        "upper": 1.0,
+        "radius": 2.426129434191456,
+        "alpha": 0.005555555555555556,
+        "method": "hoeffding_bonferroni",
+        "unit": "group",
+        "requires_independent_groups": true
+      },
+      "bootstrap_interval": {
+        "lower": 1.0,
+        "upper": 1.0,
+        "method": "paired_group_percentile",
+        "descriptive_only": true,
+        "alpha": 0.05,
+        "samples": 2000,
+        "seed": 20261029,
+        "degenerate": true
+      },
+      "conditional_decision": "inconclusive",
+      "insufficient_groups": true
+    },
+    {
+      "tag": "evidence",
+      "n_groups": 4,
+      "n_cases": 4,
+      "n_pairs": 4,
+      "groups": [
+        {
+          "group_id": "measurement",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "quota",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "shipping",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "sla",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        }
+      ],
+      "weighting": "equal_groups_equal_cases_equal_repeats",
+      "baseline_mean": 0.0,
+      "candidate_mean": 1.0,
+      "delta": 1.0,
+      "formal_interval": {
+        "lower": -0.7155325749530603,
+        "upper": 1.0,
+        "radius": 1.7155325749530603,
+        "alpha": 0.005555555555555556,
+        "method": "hoeffding_bonferroni",
+        "unit": "group",
+        "requires_independent_groups": true
+      },
+      "bootstrap_interval": {
+        "lower": 1.0,
+        "upper": 1.0,
+        "method": "paired_group_percentile",
+        "descriptive_only": true,
+        "alpha": 0.05,
+        "samples": 2000,
+        "seed": 20261029,
+        "degenerate": true
+      },
+      "conditional_decision": "inconclusive",
+      "insufficient_groups": true
+    },
+    {
+      "tag": "extraction",
+      "n_groups": 4,
+      "n_cases": 4,
+      "n_pairs": 4,
+      "groups": [
+        {
+          "group_id": "flight",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "inventory",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "invoice",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "meeting",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        }
+      ],
+      "weighting": "equal_groups_equal_cases_equal_repeats",
+      "baseline_mean": 0.0,
+      "candidate_mean": 1.0,
+      "delta": 1.0,
+      "formal_interval": {
+        "lower": -0.7155325749530603,
+        "upper": 1.0,
+        "radius": 1.7155325749530603,
+        "alpha": 0.005555555555555556,
+        "method": "hoeffding_bonferroni",
+        "unit": "group",
+        "requires_independent_groups": true
+      },
+      "bootstrap_interval": {
+        "lower": 1.0,
+        "upper": 1.0,
+        "method": "paired_group_percentile",
+        "descriptive_only": true,
+        "alpha": 0.05,
+        "samples": 2000,
+        "seed": 20261029,
+        "degenerate": true
+      },
+      "conditional_decision": "inconclusive",
+      "insufficient_groups": true
+    },
+    {
+      "tag": "lang:en",
+      "n_groups": 8,
+      "n_cases": 8,
+      "n_pairs": 8,
+      "groups": [
+        {
+          "group_id": "conflict_authorization",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "create_ticket",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 1.0,
+          "candidate_mean": 1.0,
+          "delta": 0.0
+        },
+        {
+          "group_id": "inventory",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "invoice",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "measurement",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "missing_price",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "refund_preview",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 0.0,
+          "delta": 0.0
+        },
+        {
+          "group_id": "shipping",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        }
+      ],
+      "weighting": "equal_groups_equal_cases_equal_repeats",
+      "baseline_mean": 0.125,
+      "candidate_mean": 0.875,
+      "delta": 0.75,
+      "formal_interval": {
+        "lower": -0.46306471709572805,
+        "upper": 1.0,
+        "radius": 1.213064717095728,
+        "alpha": 0.005555555555555556,
+        "method": "hoeffding_bonferroni",
+        "unit": "group",
+        "requires_independent_groups": true
+      },
+      "bootstrap_interval": {
+        "lower": 0.5,
+        "upper": 1.0,
+        "method": "paired_group_percentile",
+        "descriptive_only": true,
+        "alpha": 0.05,
+        "samples": 2000,
+        "seed": 20261029,
+        "degenerate": false
+      },
+      "conditional_decision": "inconclusive",
+      "insufficient_groups": true
+    },
+    {
+      "tag": "lang:zh",
+      "n_groups": 8,
+      "n_cases": 8,
+      "n_pairs": 8,
+      "groups": [
+        {
+          "group_id": "conflict_route",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "flight",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "meeting",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "missing_contact",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 1.0,
+          "candidate_mean": 1.0,
+          "delta": 0.0
+        },
+        {
+          "group_id": "quota",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "search_ticket",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "sla",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "transfer_preview",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        }
+      ],
+      "weighting": "equal_groups_equal_cases_equal_repeats",
+      "baseline_mean": 0.125,
+      "candidate_mean": 1.0,
+      "delta": 0.875,
+      "formal_interval": {
+        "lower": -0.33806471709572805,
+        "upper": 1.0,
+        "radius": 1.213064717095728,
+        "alpha": 0.005555555555555556,
+        "method": "hoeffding_bonferroni",
+        "unit": "group",
+        "requires_independent_groups": true
+      },
+      "bootstrap_interval": {
+        "lower": 0.625,
+        "upper": 1.0,
+        "method": "paired_group_percentile",
+        "descriptive_only": true,
+        "alpha": 0.05,
+        "samples": 2000,
+        "seed": 20261029,
+        "degenerate": false
+      },
+      "conditional_decision": "inconclusive",
+      "insufficient_groups": true
+    },
+    {
+      "tag": "synthetic",
+      "n_groups": 16,
+      "n_cases": 16,
+      "n_pairs": 16,
+      "groups": [
+        {
+          "group_id": "conflict_authorization",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "conflict_route",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "create_ticket",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 1.0,
+          "candidate_mean": 1.0,
+          "delta": 0.0
+        },
+        {
+          "group_id": "flight",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "inventory",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "invoice",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "measurement",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "meeting",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "missing_contact",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 1.0,
+          "candidate_mean": 1.0,
+          "delta": 0.0
+        },
+        {
+          "group_id": "missing_price",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "quota",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "refund_preview",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 0.0,
+          "delta": 0.0
+        },
+        {
+          "group_id": "search_ticket",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "shipping",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "sla",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "transfer_preview",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        }
+      ],
+      "weighting": "equal_groups_equal_cases_equal_repeats",
+      "baseline_mean": 0.125,
+      "candidate_mean": 0.9375,
+      "delta": 0.8125,
+      "formal_interval": {
+        "lower": -0.045266287476530165,
+        "upper": 1.0,
+        "radius": 0.8577662874765302,
+        "alpha": 0.005555555555555556,
+        "method": "hoeffding_bonferroni",
+        "unit": "group",
+        "requires_independent_groups": true
+      },
+      "bootstrap_interval": {
+        "lower": 0.625,
+        "upper": 1.0,
+        "method": "paired_group_percentile",
+        "descriptive_only": true,
+        "alpha": 0.05,
+        "samples": 2000,
+        "seed": 20261029,
+        "degenerate": false
+      },
+      "conditional_decision": "pass",
+      "insufficient_groups": false
+    },
+    {
+      "tag": "tool",
+      "n_groups": 4,
+      "n_cases": 4,
+      "n_pairs": 4,
+      "groups": [
+        {
+          "group_id": "create_ticket",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 1.0,
+          "candidate_mean": 1.0,
+          "delta": 0.0
+        },
+        {
+          "group_id": "refund_preview",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 0.0,
+          "delta": 0.0
+        },
+        {
+          "group_id": "search_ticket",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "transfer_preview",
+          "n_cases": 1,
+          "n_pairs": 1,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        }
+      ],
+      "weighting": "equal_groups_equal_cases_equal_repeats",
+      "baseline_mean": 0.25,
+      "candidate_mean": 0.75,
+      "delta": 0.5,
+      "formal_interval": {
+        "lower": -1.0,
+        "upper": 1.0,
+        "radius": 1.7155325749530603,
+        "alpha": 0.005555555555555556,
+        "method": "hoeffding_bonferroni",
+        "unit": "group",
+        "requires_independent_groups": true
+      },
+      "bootstrap_interval": {
+        "lower": 0.0,
+        "upper": 1.0,
+        "method": "paired_group_percentile",
+        "descriptive_only": true,
+        "alpha": 0.05,
+        "samples": 2000,
+        "seed": 20261029,
+        "degenerate": false
+      },
+      "conditional_decision": "inconclusive",
+      "insufficient_groups": true
+    }
+  ],
+  "pairs": [
+    {
+      "case_id": "conflict_authorization-2",
+      "repeat": 0,
+      "group_id": "conflict_authorization",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:en",
+        "critical"
+      ],
+      "input_hash": "297434bc2536681e61150176742ee32018df0aacc83f9fef0e7f12ee6f556185",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "```json\n{\n  \"answer\": \"No\",\n  \"citations\": [\n    {\n      \"id\": \"1\",\n      \"content\": \"The rule 'Authorization is AUTHORIZED' does not provide a timestamp for either of the two records, hence it cannot be confirmed.\"\n    },\n    {\n      \"id\": \"2\",\n      \"content\": \"The rule 'Equally authoritative record says REJECTED' also lacks an effective timestamp, making it impossible to confirm its validity.\"\n    }\n  ],\n  \"abstain\": null\n}\n```",
+      "candidate_output": "{\"answer\":null,\"citations\":[\"rule-a\",\"rule-b\"],\"abstain\":true}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Malformed JSON: Expecting value: line 1 column 1 (char 0)",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "conflict_route-1",
+      "repeat": 0,
+      "group_id": "conflict_route",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "6c2a82648951bec90ee3ab9c0eba892f6f67ec32f620f50681e77f21da49144d",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "**Conflict Escalate**",
+      "candidate_output": "CONFLICT ESCALATE",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Required substrings missing",
+      "candidate_reason": "All required case-sensitive substrings present",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "create_ticket-2",
+      "repeat": 0,
+      "group_id": "create_ticket",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "299d763ba59ad044e3fb6ccab673e11694f31d9aa3034fe2b64d9dbf21ed7a04",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"name\": \"create_ticket\", \"arguments\": {\"order_id\": \"O-88\", \"priority\": \"high\", \"notify\": false}}",
+      "candidate_output": "{\"name\":\"create_ticket\",\"arguments\":{\"order_id\":\"O-88\",\"priority\":\"high\",\"notify\":false}}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Tool name and all argument types/values match",
+      "candidate_reason": "Tool name and all argument types/values match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "flight-1",
+      "repeat": 0,
+      "group_id": "flight",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "f989031e31eede7e80f767bbabe0487b1637f1e7d5285325e073ce85017cc837",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "```json\n{\n  \"flight\": \"EA218\",\n  \"passengers\": [\"Passenger 1\", \"Passenger 2\"],\n  \"checked_bag\": null\n}\n```",
+      "candidate_output": "{\"flight\":\"EA218\",\"passengers\":2,\"checked_bag\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Malformed JSON: Expecting value: line 1 column 1 (char 0)",
+      "candidate_reason": "Required JSON fields and types match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "inventory-2",
+      "repeat": 0,
+      "group_id": "inventory",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "9c0511e1a26e2f456e75c298810a2b35d0954c0015ca92419dfdf9d1dee88ff7",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "```json\n{\n  \"sku\": \"KIT-7\",\n  \"quantity\": 0,\n  \"backorder\": true\n}\n```",
+      "candidate_output": "{\"sku\":\"KIT-7\",\"quantity\":0,\"backorder\":true}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Malformed JSON: Expecting value: line 1 column 1 (char 0)",
+      "candidate_reason": "Exact JSON structure and types match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "invoice-2",
+      "repeat": 0,
+      "group_id": "invoice",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "8e3517f206a4e040b56493e8666c1f1dc24c0bf744a346aeeb909ad649e027a7",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "```json\n{\n  \"invoice\": \"INV-42\",\n  \"total\": 128,\n  \"currency\": \"CNY\"\n}\n```",
+      "candidate_output": "{\"invoice\":\"INV-42\",\"total\":128,\"currency\":\"CNY\"}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Malformed JSON: Expecting value: line 1 column 1 (char 0)",
+      "candidate_reason": "Exact JSON structure and types match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "measurement-2",
+      "repeat": 0,
+      "group_id": "measurement",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "895fa99b46137351e77892eaab2e63fe241e4ae9522b0f282e7115a60104b9f0",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "```json\n{\n  \"answer\": \"0.71\",\n  \"citations\": [],\n  \"abstain\": false\n}\n```",
+      "candidate_output": "{\"answer\":\"[0.71,0.79]\",\"citations\":[\"report-final\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Malformed JSON: Expecting value: line 1 column 1 (char 0)",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "meeting-1",
+      "repeat": 0,
+      "group_id": "meeting",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "06e5f3f018addf03cbb9873231d785fbba74e475b9056ba98e943e1e688a9667",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"date\": \"2026-11-03\", \"time\": \"09:30\", \"timezone\": \"UTC\"}",
+      "candidate_output": "{\"date\":\"2026-11-03\",\"time\":\"09:30\",\"timezone\":\"Asia/Shanghai\"}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "JSON field contract failed",
+      "candidate_reason": "Required JSON fields and types match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "missing_contact-1",
+      "repeat": 0,
+      "group_id": "missing_contact",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "6d11b9124347970b04aa76b03448bf733ed65e8457f3bd2c293ff7d5a3fbecc3",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "INSUFFICIENT_EVIDENCE",
+      "candidate_output": "INSUFFICIENT_EVIDENCE",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Exact string match",
+      "candidate_reason": "Exact string match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "missing_price-2",
+      "repeat": 0,
+      "group_id": "missing_price",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "530045a3eddabcbc7f463d0b6d73b3cd726a9c6ab3a666804a4fc052c18d4885",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "```json\n{\n  \"answer\": \"null\",\n  \"citations\": [],\n  \"abstain\": false\n}\n```",
+      "candidate_output": "{\"answer\":null,\"citations\":[],\"abstain\":true}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Malformed JSON: Expecting value: line 1 column 1 (char 0)",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "quota-1",
+      "repeat": 0,
+      "group_id": "quota",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "fe36e6f5b71f2f47dd95be3f7e755f1a568cdc261741cb6996881b529691b3df",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "```json\n{\n  \"answer\": 75,\n  \"citations\": [\n    {\n      \"id\": \"1\",\n      \"source\": \"文献A\",\n      \"title\": \"关于旧方案和新方案的对比研究\"\n    }\n  ],\n  \"abstain\": false\n}\n```",
+      "candidate_output": "{\"answer\":80,\"citations\":[\"plan-current\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Malformed JSON: Expecting value: line 1 column 1 (char 0)",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "refund_preview-2",
+      "repeat": 0,
+      "group_id": "refund_preview",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "1f6ff77dcd23a2e35536228493b56f0123a7dc977f2d5ac49cf202b4ddf0be6d",
+      "baseline_score": 0.0,
+      "candidate_score": 0.0,
+      "delta": 0.0,
+      "baseline_output": "{\"name\": \"preview_refund\", \"arguments\": {\"order_id\": \"O-314\", \"amount_cents\": 25}}",
+      "candidate_output": "{\"name\":\"preview_refund\",\"arguments\":{\"order_id\":\"O-314\",\"amount_cents\":2500}} T\n karto\n{\"name\":\"preview_refund\",\"arguments\":{\"order_id\":\"O-314\",\"amount_cents\":2500}}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Tool call contract failed",
+      "candidate_reason": "Malformed JSON: Extra data: line 1 column 80 (char 79)",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "search_ticket-1",
+      "repeat": 0,
+      "group_id": "search_ticket",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "4ea1eb2c850b2681de10e10ae9977088e3c12811ebb0958db92ebe618fb956cf",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "```json\n{\n  \"name\": \"search_tickets\",\n  \"arguments\": {\n    \"customer_id\": \"C-17\",\n    \"status\": \"open\",\n    \"limit\": 5\n  }\n}\n```",
+      "candidate_output": "{\"name\":\"search_tickets\",\"arguments\":{\"customer_id\":\"C-17\",\"status\":\"open\",\"limit\":5}}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Malformed JSON: Expecting value: line 1 column 1 (char 0)",
+      "candidate_reason": "Tool name and all argument types/values match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "shipping-2",
+      "repeat": 0,
+      "group_id": "shipping",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "3bbaa60f1cf31966ee31c8a46439fefda74fa0e56a7325180c77cbf8b700e723",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "```json\n{\n  \"answer\": \"JP\",\n  \"citations\": [\n    {\n      \"id\": \"1\",\n      \"url\": \"https://www.example.com/sending-country-code\"\n    }\n  ],\n  \"abstain\": false\n}\n```",
+      "candidate_output": "{\"answer\":\"JP\",\"citations\":[\"shipping-rule\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Malformed JSON: Expecting value: line 1 column 1 (char 0)",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "sla-1",
+      "repeat": 0,
+      "group_id": "sla",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "23e639fc13bfed6656563c1e80222735ca473bba4b1a035f2dbbf40311538419",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "```json\n{\n  \"answer\": 4,\n  \"citations\": null,\n  \"abstain\": false\n}\n```",
+      "candidate_output": "{\"answer\":4,\"citations\":[\"sla-priority\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Malformed JSON: Expecting value: line 1 column 1 (char 0)",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "transfer_preview-1",
+      "repeat": 0,
+      "group_id": "transfer_preview",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:zh",
+        "critical"
+      ],
+      "input_hash": "8883a9128a27c2d163d0c0d1fe086366766b68038081ed170e537a37b6a0f958",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "```json\n{\n  \"name\": \"preview_transfer\",\n  \"arguments\": {\n    \"recipient\": \"R-9\",\n    \"amount_cents\": 1250,\n    \"currency\": \"CNY\"\n  }\n}\n```",
+      "candidate_output": "{\"name\":\"preview_transfer\",\"arguments\":{\"recipient\":\"R-9\",\"amount_cents\":1250,\"currency\":\"CNY\"}}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Malformed JSON: Expecting value: line 1 column 1 (char 0)",
+      "candidate_reason": "Tool name and all argument types/values match",
+      "baseline_error": null,
+      "candidate_error": null
+    }
+  ],
+  "quality": {
+    "n_pairs": 16,
+    "baseline_errors": 0,
+    "candidate_errors": 0,
+    "baseline_error_rate": 0.0,
+    "candidate_error_rate": 0.0,
+    "critical_pairs": 2,
+    "critical_cases": 2,
+    "critical_groups": 2,
+    "critical_regression_pairs": 0,
+    "critical_regression_cases": 0,
+    "critical_regression_groups": 0,
+    "critical_regressions": []
+  },
+  "resources": {
+    "baseline": {
+      "cost": {
+        "total_usd": null,
+        "known_subtotal_usd": 0.0,
+        "known_records": 0,
+        "unknown_records": 16
+      },
+      "latency_ms": {
+        "mean": 553.27231514093,
+        "median": 394.76250001462176,
+        "p95": 1373.41476030997,
+        "known_records": 16,
+        "unknown_records": 0
+      },
+      "usage": {
+        "prompt_tokens": {
+          "known_subtotal": 1409.0,
+          "known_records": 16,
+          "unknown_records": 0
+        },
+        "completion_tokens": {
+          "known_subtotal": 636.0,
+          "known_records": 16,
+          "unknown_records": 0
+        }
+      },
+      "note": "Measured run resources; recorded latency is descriptive and may depend on retries, caching, or concurrency."
+    },
+    "candidate": {
+      "cost": {
+        "total_usd": 0.000332,
+        "known_subtotal_usd": 0.000332,
+        "known_records": 16,
+        "unknown_records": 0
+      },
+      "latency_ms": {
+        "mean": 3404.244692690554,
+        "median": 3235.9527919325046,
+        "p95": 4681.518802244682,
+        "known_records": 16,
+        "unknown_records": 0
+      },
+      "usage": {
+        "prompt_tokens": {
+          "known_subtotal": 1350.0,
+          "known_records": 16,
+          "unknown_records": 0
+        },
+        "completion_tokens": {
+          "known_subtotal": 394.0,
+          "known_records": 16,
+          "unknown_records": 0
+        },
+        "total_tokens": {
+          "known_subtotal": 1744.0,
+          "known_records": 16,
+          "unknown_records": 0
+        }
+      },
+      "note": "Measured run resources; recorded latency is descriptive and may depend on retries, caching, or concurrency."
+    }
+  },
+  "assumptions": {
+    "inference_enabled": false,
+    "independence_is_proven": false,
+    "sampling": {
+      "baseline": {
+        "kind": "synthetic_contract_suite",
+        "independent_groups": false,
+        "note": "手写有限验收套件；同一情境的中英改写不独立，16个情境也不是从目标总体独立随机抽样，不能据此证明真实模型总体性能。"
+      },
+      "candidate": {
+        "kind": "synthetic_contract_suite",
+        "independent_groups": false,
+        "note": "手写有限验收套件；同一情境的中英改写不独立，16个情境也不是从目标总体独立随机抽样，不能据此证明真实模型总体性能。"
+      }
+    },
+    "family_size": 9,
+    "family_alpha": 0.05,
+    "per_comparison_alpha": 0.005555555555555556,
+    "formal_unit": "group",
+    "fixed_policy_required": true,
+    "zero_difference_groups_needed_for_margin": 4709
+  },
+  "evidence": {
+    "baseline_fingerprint": "cf307ab9a7b7e27108c06e2d71024fb895a1b14afcbfab69f8d5e48094cbb26c",
+    "candidate_fingerprint": "e6496cc89c507a789f83f777c3fb649b463fb163491c9b6a38565fa7ac532b71",
+    "policy_fingerprint": "0a65cbdfa96779dfa8895e2b4b5d88f03dd3b56dc87bfa72dc63e1e60c7cdfd8",
+    "suite_fingerprint": "c20a9024a5b54f43f51c49e0c7a089ff2a188e54efcf05575fa9dc5a4b66435c",
+    "protocol_fingerprint": "42dfb30fca6658c54ab2c466ce75f4242564c06d429dbb2bcf157d156e3b95cd"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-10-29",
+  "currency": "USD",
+  "unit": "per_million_tokens",
+  "rates_used": {
+    "gpt-6-luna": {
+      "input": 0.1,
+      "cached": 0.01,
+      "write_upper": 0.25,
+      "output": 0.5
+    },
+    "gpt-6.1-terra": {
+      "input": 1.0,
+      "cached": 0.05,
+      "write_upper": 2.5,
+      "output": 5.0
+    }
+  },
+  "source_urls": [
+    "https://developers.openai.com/api/docs/pricing",
+    "https://developers.openai.com/api/docs/guides/prompt-caching",
+    "https://developers.openai.com/api/docs/models/gpt-6-luna",
+    "https://developers.openai.com/api/docs/models/gpt-6.1-terra"
+  ],
+  "rate_scope": "Standard processing, short text context, global official endpoint, no hosted paid tools",
+  "write_rate_choice": "Use the published higher 12h write rate for every reported cache-write token even though requests do not set a TTL. This is a conservative estimate, not an invoice.",
+  "retention_field_note": "Do not infer billing TTL from legacy response.prompt_cache_retention; later-model lifetime options are documented separately.",
+  "context_bound": "120000 UTF-8 request bytes plus 2048 framing allowance; observed input tokens checked against that bound and therefore below the 272K long-context threshold.",
+  "cached_rates": {
+    "gpt-6-luna": 0.01,
+    "gpt-6.1-terra": 0.05
+  },
+  "no_change_to_frozen_requests": true,
+  "fingerprint": "c0fc85fbfbde59e6199a2763e07ea5186d9fb87268ac8c16a7b50a32969b622f"
+}

@@ -1,0 +1,104 @@
+{
+  "codec": "gzip",
+  "files": [
+    {
+      "bytes": 9596971,
+      "compressed_bytes": 1381403,
+      "compressed_path": "objects/00616c8d9cb3db40f9d6dd3af134afe758057fe50c506868eba81c926e67b685.gz",
+      "compressed_sha256": "00616c8d9cb3db40f9d6dd3af134afe758057fe50c506868eba81c926e67b685",
+      "path": "artifacts/orderops-v2/campaign-budget.json",
+      "sha256": "260455c9c023338761d2386c744a2a83701c24389340ababf581adf400e20b64"
+    },
+    {
+      "bytes": 76059041,
+      "compressed_bytes": 3189592,
+      "compressed_path": "objects/94b94ac3d6cf4b4cdc9618732e2197c06ebb0d3e5e84931a96ed449524655918.gz",
+      "compressed_sha256": "94b94ac3d6cf4b4cdc9618732e2197c06ebb0d3e5e84931a96ed449524655918",
+      "path": "artifacts/orderops-v2/index.html",
+      "sha256": "e6b77d54b2b42d3afdad940834beeef178df75de57da87a6c87c02f1f77ec2b0"
+    },
+    {
+      "bytes": 1225345,
+      "compressed_bytes": 176914,
+      "compressed_path": "objects/d518680d9dcb79cd71b920c81431410e94a70a4211f438c155d08070e82b8a7c.gz",
+      "compressed_sha256": "d518680d9dcb79cd71b920c81431410e94a70a4211f438c155d08070e82b8a7c",
+      "path": "experiments/dev-terminal-v2/budget-receipt.json",
+      "sha256": "be091dfea12ff8060c488922920e173b224ed4b854a306b206387d8dceedeecb"
+    },
+    {
+      "bytes": 2322792,
+      "compressed_bytes": 94650,
+      "compressed_path": "objects/e634a34e1ee2ce859780441340c98a26c9b554f0c5e007909196023415e62bd3.gz",
+      "compressed_sha256": "e634a34e1ee2ce859780441340c98a26c9b554f0c5e007909196023415e62bd3",
+      "path": "experiments/dev-terminal-v2/experiment.json",
+      "sha256": "862bfc4d5eb290e595160e39fc3abe2c80f6518cb01fa08786628289abdcca9f"
+    },
+    {
+      "bytes": 1083149,
+      "compressed_bytes": 156406,
+      "compressed_path": "objects/bc72c78e988ed9bcd60a416caf7f512dcce4e0093649e6cb6fb503ae521631dc.gz",
+      "compressed_sha256": "bc72c78e988ed9bcd60a416caf7f512dcce4e0093649e6cb6fb503ae521631dc",
+      "path": "experiments/dev-v2/budget-receipt.json",
+      "sha256": "6cf00e310ac1416dfbb25bd6c5e0ba09f1097fdb74931d4d8a7b48cd834c052b"
+    },
+    {
+      "bytes": 12448013,
+      "compressed_bytes": 467512,
+      "compressed_path": "objects/d6474f0b8585699449952fda84d03dadcd4ca1b1e147f5f19d493ebff668c28a.gz",
+      "compressed_sha256": "d6474f0b8585699449952fda84d03dadcd4ca1b1e147f5f19d493ebff668c28a",
+      "path": "experiments/dev-v2/experiment.json",
+      "sha256": "d40892205a8fe2ba109bbd2a7df037314f6e00c1a6f5fde176cd592b4e20570a"
+    },
+    {
+      "bytes": 200610,
+      "compressed_bytes": 29866,
+      "compressed_path": "objects/94b5681d0108c79ed5f222b1a578f58f3dafe47b9a53237aaf95e279e5f29a56.gz",
+      "compressed_sha256": "94b5681d0108c79ed5f222b1a578f58f3dafe47b9a53237aaf95e279e5f29a56",
+      "path": "experiments/pilot-v2/budget-receipt.json",
+      "sha256": "0caed6aa54898e1d52282e98549b2ea2bf563d94329c8dd44d4e23aa74017e4e"
+    },
+    {
+      "bytes": 3072520,
+      "compressed_bytes": 119037,
+      "compressed_path": "objects/ab8518f11b4d6f892eb7489906e02db2a32a9becc75c6ed626157fab6ad8f37b.gz",
+      "compressed_sha256": "ab8518f11b4d6f892eb7489906e02db2a32a9becc75c6ed626157fab6ad8f37b",
+      "path": "experiments/pilot-v2/experiment.json",
+      "sha256": "57dd1220bd97fcc2b914212da66b6b186784378d5fe4ef0bb378f9acba7a501f"
+    },
+    {
+      "bytes": 9596971,
+      "compressed_bytes": 1381403,
+      "compressed_path": "objects/00616c8d9cb3db40f9d6dd3af134afe758057fe50c506868eba81c926e67b685.gz",
+      "compressed_sha256": "00616c8d9cb3db40f9d6dd3af134afe758057fe50c506868eba81c926e67b685",
+      "path": "experiments/test-long-v2/budget-receipt.json",
+      "sha256": "260455c9c023338761d2386c744a2a83701c24389340ababf581adf400e20b64"
+    },
+    {
+      "bytes": 61011759,
+      "compressed_bytes": 2413258,
+      "compressed_path": "objects/c8300594c9747245e0dcbb477b80813cb662739567267571ce7076b9d9359e02.gz",
+      "compressed_sha256": "c8300594c9747245e0dcbb477b80813cb662739567267571ce7076b9d9359e02",
+      "path": "experiments/test-long-v2/experiment.json",
+      "sha256": "c646d1246fca8e4f3000d311e3eb08ac2fb6223ef526ad013c93c0c0565e9865"
+    },
+    {
+      "bytes": 5372301,
+      "compressed_bytes": 774924,
+      "compressed_path": "objects/00226640e02f05db00b7b1288b5affd2638f175a6a4bab9fa95e11c9728fd682.gz",
+      "compressed_sha256": "00226640e02f05db00b7b1288b5affd2638f175a6a4bab9fa95e11c9728fd682",
+      "path": "experiments/test-v2/budget-receipt.json",
+      "sha256": "ae816fd254db0db45f254f29e86714dd0e03792760371484627f1e7dd917aab6"
+    },
+    {
+      "bytes": 59907973,
+      "compressed_bytes": 2349490,
+      "compressed_path": "objects/b01534f83102bc66c2cae20587683f83fcb663df5da4d8127f51815c1637e045.gz",
+      "compressed_sha256": "b01534f83102bc66c2cae20587683f83fcb663df5da4d8127f51815c1637e045",
+      "path": "experiments/test-v2/experiment.json",
+      "sha256": "9d4a6a2cd6236decfd1c9a466cf7ea424b7f76255b616d65bab3a715e85faaaf"
+    }
+  ],
+  "note": "Only public experiment/report evidence. Restore with python scripts/restore_evidence.py before offline verification; model calls are never rerun.",
+  "release_version": "0.2.0",
+  "schema_version": 1
+}

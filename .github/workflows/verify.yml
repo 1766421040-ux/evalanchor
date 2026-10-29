@@ -1,0 +1,72 @@
+name: Verify evidence and software
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  core:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.12', '3.13']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install -e '.[test]'
+      - run: python scripts/restore_evidence.py
+      - run: python -m pytest -q
+      - run: python -m evalanchor demo --output "$RUNNER_TEMP/evalanchor-demo"
+      - run: python -m evalanchor arena oracle --output "$RUNNER_TEMP/orderops-oracle.json"
+      - run: python scripts/verify_release.py
+  framework-roundtrip:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PROMPTFOO_DISABLE_TELEMETRY: '1'
+      PROMPTFOO_DISABLE_UPDATE_CHECK: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: python -m pip install -e '.[test]' 'inspect-ai==0.3.286'
+      - run: npm install --prefix .cache/promptfoo --no-audit --no-fund promptfoo@0.125.1
+      - run: python -m pytest tests/test_adapters.py -q
+      - name: Real Inspect and Promptfoo fixture execution (zero model calls)
+        run: |
+          export PROMPTFOO_PYTHON="$(command -v python)"
+          python scripts/verify_integrations.py \
+            --output "$RUNNER_TEMP/integration-roundtrip" \
+            --promptfoo-bin "$PWD/.cache/promptfoo/node_modules/.bin/promptfoo"
+  distribution:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -e '.[build]'
+      - run: python scripts/restore_evidence.py
+      - run: python scripts/verify_release.py
+      - run: python -m build
+      - run: python scripts/package_release.py
+      - name: Install wheel without the checkout on sys.path
+        run: |
+          python -m venv "$RUNNER_TEMP/wheel-env"
+          "$RUNNER_TEMP/wheel-env/bin/python" -m pip install dist/evalanchor-0.2.0-py3-none-any.whl
+          cd "$RUNNER_TEMP"
+          "$RUNNER_TEMP/wheel-env/bin/python" -c "import evalanchor; from importlib.resources import files; assert evalanchor.__version__ == '0.2.0'; assert files('evalanchor').joinpath('templates/workbench.html').is_file()"
+          "$RUNNER_TEMP/wheel-env/bin/evalanchor" --help
+      - name: Extract full ZIP and recheck its evidence independently
+        run: |
+          python -m zipfile -e dist/evalanchor-0.2.0.zip "$RUNNER_TEMP/full-release"
+          cd "$RUNNER_TEMP/full-release/evalanchor-0.2.0"
+          python scripts/restore_evidence.py --verify-only
+          python scripts/verify_release.py

@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "evalanchor"
+version = "0.2.0"
+description = "Replayable Agent evaluation, finite-suite release decisions, and cost evidence"
+readme = "README.md"
+requires-python = ">=3.12"
+license = "MIT"
+authors = [{name = "EvalAnchor contributors"}]
+dependencies = []
+
+[project.optional-dependencies]
+test = ["pytest>=8,<10"]
+inspect = ["inspect-ai>=0.3,<0.4"]
+local = ["transformers>=4.49,<5", "torch>=2.5", "accelerate>=1"]
+build = ["build>=1,<2"]
+
+[project.scripts]
+evalanchor = "evalanchor.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+evalanchor = ["templates/*.html"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

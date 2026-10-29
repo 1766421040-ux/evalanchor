@@ -1,0 +1,65 @@
+{
+  "version": "0.1.0",
+  "verified_on": "2026-10-29",
+  "python": "3.12.14",
+  "software_tests": {
+    "passed": 280,
+    "subtests_passed": 13,
+    "command": ".venv/bin/python -m pytest -q"
+  },
+  "evidence_verification": {
+    "passed": true,
+    "command": ".venv/bin/python scripts/verify_release.py",
+    "checks": [
+      "inspect-ai",
+      "promptfoo",
+      "demo-candidate",
+      "demo-fixed",
+      "local-qwen-final",
+      "openai-luna-smoke",
+      "qwen-openai-comparison"
+    ]
+  },
+  "framework_execution": {
+    "inspect_ai": "0.3.286",
+    "promptfoo": "0.125.1",
+    "records_each": 128,
+    "provider_kind": "synthetic fixture"
+  },
+  "real_model_execution": {
+    "local_qwen": {
+      "calls": 16,
+      "passes": 2
+    },
+    "openai_gpt6_luna": {
+      "calls": 16,
+      "passes": 15,
+      "input_tokens": 1350,
+      "output_tokens": 394,
+      "estimated_usd": 0.000332
+    }
+  },
+  "wheel": {
+    "python": "3.12.14",
+    "wheel_sha256": "e27a5186514238d56ff6dca9d003431ad0b9b85fb0edd147ad5dddec2c4aa09a",
+    "install": "fresh venv; --no-index --no-deps",
+    "execution": "outside source checkout",
+    "observed_decisions": [
+      "fail",
+      "inconclusive"
+    ],
+    "report_included": true,
+    "network_or_model_calls": 0
+  },
+  "browser_checks": "artifacts/ui-verification.json",
+  "evidence_sha256": {
+    "artifacts/demo/comparison-candidate.json": "05ca71f304cc29e7fe5483f43dd43195346a39c6b0c76ca5c01a1f4b40d2b11e",
+    "artifacts/demo/comparison-fixed.json": "e6d3712a715a1773775c110f7e48cc074820a07ebe0f5429ca4db3ae4e0dc836",
+    "artifacts/local-qwen-final/run.json": "1838d89a3030297e2a3540e06a9cacbb557bde2a9db4f364ba680159649d5027",
+    "artifacts/openai-luna-smoke/run.json": "44decc3a1b709547b520e8be661208ff83666e9b2a077f25a8297e974d4036af",
+    "artifacts/openai-luna-smoke/comparison-qwen-luna.json": "86a74a8a6b92cfd761b358139493767fdc8a9a9ea81372fcd7ef548e05efbc3d",
+    "examples/integrations/verified/receipt.json": "ec653f8429697e0ac8e0d5ae9bc1a83ad9f6e03500a25c2ad49d4deb9a122bd4"
+  },
+  "remote_ci": "configuration supplied; not run remotely",
+  "note": "Finite synthetic scenario inputs; real model outputs remain raw. Cost estimated from usage, not account billing. No general model ranking claimed."
+}

@@ -1,0 +1,39 @@
+{
+  "generated_at": "2026-10-29T13:36:53.324302+00:00",
+  "synthetic": true,
+  "purpose": "Actual framework integration acceptance; not model capability results",
+  "suite_hash": "5be36a2d01a6a71400d9c5a3863193b6b788554e9db27ff4653cf707746e3f91",
+  "python_version": "3.12.14",
+  "frameworks": {
+    "inspect-ai": {
+      "version": "0.3.286",
+      "status": "passed",
+      "samples": 128,
+      "repeats": 2,
+      "native_log": "inspect/logs/2026-10-29T13-36-54-00-00_task_Ar8s4H6rxqXoDBN5bK9paQ.json",
+      "native_log_sha256": "68d874d4449271e885a48c5c894b254b72657afdcd367134694273dc946a2118",
+      "binary_log": "inspect/verified.eval",
+      "binary_log_sha256": "2e858003e3b2a0e1685def0935d60b7126b5580dfff3a2fb3459d1becd22a804",
+      "imported_run": "inspect/imported-run.json",
+      "imported_run_sha256": "14bba74a9529e95a901903aec359198b28cd3d9f1d149bc670e267fd75c01447",
+      "provider": "mockllm/model",
+      "output_preserved": true,
+      "local_rescoring_verified": true,
+      "runtime_path_override": "Inspect appdirs data/cache redirected locally; evaluation code unmodified",
+      "usage": "Synthetic zero token counts; no token-cost measurement"
+    },
+    "promptfoo": {
+      "version": "0.125.1",
+      "status": "passed",
+      "samples": 128,
+      "repeats": 2,
+      "native_log": "promptfoo/results.json",
+      "native_log_sha256": "db579e9d1034b0fe032ff8bcabc84150b58bfb7e5522537ccfdbaaaa59160c07",
+      "imported_run": "promptfoo/imported-run.json",
+      "imported_run_sha256": "5aca5d0ff347392b844bbd06df6da5a8a00618143338d4c06da8a5b744449987",
+      "provider": "local Python synthetic fixture",
+      "output_preserved": true,
+      "local_rescoring_verified": true
+    }
+  }
+}

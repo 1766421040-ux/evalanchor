@@ -1,0 +1,8 @@
+{
+  "issue": "Mutable conversation list changed earlier in-memory request objects; audit rejected them.",
+  "fix": "Deep-copy request inputs and tool schemas before network dispatch.",
+  "response_repair": false,
+  "recovery": "Reconstruct episodes by replaying already persisted native response cache with the same request identities and budget ledger.",
+  "cached_responses": 99,
+  "regression_test": "test_future_conversation_mutation_cannot_rewrite_earlier_request"
+}

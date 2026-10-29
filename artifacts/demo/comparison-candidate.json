@@ -1,0 +1,4124 @@
+{
+  "schema_version": 1,
+  "baseline_id": "baseline",
+  "candidate_id": "candidate",
+  "decision": "fail",
+  "decision_basis": "finite_suite_acceptance_contract",
+  "reasons": [
+    "Population inference is not enabled: policy and both run sampling declarations must explicitly claim independent groups; declarations are not proof.",
+    "Finite-suite critical contract regression: 16 paired observations decreased on critical tags."
+  ],
+  "warnings": [
+    "Bootstrap intervals are descriptive approximations and never determine the release decision.",
+    "Group identifiers and hashes verify organization/identity, not independence, representative sampling, correctness, or absence of training contamination.",
+    "Coverage assumes the policy, sample size, groups and slices were fixed before inspecting outcomes; repeated peeking or tuning until passage is unsupported.",
+    "A pass concerns these scores and the specified tolerance, not global model superiority or production safety.",
+    "Synthetic fixtures validate the evaluation software and finite-suite contracts; they are not measured model capabilities or IID population evidence."
+  ],
+  "policy": {
+    "alpha": 0.05,
+    "margin": 0.05,
+    "required_tags": [],
+    "critical_tags": [
+      "critical"
+    ],
+    "assume_independent_groups": false,
+    "min_groups": 10,
+    "bootstrap_samples": 2000,
+    "seed": 20261029,
+    "max_error_rate": 0.0
+  },
+  "overall": {
+    "tag": null,
+    "n_groups": 16,
+    "n_cases": 64,
+    "n_pairs": 128,
+    "groups": [
+      {
+        "group_id": "conflict_authorization",
+        "n_cases": 4,
+        "n_pairs": 8,
+        "baseline_mean": 1.0,
+        "candidate_mean": 0.0,
+        "delta": -1.0
+      },
+      {
+        "group_id": "conflict_route",
+        "n_cases": 4,
+        "n_pairs": 8,
+        "baseline_mean": 0.0,
+        "candidate_mean": 1.0,
+        "delta": 1.0
+      },
+      {
+        "group_id": "create_ticket",
+        "n_cases": 4,
+        "n_pairs": 8,
+        "baseline_mean": 0.0,
+        "candidate_mean": 1.0,
+        "delta": 1.0
+      },
+      {
+        "group_id": "flight",
+        "n_cases": 4,
+        "n_pairs": 8,
+        "baseline_mean": 1.0,
+        "candidate_mean": 1.0,
+        "delta": 0.0
+      },
+      {
+        "group_id": "inventory",
+        "n_cases": 4,
+        "n_pairs": 8,
+        "baseline_mean": 0.0,
+        "candidate_mean": 1.0,
+        "delta": 1.0
+      },
+      {
+        "group_id": "invoice",
+        "n_cases": 4,
+        "n_pairs": 8,
+        "baseline_mean": 1.0,
+        "candidate_mean": 1.0,
+        "delta": 0.0
+      },
+      {
+        "group_id": "measurement",
+        "n_cases": 4,
+        "n_pairs": 8,
+        "baseline_mean": 0.0,
+        "candidate_mean": 1.0,
+        "delta": 1.0
+      },
+      {
+        "group_id": "meeting",
+        "n_cases": 4,
+        "n_pairs": 8,
+        "baseline_mean": 0.0,
+        "candidate_mean": 1.0,
+        "delta": 1.0
+      },
+      {
+        "group_id": "missing_contact",
+        "n_cases": 4,
+        "n_pairs": 8,
+        "baseline_mean": 1.0,
+        "candidate_mean": 1.0,
+        "delta": 0.0
+      },
+      {
+        "group_id": "missing_price",
+        "n_cases": 4,
+        "n_pairs": 8,
+        "baseline_mean": 1.0,
+        "candidate_mean": 1.0,
+        "delta": 0.0
+      },
+      {
+        "group_id": "quota",
+        "n_cases": 4,
+        "n_pairs": 8,
+        "baseline_mean": 1.0,
+        "candidate_mean": 1.0,
+        "delta": 0.0
+      },
+      {
+        "group_id": "refund_preview",
+        "n_cases": 4,
+        "n_pairs": 8,
+        "baseline_mean": 1.0,
+        "candidate_mean": 1.0,
+        "delta": 0.0
+      },
+      {
+        "group_id": "search_ticket",
+        "n_cases": 4,
+        "n_pairs": 8,
+        "baseline_mean": 1.0,
+        "candidate_mean": 1.0,
+        "delta": 0.0
+      },
+      {
+        "group_id": "shipping",
+        "n_cases": 4,
+        "n_pairs": 8,
+        "baseline_mean": 1.0,
+        "candidate_mean": 1.0,
+        "delta": 0.0
+      },
+      {
+        "group_id": "sla",
+        "n_cases": 4,
+        "n_pairs": 8,
+        "baseline_mean": 0.0,
+        "candidate_mean": 1.0,
+        "delta": 1.0
+      },
+      {
+        "group_id": "transfer_preview",
+        "n_cases": 4,
+        "n_pairs": 8,
+        "baseline_mean": 1.0,
+        "candidate_mean": 0.0,
+        "delta": -1.0
+      }
+    ],
+    "weighting": "equal_groups_equal_cases_equal_repeats",
+    "baseline_mean": 0.625,
+    "candidate_mean": 0.875,
+    "delta": 0.25,
+    "formal_interval": {
+      "lower": -0.6077662874765302,
+      "upper": 1.0,
+      "radius": 0.8577662874765302,
+      "alpha": 0.005555555555555556,
+      "method": "hoeffding_bonferroni",
+      "unit": "group",
+      "requires_independent_groups": true
+    },
+    "bootstrap_interval": {
+      "lower": -0.0625,
+      "upper": 0.5625,
+      "method": "paired_group_percentile",
+      "descriptive_only": true,
+      "alpha": 0.05,
+      "samples": 2000,
+      "seed": 20261029,
+      "degenerate": false
+    },
+    "conditional_decision": "inconclusive",
+    "insufficient_groups": false
+  },
+  "slices": [
+    {
+      "tag": "abstention",
+      "n_groups": 4,
+      "n_cases": 16,
+      "n_pairs": 32,
+      "groups": [
+        {
+          "group_id": "conflict_authorization",
+          "n_cases": 4,
+          "n_pairs": 8,
+          "baseline_mean": 1.0,
+          "candidate_mean": 0.0,
+          "delta": -1.0
+        },
+        {
+          "group_id": "conflict_route",
+          "n_cases": 4,
+          "n_pairs": 8,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "missing_contact",
+          "n_cases": 4,
+          "n_pairs": 8,
+          "baseline_mean": 1.0,
+          "candidate_mean": 1.0,
+          "delta": 0.0
+        },
+        {
+          "group_id": "missing_price",
+          "n_cases": 4,
+          "n_pairs": 8,
+          "baseline_mean": 1.0,
+          "candidate_mean": 1.0,
+          "delta": 0.0
+        }
+      ],
+      "weighting": "equal_groups_equal_cases_equal_repeats",
+      "baseline_mean": 0.75,
+      "candidate_mean": 0.75,
+      "delta": 0.0,
+      "formal_interval": {
+        "lower": -1.0,
+        "upper": 1.0,
+        "radius": 1.7155325749530603,
+        "alpha": 0.005555555555555556,
+        "method": "hoeffding_bonferroni",
+        "unit": "group",
+        "requires_independent_groups": true
+      },
+      "bootstrap_interval": {
+        "lower": -0.75,
+        "upper": 0.75,
+        "method": "paired_group_percentile",
+        "descriptive_only": true,
+        "alpha": 0.05,
+        "samples": 2000,
+        "seed": 20261029,
+        "degenerate": false
+      },
+      "conditional_decision": "inconclusive",
+      "insufficient_groups": true
+    },
+    {
+      "tag": "critical",
+      "n_groups": 2,
+      "n_cases": 8,
+      "n_pairs": 16,
+      "groups": [
+        {
+          "group_id": "conflict_authorization",
+          "n_cases": 4,
+          "n_pairs": 8,
+          "baseline_mean": 1.0,
+          "candidate_mean": 0.0,
+          "delta": -1.0
+        },
+        {
+          "group_id": "transfer_preview",
+          "n_cases": 4,
+          "n_pairs": 8,
+          "baseline_mean": 1.0,
+          "candidate_mean": 0.0,
+          "delta": -1.0
+        }
+      ],
+      "weighting": "equal_groups_equal_cases_equal_repeats",
+      "baseline_mean": 1.0,
+      "candidate_mean": 0.0,
+      "delta": -1.0,
+      "formal_interval": {
+        "lower": -1.0,
+        "upper": 1.0,
+        "radius": 2.426129434191456,
+        "alpha": 0.005555555555555556,
+        "method": "hoeffding_bonferroni",
+        "unit": "group",
+        "requires_independent_groups": true
+      },
+      "bootstrap_interval": {
+        "lower": -1.0,
+        "upper": -1.0,
+        "method": "paired_group_percentile",
+        "descriptive_only": true,
+        "alpha": 0.05,
+        "samples": 2000,
+        "seed": 20261029,
+        "degenerate": true
+      },
+      "conditional_decision": "inconclusive",
+      "insufficient_groups": true
+    },
+    {
+      "tag": "evidence",
+      "n_groups": 4,
+      "n_cases": 16,
+      "n_pairs": 32,
+      "groups": [
+        {
+          "group_id": "measurement",
+          "n_cases": 4,
+          "n_pairs": 8,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "quota",
+          "n_cases": 4,
+          "n_pairs": 8,
+          "baseline_mean": 1.0,
+          "candidate_mean": 1.0,
+          "delta": 0.0
+        },
+        {
+          "group_id": "shipping",
+          "n_cases": 4,
+          "n_pairs": 8,
+          "baseline_mean": 1.0,
+          "candidate_mean": 1.0,
+          "delta": 0.0
+        },
+        {
+          "group_id": "sla",
+          "n_cases": 4,
+          "n_pairs": 8,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        }
+      ],
+      "weighting": "equal_groups_equal_cases_equal_repeats",
+      "baseline_mean": 0.5,
+      "candidate_mean": 1.0,
+      "delta": 0.5,
+      "formal_interval": {
+        "lower": -1.0,
+        "upper": 1.0,
+        "radius": 1.7155325749530603,
+        "alpha": 0.005555555555555556,
+        "method": "hoeffding_bonferroni",
+        "unit": "group",
+        "requires_independent_groups": true
+      },
+      "bootstrap_interval": {
+        "lower": 0.0,
+        "upper": 1.0,
+        "method": "paired_group_percentile",
+        "descriptive_only": true,
+        "alpha": 0.05,
+        "samples": 2000,
+        "seed": 20261029,
+        "degenerate": false
+      },
+      "conditional_decision": "inconclusive",
+      "insufficient_groups": true
+    },
+    {
+      "tag": "extraction",
+      "n_groups": 4,
+      "n_cases": 16,
+      "n_pairs": 32,
+      "groups": [
+        {
+          "group_id": "flight",
+          "n_cases": 4,
+          "n_pairs": 8,
+          "baseline_mean": 1.0,
+          "candidate_mean": 1.0,
+          "delta": 0.0
+        },
+        {
+          "group_id": "inventory",
+          "n_cases": 4,
+          "n_pairs": 8,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "invoice",
+          "n_cases": 4,
+          "n_pairs": 8,
+          "baseline_mean": 1.0,
+          "candidate_mean": 1.0,
+          "delta": 0.0
+        },
+        {
+          "group_id": "meeting",
+          "n_cases": 4,
+          "n_pairs": 8,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        }
+      ],
+      "weighting": "equal_groups_equal_cases_equal_repeats",
+      "baseline_mean": 0.5,
+      "candidate_mean": 1.0,
+      "delta": 0.5,
+      "formal_interval": {
+        "lower": -1.0,
+        "upper": 1.0,
+        "radius": 1.7155325749530603,
+        "alpha": 0.005555555555555556,
+        "method": "hoeffding_bonferroni",
+        "unit": "group",
+        "requires_independent_groups": true
+      },
+      "bootstrap_interval": {
+        "lower": 0.0,
+        "upper": 1.0,
+        "method": "paired_group_percentile",
+        "descriptive_only": true,
+        "alpha": 0.05,
+        "samples": 2000,
+        "seed": 20261029,
+        "degenerate": false
+      },
+      "conditional_decision": "inconclusive",
+      "insufficient_groups": true
+    },
+    {
+      "tag": "lang:en",
+      "n_groups": 16,
+      "n_cases": 32,
+      "n_pairs": 64,
+      "groups": [
+        {
+          "group_id": "conflict_authorization",
+          "n_cases": 2,
+          "n_pairs": 4,
+          "baseline_mean": 1.0,
+          "candidate_mean": 0.0,
+          "delta": -1.0
+        },
+        {
+          "group_id": "conflict_route",
+          "n_cases": 2,
+          "n_pairs": 4,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "create_ticket",
+          "n_cases": 2,
+          "n_pairs": 4,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "flight",
+          "n_cases": 2,
+          "n_pairs": 4,
+          "baseline_mean": 1.0,
+          "candidate_mean": 1.0,
+          "delta": 0.0
+        },
+        {
+          "group_id": "inventory",
+          "n_cases": 2,
+          "n_pairs": 4,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "invoice",
+          "n_cases": 2,
+          "n_pairs": 4,
+          "baseline_mean": 1.0,
+          "candidate_mean": 1.0,
+          "delta": 0.0
+        },
+        {
+          "group_id": "measurement",
+          "n_cases": 2,
+          "n_pairs": 4,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "meeting",
+          "n_cases": 2,
+          "n_pairs": 4,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "missing_contact",
+          "n_cases": 2,
+          "n_pairs": 4,
+          "baseline_mean": 1.0,
+          "candidate_mean": 1.0,
+          "delta": 0.0
+        },
+        {
+          "group_id": "missing_price",
+          "n_cases": 2,
+          "n_pairs": 4,
+          "baseline_mean": 1.0,
+          "candidate_mean": 1.0,
+          "delta": 0.0
+        },
+        {
+          "group_id": "quota",
+          "n_cases": 2,
+          "n_pairs": 4,
+          "baseline_mean": 1.0,
+          "candidate_mean": 1.0,
+          "delta": 0.0
+        },
+        {
+          "group_id": "refund_preview",
+          "n_cases": 2,
+          "n_pairs": 4,
+          "baseline_mean": 1.0,
+          "candidate_mean": 1.0,
+          "delta": 0.0
+        },
+        {
+          "group_id": "search_ticket",
+          "n_cases": 2,
+          "n_pairs": 4,
+          "baseline_mean": 1.0,
+          "candidate_mean": 1.0,
+          "delta": 0.0
+        },
+        {
+          "group_id": "shipping",
+          "n_cases": 2,
+          "n_pairs": 4,
+          "baseline_mean": 1.0,
+          "candidate_mean": 1.0,
+          "delta": 0.0
+        },
+        {
+          "group_id": "sla",
+          "n_cases": 2,
+          "n_pairs": 4,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "transfer_preview",
+          "n_cases": 2,
+          "n_pairs": 4,
+          "baseline_mean": 1.0,
+          "candidate_mean": 0.0,
+          "delta": -1.0
+        }
+      ],
+      "weighting": "equal_groups_equal_cases_equal_repeats",
+      "baseline_mean": 0.625,
+      "candidate_mean": 0.875,
+      "delta": 0.25,
+      "formal_interval": {
+        "lower": -0.6077662874765302,
+        "upper": 1.0,
+        "radius": 0.8577662874765302,
+        "alpha": 0.005555555555555556,
+        "method": "hoeffding_bonferroni",
+        "unit": "group",
+        "requires_independent_groups": true
+      },
+      "bootstrap_interval": {
+        "lower": -0.0625,
+        "upper": 0.5625,
+        "method": "paired_group_percentile",
+        "descriptive_only": true,
+        "alpha": 0.05,
+        "samples": 2000,
+        "seed": 20261029,
+        "degenerate": false
+      },
+      "conditional_decision": "inconclusive",
+      "insufficient_groups": false
+    },
+    {
+      "tag": "lang:zh",
+      "n_groups": 16,
+      "n_cases": 32,
+      "n_pairs": 64,
+      "groups": [
+        {
+          "group_id": "conflict_authorization",
+          "n_cases": 2,
+          "n_pairs": 4,
+          "baseline_mean": 1.0,
+          "candidate_mean": 0.0,
+          "delta": -1.0
+        },
+        {
+          "group_id": "conflict_route",
+          "n_cases": 2,
+          "n_pairs": 4,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "create_ticket",
+          "n_cases": 2,
+          "n_pairs": 4,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "flight",
+          "n_cases": 2,
+          "n_pairs": 4,
+          "baseline_mean": 1.0,
+          "candidate_mean": 1.0,
+          "delta": 0.0
+        },
+        {
+          "group_id": "inventory",
+          "n_cases": 2,
+          "n_pairs": 4,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "invoice",
+          "n_cases": 2,
+          "n_pairs": 4,
+          "baseline_mean": 1.0,
+          "candidate_mean": 1.0,
+          "delta": 0.0
+        },
+        {
+          "group_id": "measurement",
+          "n_cases": 2,
+          "n_pairs": 4,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "meeting",
+          "n_cases": 2,
+          "n_pairs": 4,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "missing_contact",
+          "n_cases": 2,
+          "n_pairs": 4,
+          "baseline_mean": 1.0,
+          "candidate_mean": 1.0,
+          "delta": 0.0
+        },
+        {
+          "group_id": "missing_price",
+          "n_cases": 2,
+          "n_pairs": 4,
+          "baseline_mean": 1.0,
+          "candidate_mean": 1.0,
+          "delta": 0.0
+        },
+        {
+          "group_id": "quota",
+          "n_cases": 2,
+          "n_pairs": 4,
+          "baseline_mean": 1.0,
+          "candidate_mean": 1.0,
+          "delta": 0.0
+        },
+        {
+          "group_id": "refund_preview",
+          "n_cases": 2,
+          "n_pairs": 4,
+          "baseline_mean": 1.0,
+          "candidate_mean": 1.0,
+          "delta": 0.0
+        },
+        {
+          "group_id": "search_ticket",
+          "n_cases": 2,
+          "n_pairs": 4,
+          "baseline_mean": 1.0,
+          "candidate_mean": 1.0,
+          "delta": 0.0
+        },
+        {
+          "group_id": "shipping",
+          "n_cases": 2,
+          "n_pairs": 4,
+          "baseline_mean": 1.0,
+          "candidate_mean": 1.0,
+          "delta": 0.0
+        },
+        {
+          "group_id": "sla",
+          "n_cases": 2,
+          "n_pairs": 4,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "transfer_preview",
+          "n_cases": 2,
+          "n_pairs": 4,
+          "baseline_mean": 1.0,
+          "candidate_mean": 0.0,
+          "delta": -1.0
+        }
+      ],
+      "weighting": "equal_groups_equal_cases_equal_repeats",
+      "baseline_mean": 0.625,
+      "candidate_mean": 0.875,
+      "delta": 0.25,
+      "formal_interval": {
+        "lower": -0.6077662874765302,
+        "upper": 1.0,
+        "radius": 0.8577662874765302,
+        "alpha": 0.005555555555555556,
+        "method": "hoeffding_bonferroni",
+        "unit": "group",
+        "requires_independent_groups": true
+      },
+      "bootstrap_interval": {
+        "lower": -0.0625,
+        "upper": 0.5625,
+        "method": "paired_group_percentile",
+        "descriptive_only": true,
+        "alpha": 0.05,
+        "samples": 2000,
+        "seed": 20261029,
+        "degenerate": false
+      },
+      "conditional_decision": "inconclusive",
+      "insufficient_groups": false
+    },
+    {
+      "tag": "synthetic",
+      "n_groups": 16,
+      "n_cases": 64,
+      "n_pairs": 128,
+      "groups": [
+        {
+          "group_id": "conflict_authorization",
+          "n_cases": 4,
+          "n_pairs": 8,
+          "baseline_mean": 1.0,
+          "candidate_mean": 0.0,
+          "delta": -1.0
+        },
+        {
+          "group_id": "conflict_route",
+          "n_cases": 4,
+          "n_pairs": 8,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "create_ticket",
+          "n_cases": 4,
+          "n_pairs": 8,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "flight",
+          "n_cases": 4,
+          "n_pairs": 8,
+          "baseline_mean": 1.0,
+          "candidate_mean": 1.0,
+          "delta": 0.0
+        },
+        {
+          "group_id": "inventory",
+          "n_cases": 4,
+          "n_pairs": 8,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "invoice",
+          "n_cases": 4,
+          "n_pairs": 8,
+          "baseline_mean": 1.0,
+          "candidate_mean": 1.0,
+          "delta": 0.0
+        },
+        {
+          "group_id": "measurement",
+          "n_cases": 4,
+          "n_pairs": 8,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "meeting",
+          "n_cases": 4,
+          "n_pairs": 8,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "missing_contact",
+          "n_cases": 4,
+          "n_pairs": 8,
+          "baseline_mean": 1.0,
+          "candidate_mean": 1.0,
+          "delta": 0.0
+        },
+        {
+          "group_id": "missing_price",
+          "n_cases": 4,
+          "n_pairs": 8,
+          "baseline_mean": 1.0,
+          "candidate_mean": 1.0,
+          "delta": 0.0
+        },
+        {
+          "group_id": "quota",
+          "n_cases": 4,
+          "n_pairs": 8,
+          "baseline_mean": 1.0,
+          "candidate_mean": 1.0,
+          "delta": 0.0
+        },
+        {
+          "group_id": "refund_preview",
+          "n_cases": 4,
+          "n_pairs": 8,
+          "baseline_mean": 1.0,
+          "candidate_mean": 1.0,
+          "delta": 0.0
+        },
+        {
+          "group_id": "search_ticket",
+          "n_cases": 4,
+          "n_pairs": 8,
+          "baseline_mean": 1.0,
+          "candidate_mean": 1.0,
+          "delta": 0.0
+        },
+        {
+          "group_id": "shipping",
+          "n_cases": 4,
+          "n_pairs": 8,
+          "baseline_mean": 1.0,
+          "candidate_mean": 1.0,
+          "delta": 0.0
+        },
+        {
+          "group_id": "sla",
+          "n_cases": 4,
+          "n_pairs": 8,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "transfer_preview",
+          "n_cases": 4,
+          "n_pairs": 8,
+          "baseline_mean": 1.0,
+          "candidate_mean": 0.0,
+          "delta": -1.0
+        }
+      ],
+      "weighting": "equal_groups_equal_cases_equal_repeats",
+      "baseline_mean": 0.625,
+      "candidate_mean": 0.875,
+      "delta": 0.25,
+      "formal_interval": {
+        "lower": -0.6077662874765302,
+        "upper": 1.0,
+        "radius": 0.8577662874765302,
+        "alpha": 0.005555555555555556,
+        "method": "hoeffding_bonferroni",
+        "unit": "group",
+        "requires_independent_groups": true
+      },
+      "bootstrap_interval": {
+        "lower": -0.0625,
+        "upper": 0.5625,
+        "method": "paired_group_percentile",
+        "descriptive_only": true,
+        "alpha": 0.05,
+        "samples": 2000,
+        "seed": 20261029,
+        "degenerate": false
+      },
+      "conditional_decision": "inconclusive",
+      "insufficient_groups": false
+    },
+    {
+      "tag": "tool",
+      "n_groups": 4,
+      "n_cases": 16,
+      "n_pairs": 32,
+      "groups": [
+        {
+          "group_id": "create_ticket",
+          "n_cases": 4,
+          "n_pairs": 8,
+          "baseline_mean": 0.0,
+          "candidate_mean": 1.0,
+          "delta": 1.0
+        },
+        {
+          "group_id": "refund_preview",
+          "n_cases": 4,
+          "n_pairs": 8,
+          "baseline_mean": 1.0,
+          "candidate_mean": 1.0,
+          "delta": 0.0
+        },
+        {
+          "group_id": "search_ticket",
+          "n_cases": 4,
+          "n_pairs": 8,
+          "baseline_mean": 1.0,
+          "candidate_mean": 1.0,
+          "delta": 0.0
+        },
+        {
+          "group_id": "transfer_preview",
+          "n_cases": 4,
+          "n_pairs": 8,
+          "baseline_mean": 1.0,
+          "candidate_mean": 0.0,
+          "delta": -1.0
+        }
+      ],
+      "weighting": "equal_groups_equal_cases_equal_repeats",
+      "baseline_mean": 0.75,
+      "candidate_mean": 0.75,
+      "delta": 0.0,
+      "formal_interval": {
+        "lower": -1.0,
+        "upper": 1.0,
+        "radius": 1.7155325749530603,
+        "alpha": 0.005555555555555556,
+        "method": "hoeffding_bonferroni",
+        "unit": "group",
+        "requires_independent_groups": true
+      },
+      "bootstrap_interval": {
+        "lower": -0.75,
+        "upper": 0.75,
+        "method": "paired_group_percentile",
+        "descriptive_only": true,
+        "alpha": 0.05,
+        "samples": 2000,
+        "seed": 20261029,
+        "degenerate": false
+      },
+      "conditional_decision": "inconclusive",
+      "insufficient_groups": true
+    }
+  ],
+  "pairs": [
+    {
+      "case_id": "conflict_authorization-1",
+      "repeat": 0,
+      "group_id": "conflict_authorization",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:zh",
+        "critical"
+      ],
+      "input_hash": "91f979f740b65deaf744fa6b7e84dfeb053a67f5a4441a4caf53d005f55e1a3d",
+      "baseline_score": 1.0,
+      "candidate_score": 0.0,
+      "delta": -1.0,
+      "baseline_output": "{\"answer\":null,\"citations\":[\"rule-a\",\"rule-b\"],\"abstain\":true}",
+      "candidate_output": "{\"answer\":\"AUTHORIZED\",\"citations\":[\"rule-a\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer value, citation IDs, and abstention contract match",
+      "candidate_reason": "Answer/citation/abstention contract failed",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "conflict_authorization-1",
+      "repeat": 1,
+      "group_id": "conflict_authorization",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:zh",
+        "critical"
+      ],
+      "input_hash": "91f979f740b65deaf744fa6b7e84dfeb053a67f5a4441a4caf53d005f55e1a3d",
+      "baseline_score": 1.0,
+      "candidate_score": 0.0,
+      "delta": -1.0,
+      "baseline_output": "{\"answer\":null,\"citations\":[\"rule-a\",\"rule-b\"],\"abstain\":true}",
+      "candidate_output": "{\"answer\":\"AUTHORIZED\",\"citations\":[\"rule-a\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer value, citation IDs, and abstention contract match",
+      "candidate_reason": "Answer/citation/abstention contract failed",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "conflict_authorization-2",
+      "repeat": 0,
+      "group_id": "conflict_authorization",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:en",
+        "critical"
+      ],
+      "input_hash": "297434bc2536681e61150176742ee32018df0aacc83f9fef0e7f12ee6f556185",
+      "baseline_score": 1.0,
+      "candidate_score": 0.0,
+      "delta": -1.0,
+      "baseline_output": "{\"answer\":null,\"citations\":[\"rule-a\",\"rule-b\"],\"abstain\":true}",
+      "candidate_output": "{\"answer\":\"AUTHORIZED\",\"citations\":[\"rule-a\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer value, citation IDs, and abstention contract match",
+      "candidate_reason": "Answer/citation/abstention contract failed",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "conflict_authorization-2",
+      "repeat": 1,
+      "group_id": "conflict_authorization",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:en",
+        "critical"
+      ],
+      "input_hash": "297434bc2536681e61150176742ee32018df0aacc83f9fef0e7f12ee6f556185",
+      "baseline_score": 1.0,
+      "candidate_score": 0.0,
+      "delta": -1.0,
+      "baseline_output": "{\"answer\":null,\"citations\":[\"rule-a\",\"rule-b\"],\"abstain\":true}",
+      "candidate_output": "{\"answer\":\"AUTHORIZED\",\"citations\":[\"rule-a\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer value, citation IDs, and abstention contract match",
+      "candidate_reason": "Answer/citation/abstention contract failed",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "conflict_authorization-3",
+      "repeat": 0,
+      "group_id": "conflict_authorization",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:zh",
+        "critical"
+      ],
+      "input_hash": "8b310a19959a6f6a1a1743893ff8814a750a6f190a04daf8de5a6ead03aea006",
+      "baseline_score": 1.0,
+      "candidate_score": 0.0,
+      "delta": -1.0,
+      "baseline_output": "{\"answer\":null,\"citations\":[\"rule-a\",\"rule-b\"],\"abstain\":true}",
+      "candidate_output": "{\"answer\":\"AUTHORIZED\",\"citations\":[\"rule-a\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer value, citation IDs, and abstention contract match",
+      "candidate_reason": "Answer/citation/abstention contract failed",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "conflict_authorization-3",
+      "repeat": 1,
+      "group_id": "conflict_authorization",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:zh",
+        "critical"
+      ],
+      "input_hash": "8b310a19959a6f6a1a1743893ff8814a750a6f190a04daf8de5a6ead03aea006",
+      "baseline_score": 1.0,
+      "candidate_score": 0.0,
+      "delta": -1.0,
+      "baseline_output": "{\"answer\":null,\"citations\":[\"rule-a\",\"rule-b\"],\"abstain\":true}",
+      "candidate_output": "{\"answer\":\"AUTHORIZED\",\"citations\":[\"rule-a\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer value, citation IDs, and abstention contract match",
+      "candidate_reason": "Answer/citation/abstention contract failed",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "conflict_authorization-4",
+      "repeat": 0,
+      "group_id": "conflict_authorization",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:en",
+        "critical"
+      ],
+      "input_hash": "8dccfa498827a8d6867bb71ecdfb6632f1516092e373dd79ea7b0fb567d4f53d",
+      "baseline_score": 1.0,
+      "candidate_score": 0.0,
+      "delta": -1.0,
+      "baseline_output": "{\"answer\":null,\"citations\":[\"rule-a\",\"rule-b\"],\"abstain\":true}",
+      "candidate_output": "{\"answer\":\"AUTHORIZED\",\"citations\":[\"rule-a\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer value, citation IDs, and abstention contract match",
+      "candidate_reason": "Answer/citation/abstention contract failed",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "conflict_authorization-4",
+      "repeat": 1,
+      "group_id": "conflict_authorization",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:en",
+        "critical"
+      ],
+      "input_hash": "8dccfa498827a8d6867bb71ecdfb6632f1516092e373dd79ea7b0fb567d4f53d",
+      "baseline_score": 1.0,
+      "candidate_score": 0.0,
+      "delta": -1.0,
+      "baseline_output": "{\"answer\":null,\"citations\":[\"rule-a\",\"rule-b\"],\"abstain\":true}",
+      "candidate_output": "{\"answer\":\"AUTHORIZED\",\"citations\":[\"rule-a\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer value, citation IDs, and abstention contract match",
+      "candidate_reason": "Answer/citation/abstention contract failed",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "conflict_route-1",
+      "repeat": 0,
+      "group_id": "conflict_route",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "6c2a82648951bec90ee3ab9c0eba892f6f67ec32f620f50681e77f21da49144d",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "APPROVE",
+      "candidate_output": "CONFLICT ESCALATE",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Required substrings missing",
+      "candidate_reason": "All required case-sensitive substrings present",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "conflict_route-1",
+      "repeat": 1,
+      "group_id": "conflict_route",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "6c2a82648951bec90ee3ab9c0eba892f6f67ec32f620f50681e77f21da49144d",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "APPROVE",
+      "candidate_output": "CONFLICT ESCALATE",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Required substrings missing",
+      "candidate_reason": "All required case-sensitive substrings present",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "conflict_route-2",
+      "repeat": 0,
+      "group_id": "conflict_route",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "365b48d0ff3d9bd19040075365c39679058a2b4065a93efb4bf8da3c84cac4f5",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "APPROVE",
+      "candidate_output": "CONFLICT ESCALATE",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Required substrings missing",
+      "candidate_reason": "All required case-sensitive substrings present",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "conflict_route-2",
+      "repeat": 1,
+      "group_id": "conflict_route",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "365b48d0ff3d9bd19040075365c39679058a2b4065a93efb4bf8da3c84cac4f5",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "APPROVE",
+      "candidate_output": "CONFLICT ESCALATE",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Required substrings missing",
+      "candidate_reason": "All required case-sensitive substrings present",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "conflict_route-3",
+      "repeat": 0,
+      "group_id": "conflict_route",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "e338ec964619ba0d804fe2bebde339fe30ca3f8284fc688fa752051b024310a1",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "APPROVE",
+      "candidate_output": "CONFLICT ESCALATE",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Required substrings missing",
+      "candidate_reason": "All required case-sensitive substrings present",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "conflict_route-3",
+      "repeat": 1,
+      "group_id": "conflict_route",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "e338ec964619ba0d804fe2bebde339fe30ca3f8284fc688fa752051b024310a1",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "APPROVE",
+      "candidate_output": "CONFLICT ESCALATE",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Required substrings missing",
+      "candidate_reason": "All required case-sensitive substrings present",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "conflict_route-4",
+      "repeat": 0,
+      "group_id": "conflict_route",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "161281f0e91e39a62e08b0006fc64884bfa6cff7ba479e543b1af8d8d4af8376",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "APPROVE",
+      "candidate_output": "CONFLICT ESCALATE",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Required substrings missing",
+      "candidate_reason": "All required case-sensitive substrings present",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "conflict_route-4",
+      "repeat": 1,
+      "group_id": "conflict_route",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "161281f0e91e39a62e08b0006fc64884bfa6cff7ba479e543b1af8d8d4af8376",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "APPROVE",
+      "candidate_output": "CONFLICT ESCALATE",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Required substrings missing",
+      "candidate_reason": "All required case-sensitive substrings present",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "create_ticket-1",
+      "repeat": 0,
+      "group_id": "create_ticket",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "397ff6bcf91c1654b1b8f685b438e03749f662213bbb68e6ecc6c5c52b35abeb",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"name\":\"create_ticket\",\"arguments\":{\"order_id\":\"O-88\",\"priority\":\"high\",\"notify\":true}}",
+      "candidate_output": "{\"name\":\"create_ticket\",\"arguments\":{\"order_id\":\"O-88\",\"priority\":\"high\",\"notify\":false}}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Tool call contract failed",
+      "candidate_reason": "Tool name and all argument types/values match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "create_ticket-1",
+      "repeat": 1,
+      "group_id": "create_ticket",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "397ff6bcf91c1654b1b8f685b438e03749f662213bbb68e6ecc6c5c52b35abeb",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"name\":\"create_ticket\",\"arguments\":{\"order_id\":\"O-88\",\"priority\":\"high\",\"notify\":true}}",
+      "candidate_output": "{\"name\":\"create_ticket\",\"arguments\":{\"order_id\":\"O-88\",\"priority\":\"high\",\"notify\":false}}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Tool call contract failed",
+      "candidate_reason": "Tool name and all argument types/values match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "create_ticket-2",
+      "repeat": 0,
+      "group_id": "create_ticket",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "299d763ba59ad044e3fb6ccab673e11694f31d9aa3034fe2b64d9dbf21ed7a04",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"name\":\"create_ticket\",\"arguments\":{\"order_id\":\"O-88\",\"priority\":\"high\",\"notify\":true}}",
+      "candidate_output": "{\"name\":\"create_ticket\",\"arguments\":{\"order_id\":\"O-88\",\"priority\":\"high\",\"notify\":false}}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Tool call contract failed",
+      "candidate_reason": "Tool name and all argument types/values match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "create_ticket-2",
+      "repeat": 1,
+      "group_id": "create_ticket",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "299d763ba59ad044e3fb6ccab673e11694f31d9aa3034fe2b64d9dbf21ed7a04",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"name\":\"create_ticket\",\"arguments\":{\"order_id\":\"O-88\",\"priority\":\"high\",\"notify\":true}}",
+      "candidate_output": "{\"name\":\"create_ticket\",\"arguments\":{\"order_id\":\"O-88\",\"priority\":\"high\",\"notify\":false}}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Tool call contract failed",
+      "candidate_reason": "Tool name and all argument types/values match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "create_ticket-3",
+      "repeat": 0,
+      "group_id": "create_ticket",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "fac09c1de2aa1ceb073846498a1997d75fd0451289c6b9508daec05ad38113b9",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"name\":\"create_ticket\",\"arguments\":{\"order_id\":\"O-88\",\"priority\":\"high\",\"notify\":true}}",
+      "candidate_output": "{\"name\":\"create_ticket\",\"arguments\":{\"order_id\":\"O-88\",\"priority\":\"high\",\"notify\":false}}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Tool call contract failed",
+      "candidate_reason": "Tool name and all argument types/values match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "create_ticket-3",
+      "repeat": 1,
+      "group_id": "create_ticket",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "fac09c1de2aa1ceb073846498a1997d75fd0451289c6b9508daec05ad38113b9",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"name\":\"create_ticket\",\"arguments\":{\"order_id\":\"O-88\",\"priority\":\"high\",\"notify\":true}}",
+      "candidate_output": "{\"name\":\"create_ticket\",\"arguments\":{\"order_id\":\"O-88\",\"priority\":\"high\",\"notify\":false}}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Tool call contract failed",
+      "candidate_reason": "Tool name and all argument types/values match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "create_ticket-4",
+      "repeat": 0,
+      "group_id": "create_ticket",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "eb3ac0b7de5d24542263058662658fe3944d1e3420d3bb700c49a7b6a62be3e8",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"name\":\"create_ticket\",\"arguments\":{\"order_id\":\"O-88\",\"priority\":\"high\",\"notify\":true}}",
+      "candidate_output": "{\"name\":\"create_ticket\",\"arguments\":{\"order_id\":\"O-88\",\"priority\":\"high\",\"notify\":false}}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Tool call contract failed",
+      "candidate_reason": "Tool name and all argument types/values match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "create_ticket-4",
+      "repeat": 1,
+      "group_id": "create_ticket",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "eb3ac0b7de5d24542263058662658fe3944d1e3420d3bb700c49a7b6a62be3e8",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"name\":\"create_ticket\",\"arguments\":{\"order_id\":\"O-88\",\"priority\":\"high\",\"notify\":true}}",
+      "candidate_output": "{\"name\":\"create_ticket\",\"arguments\":{\"order_id\":\"O-88\",\"priority\":\"high\",\"notify\":false}}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Tool call contract failed",
+      "candidate_reason": "Tool name and all argument types/values match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "flight-1",
+      "repeat": 0,
+      "group_id": "flight",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "f989031e31eede7e80f767bbabe0487b1637f1e7d5285325e073ce85017cc837",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"flight\":\"EA218\",\"passengers\":2,\"checked_bag\":false}",
+      "candidate_output": "{\"flight\":\"EA218\",\"passengers\":2,\"checked_bag\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Required JSON fields and types match",
+      "candidate_reason": "Required JSON fields and types match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "flight-1",
+      "repeat": 1,
+      "group_id": "flight",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "f989031e31eede7e80f767bbabe0487b1637f1e7d5285325e073ce85017cc837",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"flight\":\"EA218\",\"passengers\":2,\"checked_bag\":false}",
+      "candidate_output": "{\"flight\":\"EA218\",\"passengers\":2,\"checked_bag\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Required JSON fields and types match",
+      "candidate_reason": "Required JSON fields and types match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "flight-2",
+      "repeat": 0,
+      "group_id": "flight",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "d048a4fe0af9d6dbca86b9f0191e197de0025690b913df29a8c1e58eec0e395f",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"flight\":\"EA218\",\"passengers\":2,\"checked_bag\":false}",
+      "candidate_output": "{\"flight\":\"EA218\",\"passengers\":2,\"checked_bag\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Required JSON fields and types match",
+      "candidate_reason": "Required JSON fields and types match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "flight-2",
+      "repeat": 1,
+      "group_id": "flight",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "d048a4fe0af9d6dbca86b9f0191e197de0025690b913df29a8c1e58eec0e395f",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"flight\":\"EA218\",\"passengers\":2,\"checked_bag\":false}",
+      "candidate_output": "{\"flight\":\"EA218\",\"passengers\":2,\"checked_bag\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Required JSON fields and types match",
+      "candidate_reason": "Required JSON fields and types match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "flight-3",
+      "repeat": 0,
+      "group_id": "flight",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "feae1b5f6ecb307d1f601ec1acc713fcab7ee1f5e7404e7e3eeeeeda580b18f8",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"flight\":\"EA218\",\"passengers\":2,\"checked_bag\":false}",
+      "candidate_output": "{\"flight\":\"EA218\",\"passengers\":2,\"checked_bag\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Required JSON fields and types match",
+      "candidate_reason": "Required JSON fields and types match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "flight-3",
+      "repeat": 1,
+      "group_id": "flight",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "feae1b5f6ecb307d1f601ec1acc713fcab7ee1f5e7404e7e3eeeeeda580b18f8",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"flight\":\"EA218\",\"passengers\":2,\"checked_bag\":false}",
+      "candidate_output": "{\"flight\":\"EA218\",\"passengers\":2,\"checked_bag\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Required JSON fields and types match",
+      "candidate_reason": "Required JSON fields and types match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "flight-4",
+      "repeat": 0,
+      "group_id": "flight",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "db7aa82f213b7862262f5aa1f946171372ee53d99ab3dbd0b9893b7b172f2e7a",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"flight\":\"EA218\",\"passengers\":2,\"checked_bag\":false}",
+      "candidate_output": "{\"flight\":\"EA218\",\"passengers\":2,\"checked_bag\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Required JSON fields and types match",
+      "candidate_reason": "Required JSON fields and types match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "flight-4",
+      "repeat": 1,
+      "group_id": "flight",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "db7aa82f213b7862262f5aa1f946171372ee53d99ab3dbd0b9893b7b172f2e7a",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"flight\":\"EA218\",\"passengers\":2,\"checked_bag\":false}",
+      "candidate_output": "{\"flight\":\"EA218\",\"passengers\":2,\"checked_bag\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Required JSON fields and types match",
+      "candidate_reason": "Required JSON fields and types match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "inventory-1",
+      "repeat": 0,
+      "group_id": "inventory",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "b690107ad72cc22a3954f20a808cb2ca237732f68d9f413c4dc375675694eca8",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"sku\":\"KIT-7\",\"quantity\":false,\"backorder\":true}",
+      "candidate_output": "{\"sku\":\"KIT-7\",\"quantity\":0,\"backorder\":true}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "JSON structure, value, or type differs",
+      "candidate_reason": "Exact JSON structure and types match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "inventory-1",
+      "repeat": 1,
+      "group_id": "inventory",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "b690107ad72cc22a3954f20a808cb2ca237732f68d9f413c4dc375675694eca8",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"sku\":\"KIT-7\",\"quantity\":false,\"backorder\":true}",
+      "candidate_output": "{\"sku\":\"KIT-7\",\"quantity\":0,\"backorder\":true}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "JSON structure, value, or type differs",
+      "candidate_reason": "Exact JSON structure and types match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "inventory-2",
+      "repeat": 0,
+      "group_id": "inventory",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "9c0511e1a26e2f456e75c298810a2b35d0954c0015ca92419dfdf9d1dee88ff7",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"sku\":\"KIT-7\",\"quantity\":false,\"backorder\":true}",
+      "candidate_output": "{\"sku\":\"KIT-7\",\"quantity\":0,\"backorder\":true}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "JSON structure, value, or type differs",
+      "candidate_reason": "Exact JSON structure and types match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "inventory-2",
+      "repeat": 1,
+      "group_id": "inventory",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "9c0511e1a26e2f456e75c298810a2b35d0954c0015ca92419dfdf9d1dee88ff7",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"sku\":\"KIT-7\",\"quantity\":false,\"backorder\":true}",
+      "candidate_output": "{\"sku\":\"KIT-7\",\"quantity\":0,\"backorder\":true}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "JSON structure, value, or type differs",
+      "candidate_reason": "Exact JSON structure and types match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "inventory-3",
+      "repeat": 0,
+      "group_id": "inventory",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "e7eb1b31adfe396d66acc1f3615b4636201e137ea7f3074beb013bc323691780",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"sku\":\"KIT-7\",\"quantity\":false,\"backorder\":true}",
+      "candidate_output": "{\"sku\":\"KIT-7\",\"quantity\":0,\"backorder\":true}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "JSON structure, value, or type differs",
+      "candidate_reason": "Exact JSON structure and types match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "inventory-3",
+      "repeat": 1,
+      "group_id": "inventory",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "e7eb1b31adfe396d66acc1f3615b4636201e137ea7f3074beb013bc323691780",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"sku\":\"KIT-7\",\"quantity\":false,\"backorder\":true}",
+      "candidate_output": "{\"sku\":\"KIT-7\",\"quantity\":0,\"backorder\":true}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "JSON structure, value, or type differs",
+      "candidate_reason": "Exact JSON structure and types match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "inventory-4",
+      "repeat": 0,
+      "group_id": "inventory",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "d5be4bf26d73f6f8379782ad29a99a02dd56543b685991f3302f0c01cd02b911",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"sku\":\"KIT-7\",\"quantity\":false,\"backorder\":true}",
+      "candidate_output": "{\"sku\":\"KIT-7\",\"quantity\":0,\"backorder\":true}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "JSON structure, value, or type differs",
+      "candidate_reason": "Exact JSON structure and types match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "inventory-4",
+      "repeat": 1,
+      "group_id": "inventory",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "d5be4bf26d73f6f8379782ad29a99a02dd56543b685991f3302f0c01cd02b911",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"sku\":\"KIT-7\",\"quantity\":false,\"backorder\":true}",
+      "candidate_output": "{\"sku\":\"KIT-7\",\"quantity\":0,\"backorder\":true}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "JSON structure, value, or type differs",
+      "candidate_reason": "Exact JSON structure and types match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "invoice-1",
+      "repeat": 0,
+      "group_id": "invoice",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "15a858fd5387a206975a8f9d7142e39e0e4c1dec0fe2e3d46109eed936148979",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"invoice\":\"INV-42\",\"total\":128,\"currency\":\"CNY\"}",
+      "candidate_output": "{\"invoice\":\"INV-42\",\"total\":128,\"currency\":\"CNY\"}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Exact JSON structure and types match",
+      "candidate_reason": "Exact JSON structure and types match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "invoice-1",
+      "repeat": 1,
+      "group_id": "invoice",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "15a858fd5387a206975a8f9d7142e39e0e4c1dec0fe2e3d46109eed936148979",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"invoice\":\"INV-42\",\"total\":128,\"currency\":\"CNY\"}",
+      "candidate_output": "{\"invoice\":\"INV-42\",\"total\":128,\"currency\":\"CNY\"}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Exact JSON structure and types match",
+      "candidate_reason": "Exact JSON structure and types match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "invoice-2",
+      "repeat": 0,
+      "group_id": "invoice",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "8e3517f206a4e040b56493e8666c1f1dc24c0bf744a346aeeb909ad649e027a7",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"invoice\":\"INV-42\",\"total\":128,\"currency\":\"CNY\"}",
+      "candidate_output": "{\"invoice\":\"INV-42\",\"total\":128,\"currency\":\"CNY\"}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Exact JSON structure and types match",
+      "candidate_reason": "Exact JSON structure and types match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "invoice-2",
+      "repeat": 1,
+      "group_id": "invoice",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "8e3517f206a4e040b56493e8666c1f1dc24c0bf744a346aeeb909ad649e027a7",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"invoice\":\"INV-42\",\"total\":128,\"currency\":\"CNY\"}",
+      "candidate_output": "{\"invoice\":\"INV-42\",\"total\":128,\"currency\":\"CNY\"}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Exact JSON structure and types match",
+      "candidate_reason": "Exact JSON structure and types match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "invoice-3",
+      "repeat": 0,
+      "group_id": "invoice",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "3fbb8e9109a758ff4641251c133419def661bd6f807b1bfa095b6f49fd0fe074",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"invoice\":\"INV-42\",\"total\":128,\"currency\":\"CNY\"}",
+      "candidate_output": "{\"invoice\":\"INV-42\",\"total\":128,\"currency\":\"CNY\"}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Exact JSON structure and types match",
+      "candidate_reason": "Exact JSON structure and types match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "invoice-3",
+      "repeat": 1,
+      "group_id": "invoice",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "3fbb8e9109a758ff4641251c133419def661bd6f807b1bfa095b6f49fd0fe074",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"invoice\":\"INV-42\",\"total\":128,\"currency\":\"CNY\"}",
+      "candidate_output": "{\"invoice\":\"INV-42\",\"total\":128,\"currency\":\"CNY\"}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Exact JSON structure and types match",
+      "candidate_reason": "Exact JSON structure and types match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "invoice-4",
+      "repeat": 0,
+      "group_id": "invoice",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "f68e24fc812c11ba9738818a28c4912ce51353f863f2c854d1de1067e315ebfa",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"invoice\":\"INV-42\",\"total\":128,\"currency\":\"CNY\"}",
+      "candidate_output": "{\"invoice\":\"INV-42\",\"total\":128,\"currency\":\"CNY\"}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Exact JSON structure and types match",
+      "candidate_reason": "Exact JSON structure and types match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "invoice-4",
+      "repeat": 1,
+      "group_id": "invoice",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "f68e24fc812c11ba9738818a28c4912ce51353f863f2c854d1de1067e315ebfa",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"invoice\":\"INV-42\",\"total\":128,\"currency\":\"CNY\"}",
+      "candidate_output": "{\"invoice\":\"INV-42\",\"total\":128,\"currency\":\"CNY\"}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Exact JSON structure and types match",
+      "candidate_reason": "Exact JSON structure and types match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "measurement-1",
+      "repeat": 0,
+      "group_id": "measurement",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "e6f201066353a171c276887642bad1f8e3733668bd4920b59549ca6c073e8b57",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"answer\":\"[0.69,0.81]\",\"citations\":[\"report-draft\"],\"abstain\":false}",
+      "candidate_output": "{\"answer\":\"[0.71,0.79]\",\"citations\":[\"report-final\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer/citation/abstention contract failed",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "measurement-1",
+      "repeat": 1,
+      "group_id": "measurement",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "e6f201066353a171c276887642bad1f8e3733668bd4920b59549ca6c073e8b57",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"answer\":\"[0.69,0.81]\",\"citations\":[\"report-draft\"],\"abstain\":false}",
+      "candidate_output": "{\"answer\":\"[0.71,0.79]\",\"citations\":[\"report-final\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer/citation/abstention contract failed",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "measurement-2",
+      "repeat": 0,
+      "group_id": "measurement",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "895fa99b46137351e77892eaab2e63fe241e4ae9522b0f282e7115a60104b9f0",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"answer\":\"[0.69,0.81]\",\"citations\":[\"report-draft\"],\"abstain\":false}",
+      "candidate_output": "{\"answer\":\"[0.71,0.79]\",\"citations\":[\"report-final\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer/citation/abstention contract failed",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "measurement-2",
+      "repeat": 1,
+      "group_id": "measurement",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "895fa99b46137351e77892eaab2e63fe241e4ae9522b0f282e7115a60104b9f0",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"answer\":\"[0.69,0.81]\",\"citations\":[\"report-draft\"],\"abstain\":false}",
+      "candidate_output": "{\"answer\":\"[0.71,0.79]\",\"citations\":[\"report-final\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer/citation/abstention contract failed",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "measurement-3",
+      "repeat": 0,
+      "group_id": "measurement",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "e46b086c43a6bbb789f2e008eae90f4bf71b749c11ddee177facd30c78741da7",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"answer\":\"[0.69,0.81]\",\"citations\":[\"report-draft\"],\"abstain\":false}",
+      "candidate_output": "{\"answer\":\"[0.71,0.79]\",\"citations\":[\"report-final\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer/citation/abstention contract failed",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "measurement-3",
+      "repeat": 1,
+      "group_id": "measurement",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "e46b086c43a6bbb789f2e008eae90f4bf71b749c11ddee177facd30c78741da7",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"answer\":\"[0.69,0.81]\",\"citations\":[\"report-draft\"],\"abstain\":false}",
+      "candidate_output": "{\"answer\":\"[0.71,0.79]\",\"citations\":[\"report-final\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer/citation/abstention contract failed",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "measurement-4",
+      "repeat": 0,
+      "group_id": "measurement",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "07e893b3e2fa73d3f52550016907075ac74500046ba8712c8c4d92f50ad05dde",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"answer\":\"[0.69,0.81]\",\"citations\":[\"report-draft\"],\"abstain\":false}",
+      "candidate_output": "{\"answer\":\"[0.71,0.79]\",\"citations\":[\"report-final\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer/citation/abstention contract failed",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "measurement-4",
+      "repeat": 1,
+      "group_id": "measurement",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "07e893b3e2fa73d3f52550016907075ac74500046ba8712c8c4d92f50ad05dde",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"answer\":\"[0.69,0.81]\",\"citations\":[\"report-draft\"],\"abstain\":false}",
+      "candidate_output": "{\"answer\":\"[0.71,0.79]\",\"citations\":[\"report-final\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer/citation/abstention contract failed",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "meeting-1",
+      "repeat": 0,
+      "group_id": "meeting",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "06e5f3f018addf03cbb9873231d785fbba74e475b9056ba98e943e1e688a9667",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"date\":\"2026-11-03\",\"time\":\"09:30\",\"timezone\":\"UTC\"}",
+      "candidate_output": "{\"date\":\"2026-11-03\",\"time\":\"09:30\",\"timezone\":\"Asia/Shanghai\"}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "JSON field contract failed",
+      "candidate_reason": "Required JSON fields and types match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "meeting-1",
+      "repeat": 1,
+      "group_id": "meeting",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "06e5f3f018addf03cbb9873231d785fbba74e475b9056ba98e943e1e688a9667",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"date\":\"2026-11-03\",\"time\":\"09:30\",\"timezone\":\"UTC\"}",
+      "candidate_output": "{\"date\":\"2026-11-03\",\"time\":\"09:30\",\"timezone\":\"Asia/Shanghai\"}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "JSON field contract failed",
+      "candidate_reason": "Required JSON fields and types match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "meeting-2",
+      "repeat": 0,
+      "group_id": "meeting",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "8574c4cd60ea61d3335b5bdbce1f92bdd9ba24a2575044b40e8b760aad0b37af",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"date\":\"2026-11-03\",\"time\":\"09:30\",\"timezone\":\"UTC\"}",
+      "candidate_output": "{\"date\":\"2026-11-03\",\"time\":\"09:30\",\"timezone\":\"Asia/Shanghai\"}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "JSON field contract failed",
+      "candidate_reason": "Required JSON fields and types match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "meeting-2",
+      "repeat": 1,
+      "group_id": "meeting",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "8574c4cd60ea61d3335b5bdbce1f92bdd9ba24a2575044b40e8b760aad0b37af",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"date\":\"2026-11-03\",\"time\":\"09:30\",\"timezone\":\"UTC\"}",
+      "candidate_output": "{\"date\":\"2026-11-03\",\"time\":\"09:30\",\"timezone\":\"Asia/Shanghai\"}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "JSON field contract failed",
+      "candidate_reason": "Required JSON fields and types match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "meeting-3",
+      "repeat": 0,
+      "group_id": "meeting",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "7215eca0db2fe717fc367932e8cb75001d60e3381fad68904558176da664b16f",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"date\":\"2026-11-03\",\"time\":\"09:30\",\"timezone\":\"UTC\"}",
+      "candidate_output": "{\"date\":\"2026-11-03\",\"time\":\"09:30\",\"timezone\":\"Asia/Shanghai\"}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "JSON field contract failed",
+      "candidate_reason": "Required JSON fields and types match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "meeting-3",
+      "repeat": 1,
+      "group_id": "meeting",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "7215eca0db2fe717fc367932e8cb75001d60e3381fad68904558176da664b16f",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"date\":\"2026-11-03\",\"time\":\"09:30\",\"timezone\":\"UTC\"}",
+      "candidate_output": "{\"date\":\"2026-11-03\",\"time\":\"09:30\",\"timezone\":\"Asia/Shanghai\"}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "JSON field contract failed",
+      "candidate_reason": "Required JSON fields and types match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "meeting-4",
+      "repeat": 0,
+      "group_id": "meeting",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "d944f400fe7a69aedb4e4358d7bf846d91e8c37ef8eac123a1b2018547d0b41d",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"date\":\"2026-11-03\",\"time\":\"09:30\",\"timezone\":\"UTC\"}",
+      "candidate_output": "{\"date\":\"2026-11-03\",\"time\":\"09:30\",\"timezone\":\"Asia/Shanghai\"}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "JSON field contract failed",
+      "candidate_reason": "Required JSON fields and types match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "meeting-4",
+      "repeat": 1,
+      "group_id": "meeting",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "d944f400fe7a69aedb4e4358d7bf846d91e8c37ef8eac123a1b2018547d0b41d",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"date\":\"2026-11-03\",\"time\":\"09:30\",\"timezone\":\"UTC\"}",
+      "candidate_output": "{\"date\":\"2026-11-03\",\"time\":\"09:30\",\"timezone\":\"Asia/Shanghai\"}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "JSON field contract failed",
+      "candidate_reason": "Required JSON fields and types match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "missing_contact-1",
+      "repeat": 0,
+      "group_id": "missing_contact",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "6d11b9124347970b04aa76b03448bf733ed65e8457f3bd2c293ff7d5a3fbecc3",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "INSUFFICIENT_EVIDENCE",
+      "candidate_output": "INSUFFICIENT_EVIDENCE",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Exact string match",
+      "candidate_reason": "Exact string match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "missing_contact-1",
+      "repeat": 1,
+      "group_id": "missing_contact",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "6d11b9124347970b04aa76b03448bf733ed65e8457f3bd2c293ff7d5a3fbecc3",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "INSUFFICIENT_EVIDENCE",
+      "candidate_output": "INSUFFICIENT_EVIDENCE",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Exact string match",
+      "candidate_reason": "Exact string match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "missing_contact-2",
+      "repeat": 0,
+      "group_id": "missing_contact",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "1c534ad1f14e70fb21867fdc24ceeb0fdc2b9249b2c226e710432c183a37aae5",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "INSUFFICIENT_EVIDENCE",
+      "candidate_output": "INSUFFICIENT_EVIDENCE",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Exact string match",
+      "candidate_reason": "Exact string match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "missing_contact-2",
+      "repeat": 1,
+      "group_id": "missing_contact",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "1c534ad1f14e70fb21867fdc24ceeb0fdc2b9249b2c226e710432c183a37aae5",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "INSUFFICIENT_EVIDENCE",
+      "candidate_output": "INSUFFICIENT_EVIDENCE",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Exact string match",
+      "candidate_reason": "Exact string match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "missing_contact-3",
+      "repeat": 0,
+      "group_id": "missing_contact",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "871a806fa1f46f80a89723355018187a06cb65b4f9393b3abf4be0eb915350e5",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "INSUFFICIENT_EVIDENCE",
+      "candidate_output": "INSUFFICIENT_EVIDENCE",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Exact string match",
+      "candidate_reason": "Exact string match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "missing_contact-3",
+      "repeat": 1,
+      "group_id": "missing_contact",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "871a806fa1f46f80a89723355018187a06cb65b4f9393b3abf4be0eb915350e5",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "INSUFFICIENT_EVIDENCE",
+      "candidate_output": "INSUFFICIENT_EVIDENCE",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Exact string match",
+      "candidate_reason": "Exact string match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "missing_contact-4",
+      "repeat": 0,
+      "group_id": "missing_contact",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "67ba53b18ec0ec470b3cabafbcca609f060d9339ec07147a0f535f01e8d2ec6d",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "INSUFFICIENT_EVIDENCE",
+      "candidate_output": "INSUFFICIENT_EVIDENCE",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Exact string match",
+      "candidate_reason": "Exact string match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "missing_contact-4",
+      "repeat": 1,
+      "group_id": "missing_contact",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "67ba53b18ec0ec470b3cabafbcca609f060d9339ec07147a0f535f01e8d2ec6d",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "INSUFFICIENT_EVIDENCE",
+      "candidate_output": "INSUFFICIENT_EVIDENCE",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Exact string match",
+      "candidate_reason": "Exact string match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "missing_price-1",
+      "repeat": 0,
+      "group_id": "missing_price",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "d5dce70a1efa38f3192e2f879d69ae8694a5a44a0b8f8d9a28f5b8d11d0a4da0",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"answer\":null,\"citations\":[],\"abstain\":true}",
+      "candidate_output": "{\"answer\":null,\"citations\":[],\"abstain\":true}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer value, citation IDs, and abstention contract match",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "missing_price-1",
+      "repeat": 1,
+      "group_id": "missing_price",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "d5dce70a1efa38f3192e2f879d69ae8694a5a44a0b8f8d9a28f5b8d11d0a4da0",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"answer\":null,\"citations\":[],\"abstain\":true}",
+      "candidate_output": "{\"answer\":null,\"citations\":[],\"abstain\":true}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer value, citation IDs, and abstention contract match",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "missing_price-2",
+      "repeat": 0,
+      "group_id": "missing_price",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "530045a3eddabcbc7f463d0b6d73b3cd726a9c6ab3a666804a4fc052c18d4885",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"answer\":null,\"citations\":[],\"abstain\":true}",
+      "candidate_output": "{\"answer\":null,\"citations\":[],\"abstain\":true}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer value, citation IDs, and abstention contract match",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "missing_price-2",
+      "repeat": 1,
+      "group_id": "missing_price",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "530045a3eddabcbc7f463d0b6d73b3cd726a9c6ab3a666804a4fc052c18d4885",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"answer\":null,\"citations\":[],\"abstain\":true}",
+      "candidate_output": "{\"answer\":null,\"citations\":[],\"abstain\":true}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer value, citation IDs, and abstention contract match",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "missing_price-3",
+      "repeat": 0,
+      "group_id": "missing_price",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "a91788bb715fa7f116c894a21a251905dc2d613c14a4a0c8a7fa9cc46debfc2f",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"answer\":null,\"citations\":[],\"abstain\":true}",
+      "candidate_output": "{\"answer\":null,\"citations\":[],\"abstain\":true}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer value, citation IDs, and abstention contract match",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "missing_price-3",
+      "repeat": 1,
+      "group_id": "missing_price",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "a91788bb715fa7f116c894a21a251905dc2d613c14a4a0c8a7fa9cc46debfc2f",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"answer\":null,\"citations\":[],\"abstain\":true}",
+      "candidate_output": "{\"answer\":null,\"citations\":[],\"abstain\":true}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer value, citation IDs, and abstention contract match",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "missing_price-4",
+      "repeat": 0,
+      "group_id": "missing_price",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "96cd97a1c3bf091a369580433783712081f9c4aaa5b471e6d19bd05cf03018cf",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"answer\":null,\"citations\":[],\"abstain\":true}",
+      "candidate_output": "{\"answer\":null,\"citations\":[],\"abstain\":true}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer value, citation IDs, and abstention contract match",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "missing_price-4",
+      "repeat": 1,
+      "group_id": "missing_price",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "96cd97a1c3bf091a369580433783712081f9c4aaa5b471e6d19bd05cf03018cf",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"answer\":null,\"citations\":[],\"abstain\":true}",
+      "candidate_output": "{\"answer\":null,\"citations\":[],\"abstain\":true}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer value, citation IDs, and abstention contract match",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "quota-1",
+      "repeat": 0,
+      "group_id": "quota",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "fe36e6f5b71f2f47dd95be3f7e755f1a568cdc261741cb6996881b529691b3df",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"answer\":80,\"citations\":[\"plan-current\"],\"abstain\":false}",
+      "candidate_output": "{\"answer\":80,\"citations\":[\"plan-current\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer value, citation IDs, and abstention contract match",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "quota-1",
+      "repeat": 1,
+      "group_id": "quota",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "fe36e6f5b71f2f47dd95be3f7e755f1a568cdc261741cb6996881b529691b3df",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"answer\":80,\"citations\":[\"plan-current\"],\"abstain\":false}",
+      "candidate_output": "{\"answer\":80,\"citations\":[\"plan-current\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer value, citation IDs, and abstention contract match",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "quota-2",
+      "repeat": 0,
+      "group_id": "quota",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "0905432e78a65b7677cc54d19412d4ac86cbe1192f9b9261af0ae3f3723c97d9",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"answer\":80,\"citations\":[\"plan-current\"],\"abstain\":false}",
+      "candidate_output": "{\"answer\":80,\"citations\":[\"plan-current\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer value, citation IDs, and abstention contract match",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "quota-2",
+      "repeat": 1,
+      "group_id": "quota",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "0905432e78a65b7677cc54d19412d4ac86cbe1192f9b9261af0ae3f3723c97d9",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"answer\":80,\"citations\":[\"plan-current\"],\"abstain\":false}",
+      "candidate_output": "{\"answer\":80,\"citations\":[\"plan-current\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer value, citation IDs, and abstention contract match",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "quota-3",
+      "repeat": 0,
+      "group_id": "quota",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "3954d92b5d1f6557f9864983c2a864b5ef423c15fff50bf915a79342008a2f32",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"answer\":80,\"citations\":[\"plan-current\"],\"abstain\":false}",
+      "candidate_output": "{\"answer\":80,\"citations\":[\"plan-current\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer value, citation IDs, and abstention contract match",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "quota-3",
+      "repeat": 1,
+      "group_id": "quota",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "3954d92b5d1f6557f9864983c2a864b5ef423c15fff50bf915a79342008a2f32",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"answer\":80,\"citations\":[\"plan-current\"],\"abstain\":false}",
+      "candidate_output": "{\"answer\":80,\"citations\":[\"plan-current\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer value, citation IDs, and abstention contract match",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "quota-4",
+      "repeat": 0,
+      "group_id": "quota",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "baddcb1832ebbe9f895fceab4ec7ba744af22a13e67281ca82a137dc004ce438",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"answer\":80,\"citations\":[\"plan-current\"],\"abstain\":false}",
+      "candidate_output": "{\"answer\":80,\"citations\":[\"plan-current\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer value, citation IDs, and abstention contract match",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "quota-4",
+      "repeat": 1,
+      "group_id": "quota",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "baddcb1832ebbe9f895fceab4ec7ba744af22a13e67281ca82a137dc004ce438",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"answer\":80,\"citations\":[\"plan-current\"],\"abstain\":false}",
+      "candidate_output": "{\"answer\":80,\"citations\":[\"plan-current\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer value, citation IDs, and abstention contract match",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "refund_preview-1",
+      "repeat": 0,
+      "group_id": "refund_preview",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "16d4e78a38da7200c09cfe5157d28cb4031421abd2e208bcb716845cc83e4a62",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"name\":\"preview_refund\",\"arguments\":{\"order_id\":\"O-314\",\"amount_cents\":2500}}",
+      "candidate_output": "{\"name\":\"preview_refund\",\"arguments\":{\"order_id\":\"O-314\",\"amount_cents\":2500}}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Tool name and all argument types/values match",
+      "candidate_reason": "Tool name and all argument types/values match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "refund_preview-1",
+      "repeat": 1,
+      "group_id": "refund_preview",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "16d4e78a38da7200c09cfe5157d28cb4031421abd2e208bcb716845cc83e4a62",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"name\":\"preview_refund\",\"arguments\":{\"order_id\":\"O-314\",\"amount_cents\":2500}}",
+      "candidate_output": "{\"name\":\"preview_refund\",\"arguments\":{\"order_id\":\"O-314\",\"amount_cents\":2500}}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Tool name and all argument types/values match",
+      "candidate_reason": "Tool name and all argument types/values match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "refund_preview-2",
+      "repeat": 0,
+      "group_id": "refund_preview",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "1f6ff77dcd23a2e35536228493b56f0123a7dc977f2d5ac49cf202b4ddf0be6d",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"name\":\"preview_refund\",\"arguments\":{\"order_id\":\"O-314\",\"amount_cents\":2500}}",
+      "candidate_output": "{\"name\":\"preview_refund\",\"arguments\":{\"order_id\":\"O-314\",\"amount_cents\":2500}}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Tool name and all argument types/values match",
+      "candidate_reason": "Tool name and all argument types/values match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "refund_preview-2",
+      "repeat": 1,
+      "group_id": "refund_preview",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "1f6ff77dcd23a2e35536228493b56f0123a7dc977f2d5ac49cf202b4ddf0be6d",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"name\":\"preview_refund\",\"arguments\":{\"order_id\":\"O-314\",\"amount_cents\":2500}}",
+      "candidate_output": "{\"name\":\"preview_refund\",\"arguments\":{\"order_id\":\"O-314\",\"amount_cents\":2500}}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Tool name and all argument types/values match",
+      "candidate_reason": "Tool name and all argument types/values match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "refund_preview-3",
+      "repeat": 0,
+      "group_id": "refund_preview",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "4543097fc2b7d52aabe51d28b646619e649a8382a1f7c9ddf4c503586cb9a77f",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"name\":\"preview_refund\",\"arguments\":{\"order_id\":\"O-314\",\"amount_cents\":2500}}",
+      "candidate_output": "{\"name\":\"preview_refund\",\"arguments\":{\"order_id\":\"O-314\",\"amount_cents\":2500}}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Tool name and all argument types/values match",
+      "candidate_reason": "Tool name and all argument types/values match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "refund_preview-3",
+      "repeat": 1,
+      "group_id": "refund_preview",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "4543097fc2b7d52aabe51d28b646619e649a8382a1f7c9ddf4c503586cb9a77f",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"name\":\"preview_refund\",\"arguments\":{\"order_id\":\"O-314\",\"amount_cents\":2500}}",
+      "candidate_output": "{\"name\":\"preview_refund\",\"arguments\":{\"order_id\":\"O-314\",\"amount_cents\":2500}}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Tool name and all argument types/values match",
+      "candidate_reason": "Tool name and all argument types/values match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "refund_preview-4",
+      "repeat": 0,
+      "group_id": "refund_preview",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "5e6b26a117bf43925b6fb574b7ed2162fe8305e61db2fdf50c1b174ecd733ae4",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"name\":\"preview_refund\",\"arguments\":{\"order_id\":\"O-314\",\"amount_cents\":2500}}",
+      "candidate_output": "{\"name\":\"preview_refund\",\"arguments\":{\"order_id\":\"O-314\",\"amount_cents\":2500}}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Tool name and all argument types/values match",
+      "candidate_reason": "Tool name and all argument types/values match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "refund_preview-4",
+      "repeat": 1,
+      "group_id": "refund_preview",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "5e6b26a117bf43925b6fb574b7ed2162fe8305e61db2fdf50c1b174ecd733ae4",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"name\":\"preview_refund\",\"arguments\":{\"order_id\":\"O-314\",\"amount_cents\":2500}}",
+      "candidate_output": "{\"name\":\"preview_refund\",\"arguments\":{\"order_id\":\"O-314\",\"amount_cents\":2500}}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Tool name and all argument types/values match",
+      "candidate_reason": "Tool name and all argument types/values match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "search_ticket-1",
+      "repeat": 0,
+      "group_id": "search_ticket",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "4ea1eb2c850b2681de10e10ae9977088e3c12811ebb0958db92ebe618fb956cf",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"name\":\"search_tickets\",\"arguments\":{\"customer_id\":\"C-17\",\"status\":\"open\",\"limit\":5}}",
+      "candidate_output": "{\"name\":\"search_tickets\",\"arguments\":{\"customer_id\":\"C-17\",\"status\":\"open\",\"limit\":5}}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Tool name and all argument types/values match",
+      "candidate_reason": "Tool name and all argument types/values match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "search_ticket-1",
+      "repeat": 1,
+      "group_id": "search_ticket",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "4ea1eb2c850b2681de10e10ae9977088e3c12811ebb0958db92ebe618fb956cf",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"name\":\"search_tickets\",\"arguments\":{\"customer_id\":\"C-17\",\"status\":\"open\",\"limit\":5}}",
+      "candidate_output": "{\"name\":\"search_tickets\",\"arguments\":{\"customer_id\":\"C-17\",\"status\":\"open\",\"limit\":5}}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Tool name and all argument types/values match",
+      "candidate_reason": "Tool name and all argument types/values match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "search_ticket-2",
+      "repeat": 0,
+      "group_id": "search_ticket",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "230555a695bde2dc39e7613d5ba69fa38a779dc33705030e136263b9c2f7c356",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"name\":\"search_tickets\",\"arguments\":{\"customer_id\":\"C-17\",\"status\":\"open\",\"limit\":5}}",
+      "candidate_output": "{\"name\":\"search_tickets\",\"arguments\":{\"customer_id\":\"C-17\",\"status\":\"open\",\"limit\":5}}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Tool name and all argument types/values match",
+      "candidate_reason": "Tool name and all argument types/values match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "search_ticket-2",
+      "repeat": 1,
+      "group_id": "search_ticket",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "230555a695bde2dc39e7613d5ba69fa38a779dc33705030e136263b9c2f7c356",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"name\":\"search_tickets\",\"arguments\":{\"customer_id\":\"C-17\",\"status\":\"open\",\"limit\":5}}",
+      "candidate_output": "{\"name\":\"search_tickets\",\"arguments\":{\"customer_id\":\"C-17\",\"status\":\"open\",\"limit\":5}}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Tool name and all argument types/values match",
+      "candidate_reason": "Tool name and all argument types/values match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "search_ticket-3",
+      "repeat": 0,
+      "group_id": "search_ticket",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "dc7375e77a44e939d3f496b566a2cd9b2fbb1902ef4421a9ec106fc4d6773616",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"name\":\"search_tickets\",\"arguments\":{\"customer_id\":\"C-17\",\"status\":\"open\",\"limit\":5}}",
+      "candidate_output": "{\"name\":\"search_tickets\",\"arguments\":{\"customer_id\":\"C-17\",\"status\":\"open\",\"limit\":5}}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Tool name and all argument types/values match",
+      "candidate_reason": "Tool name and all argument types/values match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "search_ticket-3",
+      "repeat": 1,
+      "group_id": "search_ticket",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "dc7375e77a44e939d3f496b566a2cd9b2fbb1902ef4421a9ec106fc4d6773616",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"name\":\"search_tickets\",\"arguments\":{\"customer_id\":\"C-17\",\"status\":\"open\",\"limit\":5}}",
+      "candidate_output": "{\"name\":\"search_tickets\",\"arguments\":{\"customer_id\":\"C-17\",\"status\":\"open\",\"limit\":5}}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Tool name and all argument types/values match",
+      "candidate_reason": "Tool name and all argument types/values match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "search_ticket-4",
+      "repeat": 0,
+      "group_id": "search_ticket",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "10ec41fd8a9e4ca119034da5e7b69307983991ed8ce2dad6c0975df0cbfa55fe",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"name\":\"search_tickets\",\"arguments\":{\"customer_id\":\"C-17\",\"status\":\"open\",\"limit\":5}}",
+      "candidate_output": "{\"name\":\"search_tickets\",\"arguments\":{\"customer_id\":\"C-17\",\"status\":\"open\",\"limit\":5}}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Tool name and all argument types/values match",
+      "candidate_reason": "Tool name and all argument types/values match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "search_ticket-4",
+      "repeat": 1,
+      "group_id": "search_ticket",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "10ec41fd8a9e4ca119034da5e7b69307983991ed8ce2dad6c0975df0cbfa55fe",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"name\":\"search_tickets\",\"arguments\":{\"customer_id\":\"C-17\",\"status\":\"open\",\"limit\":5}}",
+      "candidate_output": "{\"name\":\"search_tickets\",\"arguments\":{\"customer_id\":\"C-17\",\"status\":\"open\",\"limit\":5}}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Tool name and all argument types/values match",
+      "candidate_reason": "Tool name and all argument types/values match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "shipping-1",
+      "repeat": 0,
+      "group_id": "shipping",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "da0ae3c8d26bdcaf5fca3a401cf23f38c34c720e6d73bd11524eb636bf4f4133",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"answer\":\"JP\",\"citations\":[\"shipping-rule\"],\"abstain\":false}",
+      "candidate_output": "{\"answer\":\"JP\",\"citations\":[\"shipping-rule\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer value, citation IDs, and abstention contract match",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "shipping-1",
+      "repeat": 1,
+      "group_id": "shipping",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "da0ae3c8d26bdcaf5fca3a401cf23f38c34c720e6d73bd11524eb636bf4f4133",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"answer\":\"JP\",\"citations\":[\"shipping-rule\"],\"abstain\":false}",
+      "candidate_output": "{\"answer\":\"JP\",\"citations\":[\"shipping-rule\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer value, citation IDs, and abstention contract match",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "shipping-2",
+      "repeat": 0,
+      "group_id": "shipping",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "3bbaa60f1cf31966ee31c8a46439fefda74fa0e56a7325180c77cbf8b700e723",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"answer\":\"JP\",\"citations\":[\"shipping-rule\"],\"abstain\":false}",
+      "candidate_output": "{\"answer\":\"JP\",\"citations\":[\"shipping-rule\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer value, citation IDs, and abstention contract match",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "shipping-2",
+      "repeat": 1,
+      "group_id": "shipping",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "3bbaa60f1cf31966ee31c8a46439fefda74fa0e56a7325180c77cbf8b700e723",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"answer\":\"JP\",\"citations\":[\"shipping-rule\"],\"abstain\":false}",
+      "candidate_output": "{\"answer\":\"JP\",\"citations\":[\"shipping-rule\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer value, citation IDs, and abstention contract match",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "shipping-3",
+      "repeat": 0,
+      "group_id": "shipping",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "50ca8cc39ba44bf524b3923742733d5f8a4d79a340f86e5f05233f052188436a",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"answer\":\"JP\",\"citations\":[\"shipping-rule\"],\"abstain\":false}",
+      "candidate_output": "{\"answer\":\"JP\",\"citations\":[\"shipping-rule\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer value, citation IDs, and abstention contract match",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "shipping-3",
+      "repeat": 1,
+      "group_id": "shipping",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "50ca8cc39ba44bf524b3923742733d5f8a4d79a340f86e5f05233f052188436a",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"answer\":\"JP\",\"citations\":[\"shipping-rule\"],\"abstain\":false}",
+      "candidate_output": "{\"answer\":\"JP\",\"citations\":[\"shipping-rule\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer value, citation IDs, and abstention contract match",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "shipping-4",
+      "repeat": 0,
+      "group_id": "shipping",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "a6b7ae14107a65e82d82e63e77ab32b0d4648b760c6afeaa59b623d5f7c1835c",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"answer\":\"JP\",\"citations\":[\"shipping-rule\"],\"abstain\":false}",
+      "candidate_output": "{\"answer\":\"JP\",\"citations\":[\"shipping-rule\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer value, citation IDs, and abstention contract match",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "shipping-4",
+      "repeat": 1,
+      "group_id": "shipping",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "a6b7ae14107a65e82d82e63e77ab32b0d4648b760c6afeaa59b623d5f7c1835c",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "delta": 0.0,
+      "baseline_output": "{\"answer\":\"JP\",\"citations\":[\"shipping-rule\"],\"abstain\":false}",
+      "candidate_output": "{\"answer\":\"JP\",\"citations\":[\"shipping-rule\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer value, citation IDs, and abstention contract match",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "sla-1",
+      "repeat": 0,
+      "group_id": "sla",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "23e639fc13bfed6656563c1e80222735ca473bba4b1a035f2dbbf40311538419",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"answer\":24,\"citations\":[\"sla-standard\"],\"abstain\":false}",
+      "candidate_output": "{\"answer\":4,\"citations\":[\"sla-priority\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer/citation/abstention contract failed",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "sla-1",
+      "repeat": 1,
+      "group_id": "sla",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "23e639fc13bfed6656563c1e80222735ca473bba4b1a035f2dbbf40311538419",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"answer\":24,\"citations\":[\"sla-standard\"],\"abstain\":false}",
+      "candidate_output": "{\"answer\":4,\"citations\":[\"sla-priority\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer/citation/abstention contract failed",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "sla-2",
+      "repeat": 0,
+      "group_id": "sla",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "831e241328dc54b41f255558561246c1033d55a303d514b9cc4185dc96a09713",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"answer\":24,\"citations\":[\"sla-standard\"],\"abstain\":false}",
+      "candidate_output": "{\"answer\":4,\"citations\":[\"sla-priority\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer/citation/abstention contract failed",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "sla-2",
+      "repeat": 1,
+      "group_id": "sla",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "831e241328dc54b41f255558561246c1033d55a303d514b9cc4185dc96a09713",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"answer\":24,\"citations\":[\"sla-standard\"],\"abstain\":false}",
+      "candidate_output": "{\"answer\":4,\"citations\":[\"sla-priority\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer/citation/abstention contract failed",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "sla-3",
+      "repeat": 0,
+      "group_id": "sla",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "04902f1577cbcfbca10b0fa5d01168510160cb0efeb08830e2a97e07472d6f11",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"answer\":24,\"citations\":[\"sla-standard\"],\"abstain\":false}",
+      "candidate_output": "{\"answer\":4,\"citations\":[\"sla-priority\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer/citation/abstention contract failed",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "sla-3",
+      "repeat": 1,
+      "group_id": "sla",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:zh"
+      ],
+      "input_hash": "04902f1577cbcfbca10b0fa5d01168510160cb0efeb08830e2a97e07472d6f11",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"answer\":24,\"citations\":[\"sla-standard\"],\"abstain\":false}",
+      "candidate_output": "{\"answer\":4,\"citations\":[\"sla-priority\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer/citation/abstention contract failed",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "sla-4",
+      "repeat": 0,
+      "group_id": "sla",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "82797217962e19e07c307db1b9e517828cf353784879766787314b947d34dd2b",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"answer\":24,\"citations\":[\"sla-standard\"],\"abstain\":false}",
+      "candidate_output": "{\"answer\":4,\"citations\":[\"sla-priority\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer/citation/abstention contract failed",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "sla-4",
+      "repeat": 1,
+      "group_id": "sla",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:en"
+      ],
+      "input_hash": "82797217962e19e07c307db1b9e517828cf353784879766787314b947d34dd2b",
+      "baseline_score": 0.0,
+      "candidate_score": 1.0,
+      "delta": 1.0,
+      "baseline_output": "{\"answer\":24,\"citations\":[\"sla-standard\"],\"abstain\":false}",
+      "candidate_output": "{\"answer\":4,\"citations\":[\"sla-priority\"],\"abstain\":false}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Answer/citation/abstention contract failed",
+      "candidate_reason": "Answer value, citation IDs, and abstention contract match",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "transfer_preview-1",
+      "repeat": 0,
+      "group_id": "transfer_preview",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:zh",
+        "critical"
+      ],
+      "input_hash": "8883a9128a27c2d163d0c0d1fe086366766b68038081ed170e537a37b6a0f958",
+      "baseline_score": 1.0,
+      "candidate_score": 0.0,
+      "delta": -1.0,
+      "baseline_output": "{\"name\":\"preview_transfer\",\"arguments\":{\"recipient\":\"R-9\",\"amount_cents\":1250,\"currency\":\"CNY\"}}",
+      "candidate_output": "{\"name\":\"preview_transfer\",\"arguments\":{\"recipient\":\"R-9\",\"amount_cents\":125000,\"currency\":\"CNY\"}}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Tool name and all argument types/values match",
+      "candidate_reason": "Tool call contract failed",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "transfer_preview-1",
+      "repeat": 1,
+      "group_id": "transfer_preview",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:zh",
+        "critical"
+      ],
+      "input_hash": "8883a9128a27c2d163d0c0d1fe086366766b68038081ed170e537a37b6a0f958",
+      "baseline_score": 1.0,
+      "candidate_score": 0.0,
+      "delta": -1.0,
+      "baseline_output": "{\"name\":\"preview_transfer\",\"arguments\":{\"recipient\":\"R-9\",\"amount_cents\":1250,\"currency\":\"CNY\"}}",
+      "candidate_output": "{\"name\":\"preview_transfer\",\"arguments\":{\"recipient\":\"R-9\",\"amount_cents\":125000,\"currency\":\"CNY\"}}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Tool name and all argument types/values match",
+      "candidate_reason": "Tool call contract failed",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "transfer_preview-2",
+      "repeat": 0,
+      "group_id": "transfer_preview",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:en",
+        "critical"
+      ],
+      "input_hash": "48ea84533dc03bc7ed1a4a621fc5fabf994bdc06e37c108b6b8fc344deb25105",
+      "baseline_score": 1.0,
+      "candidate_score": 0.0,
+      "delta": -1.0,
+      "baseline_output": "{\"name\":\"preview_transfer\",\"arguments\":{\"recipient\":\"R-9\",\"amount_cents\":1250,\"currency\":\"CNY\"}}",
+      "candidate_output": "{\"name\":\"preview_transfer\",\"arguments\":{\"recipient\":\"R-9\",\"amount_cents\":125000,\"currency\":\"CNY\"}}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Tool name and all argument types/values match",
+      "candidate_reason": "Tool call contract failed",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "transfer_preview-2",
+      "repeat": 1,
+      "group_id": "transfer_preview",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:en",
+        "critical"
+      ],
+      "input_hash": "48ea84533dc03bc7ed1a4a621fc5fabf994bdc06e37c108b6b8fc344deb25105",
+      "baseline_score": 1.0,
+      "candidate_score": 0.0,
+      "delta": -1.0,
+      "baseline_output": "{\"name\":\"preview_transfer\",\"arguments\":{\"recipient\":\"R-9\",\"amount_cents\":1250,\"currency\":\"CNY\"}}",
+      "candidate_output": "{\"name\":\"preview_transfer\",\"arguments\":{\"recipient\":\"R-9\",\"amount_cents\":125000,\"currency\":\"CNY\"}}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Tool name and all argument types/values match",
+      "candidate_reason": "Tool call contract failed",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "transfer_preview-3",
+      "repeat": 0,
+      "group_id": "transfer_preview",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:zh",
+        "critical"
+      ],
+      "input_hash": "af3e5df649742530dc7a9bb040ea37303103709a7a8090b4cfc6056ffa3db42f",
+      "baseline_score": 1.0,
+      "candidate_score": 0.0,
+      "delta": -1.0,
+      "baseline_output": "{\"name\":\"preview_transfer\",\"arguments\":{\"recipient\":\"R-9\",\"amount_cents\":1250,\"currency\":\"CNY\"}}",
+      "candidate_output": "{\"name\":\"preview_transfer\",\"arguments\":{\"recipient\":\"R-9\",\"amount_cents\":125000,\"currency\":\"CNY\"}}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Tool name and all argument types/values match",
+      "candidate_reason": "Tool call contract failed",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "transfer_preview-3",
+      "repeat": 1,
+      "group_id": "transfer_preview",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:zh",
+        "critical"
+      ],
+      "input_hash": "af3e5df649742530dc7a9bb040ea37303103709a7a8090b4cfc6056ffa3db42f",
+      "baseline_score": 1.0,
+      "candidate_score": 0.0,
+      "delta": -1.0,
+      "baseline_output": "{\"name\":\"preview_transfer\",\"arguments\":{\"recipient\":\"R-9\",\"amount_cents\":1250,\"currency\":\"CNY\"}}",
+      "candidate_output": "{\"name\":\"preview_transfer\",\"arguments\":{\"recipient\":\"R-9\",\"amount_cents\":125000,\"currency\":\"CNY\"}}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Tool name and all argument types/values match",
+      "candidate_reason": "Tool call contract failed",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "transfer_preview-4",
+      "repeat": 0,
+      "group_id": "transfer_preview",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:en",
+        "critical"
+      ],
+      "input_hash": "ae06a094e8118eeeba0923b74959bf2b7473c0b719198281eb943602e0512d5a",
+      "baseline_score": 1.0,
+      "candidate_score": 0.0,
+      "delta": -1.0,
+      "baseline_output": "{\"name\":\"preview_transfer\",\"arguments\":{\"recipient\":\"R-9\",\"amount_cents\":1250,\"currency\":\"CNY\"}}",
+      "candidate_output": "{\"name\":\"preview_transfer\",\"arguments\":{\"recipient\":\"R-9\",\"amount_cents\":125000,\"currency\":\"CNY\"}}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Tool name and all argument types/values match",
+      "candidate_reason": "Tool call contract failed",
+      "baseline_error": null,
+      "candidate_error": null
+    },
+    {
+      "case_id": "transfer_preview-4",
+      "repeat": 1,
+      "group_id": "transfer_preview",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:en",
+        "critical"
+      ],
+      "input_hash": "ae06a094e8118eeeba0923b74959bf2b7473c0b719198281eb943602e0512d5a",
+      "baseline_score": 1.0,
+      "candidate_score": 0.0,
+      "delta": -1.0,
+      "baseline_output": "{\"name\":\"preview_transfer\",\"arguments\":{\"recipient\":\"R-9\",\"amount_cents\":1250,\"currency\":\"CNY\"}}",
+      "candidate_output": "{\"name\":\"preview_transfer\",\"arguments\":{\"recipient\":\"R-9\",\"amount_cents\":125000,\"currency\":\"CNY\"}}",
+      "baseline_status": "ok",
+      "candidate_status": "ok",
+      "baseline_reason": "Tool name and all argument types/values match",
+      "candidate_reason": "Tool call contract failed",
+      "baseline_error": null,
+      "candidate_error": null
+    }
+  ],
+  "quality": {
+    "n_pairs": 128,
+    "baseline_errors": 0,
+    "candidate_errors": 0,
+    "baseline_error_rate": 0.0,
+    "candidate_error_rate": 0.0,
+    "critical_pairs": 16,
+    "critical_cases": 8,
+    "critical_groups": 2,
+    "critical_regression_pairs": 16,
+    "critical_regression_cases": 8,
+    "critical_regression_groups": 2,
+    "critical_regressions": [
+      {
+        "case_id": "conflict_authorization-1",
+        "repeat": 0,
+        "group_id": "conflict_authorization",
+        "tags": [
+          "abstention",
+          "synthetic",
+          "lang:zh",
+          "critical"
+        ],
+        "baseline_score": 1.0,
+        "candidate_score": 0.0,
+        "delta": -1.0
+      },
+      {
+        "case_id": "conflict_authorization-1",
+        "repeat": 1,
+        "group_id": "conflict_authorization",
+        "tags": [
+          "abstention",
+          "synthetic",
+          "lang:zh",
+          "critical"
+        ],
+        "baseline_score": 1.0,
+        "candidate_score": 0.0,
+        "delta": -1.0
+      },
+      {
+        "case_id": "conflict_authorization-2",
+        "repeat": 0,
+        "group_id": "conflict_authorization",
+        "tags": [
+          "abstention",
+          "synthetic",
+          "lang:en",
+          "critical"
+        ],
+        "baseline_score": 1.0,
+        "candidate_score": 0.0,
+        "delta": -1.0
+      },
+      {
+        "case_id": "conflict_authorization-2",
+        "repeat": 1,
+        "group_id": "conflict_authorization",
+        "tags": [
+          "abstention",
+          "synthetic",
+          "lang:en",
+          "critical"
+        ],
+        "baseline_score": 1.0,
+        "candidate_score": 0.0,
+        "delta": -1.0
+      },
+      {
+        "case_id": "conflict_authorization-3",
+        "repeat": 0,
+        "group_id": "conflict_authorization",
+        "tags": [
+          "abstention",
+          "synthetic",
+          "lang:zh",
+          "critical"
+        ],
+        "baseline_score": 1.0,
+        "candidate_score": 0.0,
+        "delta": -1.0
+      },
+      {
+        "case_id": "conflict_authorization-3",
+        "repeat": 1,
+        "group_id": "conflict_authorization",
+        "tags": [
+          "abstention",
+          "synthetic",
+          "lang:zh",
+          "critical"
+        ],
+        "baseline_score": 1.0,
+        "candidate_score": 0.0,
+        "delta": -1.0
+      },
+      {
+        "case_id": "conflict_authorization-4",
+        "repeat": 0,
+        "group_id": "conflict_authorization",
+        "tags": [
+          "abstention",
+          "synthetic",
+          "lang:en",
+          "critical"
+        ],
+        "baseline_score": 1.0,
+        "candidate_score": 0.0,
+        "delta": -1.0
+      },
+      {
+        "case_id": "conflict_authorization-4",
+        "repeat": 1,
+        "group_id": "conflict_authorization",
+        "tags": [
+          "abstention",
+          "synthetic",
+          "lang:en",
+          "critical"
+        ],
+        "baseline_score": 1.0,
+        "candidate_score": 0.0,
+        "delta": -1.0
+      },
+      {
+        "case_id": "transfer_preview-1",
+        "repeat": 0,
+        "group_id": "transfer_preview",
+        "tags": [
+          "tool",
+          "synthetic",
+          "lang:zh",
+          "critical"
+        ],
+        "baseline_score": 1.0,
+        "candidate_score": 0.0,
+        "delta": -1.0
+      },
+      {
+        "case_id": "transfer_preview-1",
+        "repeat": 1,
+        "group_id": "transfer_preview",
+        "tags": [
+          "tool",
+          "synthetic",
+          "lang:zh",
+          "critical"
+        ],
+        "baseline_score": 1.0,
+        "candidate_score": 0.0,
+        "delta": -1.0
+      },
+      {
+        "case_id": "transfer_preview-2",
+        "repeat": 0,
+        "group_id": "transfer_preview",
+        "tags": [
+          "tool",
+          "synthetic",
+          "lang:en",
+          "critical"
+        ],
+        "baseline_score": 1.0,
+        "candidate_score": 0.0,
+        "delta": -1.0
+      },
+      {
+        "case_id": "transfer_preview-2",
+        "repeat": 1,
+        "group_id": "transfer_preview",
+        "tags": [
+          "tool",
+          "synthetic",
+          "lang:en",
+          "critical"
+        ],
+        "baseline_score": 1.0,
+        "candidate_score": 0.0,
+        "delta": -1.0
+      },
+      {
+        "case_id": "transfer_preview-3",
+        "repeat": 0,
+        "group_id": "transfer_preview",
+        "tags": [
+          "tool",
+          "synthetic",
+          "lang:zh",
+          "critical"
+        ],
+        "baseline_score": 1.0,
+        "candidate_score": 0.0,
+        "delta": -1.0
+      },
+      {
+        "case_id": "transfer_preview-3",
+        "repeat": 1,
+        "group_id": "transfer_preview",
+        "tags": [
+          "tool",
+          "synthetic",
+          "lang:zh",
+          "critical"
+        ],
+        "baseline_score": 1.0,
+        "candidate_score": 0.0,
+        "delta": -1.0
+      },
+      {
+        "case_id": "transfer_preview-4",
+        "repeat": 0,
+        "group_id": "transfer_preview",
+        "tags": [
+          "tool",
+          "synthetic",
+          "lang:en",
+          "critical"
+        ],
+        "baseline_score": 1.0,
+        "candidate_score": 0.0,
+        "delta": -1.0
+      },
+      {
+        "case_id": "transfer_preview-4",
+        "repeat": 1,
+        "group_id": "transfer_preview",
+        "tags": [
+          "tool",
+          "synthetic",
+          "lang:en",
+          "critical"
+        ],
+        "baseline_score": 1.0,
+        "candidate_score": 0.0,
+        "delta": -1.0
+      }
+    ]
+  },
+  "resources": {
+    "baseline": {
+      "cost": {
+        "total_usd": 0.0,
+        "known_subtotal_usd": 0.0,
+        "known_records": 128,
+        "unknown_records": 0
+      },
+      "latency_ms": {
+        "mean": 0.010251596904709004,
+        "median": 0.009208510164171457,
+        "p95": 0.01431653508916497,
+        "known_records": 128,
+        "unknown_records": 0
+      },
+      "usage": {},
+      "note": "Measured run resources; recorded latency is descriptive and may depend on retries, caching, or concurrency."
+    },
+    "candidate": {
+      "cost": {
+        "total_usd": 0.0,
+        "known_subtotal_usd": 0.0,
+        "known_records": 128,
+        "unknown_records": 0
+      },
+      "latency_ms": {
+        "mean": 0.010003878742281813,
+        "median": 0.009624985978007317,
+        "p95": 0.013083667727187276,
+        "known_records": 128,
+        "unknown_records": 0
+      },
+      "usage": {},
+      "note": "Measured run resources; recorded latency is descriptive and may depend on retries, caching, or concurrency."
+    }
+  },
+  "assumptions": {
+    "inference_enabled": false,
+    "independence_is_proven": false,
+    "sampling": {
+      "baseline": {
+        "kind": "synthetic_contract_suite",
+        "independent_groups": false,
+        "note": "手写有限验收套件；同一情境的中英改写不独立，16个情境也不是从目标总体独立随机抽样，不能据此证明真实模型总体性能。"
+      },
+      "candidate": {
+        "kind": "synthetic_contract_suite",
+        "independent_groups": false,
+        "note": "手写有限验收套件；同一情境的中英改写不独立，16个情境也不是从目标总体独立随机抽样，不能据此证明真实模型总体性能。"
+      }
+    },
+    "family_size": 9,
+    "family_alpha": 0.05,
+    "per_comparison_alpha": 0.005555555555555556,
+    "formal_unit": "group",
+    "fixed_policy_required": true,
+    "zero_difference_groups_needed_for_margin": 4709
+  },
+  "evidence": {
+    "baseline_fingerprint": "fcba9423c51f5eee83c950eaeb68c6059424fed9f6ea12702d618e3812109bcf",
+    "candidate_fingerprint": "8db4f20bf5f2018264b071e263a2ead2d4cf3aa395640d3a555e759c00f474fb",
+    "policy_fingerprint": "0a65cbdfa96779dfa8895e2b4b5d88f03dd3b56dc87bfa72dc63e1e60c7cdfd8",
+    "suite_fingerprint": "5be36a2d01a6a71400d9c5a3863193b6b788554e9db27ff4653cf707746e3f91",
+    "protocol_fingerprint": "37e0afa08365fa8dff4b3f1a3926999ccdee1d9cfedca4a5f769023c9eac0467"
+  }
+}

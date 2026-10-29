@@ -1,0 +1,18 @@
+{
+  "python": "3.12.14",
+  "implementation": "CPython",
+  "minimum_supported_release_python": "3.12",
+  "frozen_engine_unchanged": true,
+  "engine_hash": "c8e13c1aa78d30021dd68e72479c369bf129dbfab56851ca3b1fd5711df50233",
+  "floating_point_compatibility": {
+    "primary_episodes_checked": 384,
+    "legacy_left_to_right_cost_sum_differences": 81,
+    "math_fsum_cost_differences": 0,
+    "policy": "Require Python 3.12+ for exact frozen sum(float) replay. Preserve raw records and strict equality; do not rescore or widen comparison tolerance."
+  },
+  "known_test_checkpoint": {
+    "passed": 649,
+    "subtests_passed": 13,
+    "note": "Final local suite passed on CPython 3.12.14, including loopback HTTP tests. Remote CI is verified separately."
+  }
+}

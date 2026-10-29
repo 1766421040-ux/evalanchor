@@ -1,0 +1,52 @@
+{
+  "id": "qwen2.5-0.5b-greedy",
+  "provider": "transformers",
+  "model": "Qwen2.5-0.5B-Instruct",
+  "revision": "local-content-hashed",
+  "model_path": "/Users/galaxy/Documents/ChatGPT/实习/evidence-gate/.cache/base-model",
+  "device": "mps",
+  "temperature": 0,
+  "max_tokens": 192,
+  "model_manifest": {
+    "schema_version": 1,
+    "format": "safetensors",
+    "files": [
+      {
+        "path": "config.json",
+        "size_bytes": 659,
+        "sha256": "18e18afcaccafade98daf13a54092927904649e1dd4eba8299ab717d5d94ff45"
+      },
+      {
+        "path": "generation_config.json",
+        "size_bytes": 242,
+        "sha256": "e558847a8b4402616f1273797b015104dc266fe4b520056fca88823ba8f8ebe6"
+      },
+      {
+        "path": "merges.txt",
+        "size_bytes": 1671839,
+        "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
+      },
+      {
+        "path": "model.safetensors",
+        "size_bytes": 988097824,
+        "sha256": "fdf756fa7fcbe7404d5c60e26bff1a0c8b8aa1f72ced49e7dd0210fe288fb7fe"
+      },
+      {
+        "path": "tokenizer.json",
+        "size_bytes": 7031645,
+        "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539"
+      },
+      {
+        "path": "tokenizer_config.json",
+        "size_bytes": 7305,
+        "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583"
+      },
+      {
+        "path": "vocab.json",
+        "size_bytes": 2776833,
+        "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+      }
+    ],
+    "sha256": "5e1d0aa48aaed42ee199bd3b31675bec23417875b23187bc3ca6918f05da1198"
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "allow_start": true,
+  "decision_basis": "preregistered_cost_only_launch_gate",
+  "quality_scores_used": false,
+  "reasons": [],
+  "config_cost_sources": [
+    {
+      "config_id": "luna-direct",
+      "development": {
+        "config_id": "luna-direct",
+        "observed_episodes": 24,
+        "expected_episodes": 24,
+        "unknown_cost_episodes": 0,
+        "mean_episode_usd": 0.0004960625,
+        "mean_episode_usd_decimal": "0.00049606250000000001416666666666666666666666666666667"
+      },
+      "primary": {
+        "config_id": "luna-direct",
+        "observed_episodes": 96,
+        "expected_episodes": 96,
+        "unknown_cost_episodes": 0,
+        "mean_episode_usd": 0.000262111875,
+        "mean_episode_usd_decimal": "0.0002621118750000000041875"
+      },
+      "chosen_mean_usd": 0.0004960625,
+      "chosen_mean_source": "development"
+    },
+    {
+      "config_id": "luna-checklist",
+      "development": {
+        "config_id": "luna-checklist",
+        "observed_episodes": 24,
+        "expected_episodes": 24,
+        "unknown_cost_episodes": 0,
+        "mean_episode_usd": 0.0004343029166666667,
+        "mean_episode_usd_decimal": "0.00043430291666666668275"
+      },
+      "primary": {
+        "config_id": "luna-checklist",
+        "observed_episodes": 96,
+        "expected_episodes": 96,
+        "unknown_cost_episodes": 0,
+        "mean_episode_usd": 0.00031145625,
+        "mean_episode_usd_decimal": "0.000311456250000000005625"
+      },
+      "chosen_mean_usd": 0.0004343029166666667,
+      "chosen_mean_source": "development"
+    },
+    {
+      "config_id": "terra-direct",
+      "development": {
+        "config_id": "terra-direct",
+        "observed_episodes": 24,
+        "expected_episodes": 24,
+        "unknown_cost_episodes": 0,
+        "mean_episode_usd": 0.004834727083333333,
+        "mean_episode_usd_decimal": "0.0048347270833333333"
+      },
+      "primary": {
+        "config_id": "terra-direct",
+        "observed_episodes": 96,
+        "expected_episodes": 96,
+        "unknown_cost_episodes": 0,
+        "mean_episode_usd": 0.0022401499999999998,
+        "mean_episode_usd_decimal": "0.0022401499999999999885416666666666666666666666666667"
+      },
+      "chosen_mean_usd": 0.004834727083333333,
+      "chosen_mean_source": "development"
+    },
+    {
+      "config_id": "terra-checklist",
+      "development": {
+        "config_id": "terra-checklist",
+        "observed_episodes": 24,
+        "expected_episodes": 24,
+        "unknown_cost_episodes": 0,
+        "mean_episode_usd": 0.00434895625,
+        "mean_episode_usd_decimal": "0.0043489562500000000166666666666666666666666666666667"
+      },
+      "primary": {
+        "config_id": "terra-checklist",
+        "observed_episodes": 96,
+        "expected_episodes": 96,
+        "unknown_cost_episodes": 0,
+        "mean_episode_usd": 0.0026885671875,
+        "mean_episode_usd_decimal": "0.0026885671875000000166666666666666666666666666666667"
+      },
+      "chosen_mean_usd": 0.00434895625,
+      "chosen_mean_source": "development"
+    }
+  ],
+  "ledger_cap_usd": 4.75,
+  "committed_usd": 0.851273952,
+  "available_after_commitments_usd": 3.898726048,
+  "safety_buffer_usd": 0.25,
+  "projected_long_usd": 1.820533383,
+  "projected_long_usd_decimal": "1.8205333830000000024450000000000000000000000000000",
+  "projected_total_with_buffer_usd": 2.921807335,
+  "margin_to_cap_usd": 1.828192665,
+  "formula": "96 * sum(max(dev_mean_c, primary_mean_c)) * 1.5 * 1.25 + 0.000004608",
+  "forecast_is_a_cost_upper_bound": false,
+  "warning": "A planning allowance does not guarantee completion. Every future call still requires a conservative ledger reservation; do not shrink/select the secondary matrix by observed scores.",
+  "budget_audit": {
+    "verified": true,
+    "attempts": 2651,
+    "event_counts": {
+      "reserved": 2651,
+      "dispatched": 2651,
+      "settled": 2651
+    },
+    "known_spent_nanodollars": 851273952,
+    "unknown_reserved_nanodollars": 0,
+    "active_reserved_nanodollars": 0,
+    "cap_nanodollars": 4750000000,
+    "peak_committed_nanodollars": 1039725008
+  },
+  "evidence": {
+    "development_fingerprint": "94c0c5169e19d7aef33dad252b36ac15b9822415991cf0063adb106b327a16ab",
+    "primary_fingerprint": "1ea0524ddd86faaaaae0efbdcbb7f8b8ace491c4a53992a85c3e0b9263306c45",
+    "budget_fingerprint": "48bb57bb905e07b16cb7dd4db8a4cf57d25436045cb75221a7274626af7e5005",
+    "frozen_fingerprint": "dc8d9a90e2b0c3ce8b24e21483479c445a8db636312a19ca99aaae6c0d7bd942",
+    "amendment_fingerprint": "1db374432d2e6063e2cd238dcd0d697daafac8ddb43dca5b8184df68626e1a1d"
+  }
+}

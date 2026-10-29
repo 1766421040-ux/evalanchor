@@ -1,0 +1,7 @@
+{
+  "id": "baseline",
+  "provider": "replay",
+  "model": "synthetic-fixture",
+  "revision": "v1",
+  "outputs_hash": "5d68593f2b402a37e8cec8a37709005833c119c8cdd92a5981101014390e9a9b"
+}

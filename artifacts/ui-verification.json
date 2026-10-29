@@ -1,0 +1,25 @@
+{
+  "checked_on": "2026-10-29",
+  "browser": "Codex in-app browser",
+  "url": "http://127.0.0.1:8778",
+  "observed_checks": {
+    "overview": "candidate 62.5 to 87.5, FAIL; 16 paired critical observations in 2 groups",
+    "switch": "fixed 100%, INCONCLUSIVE",
+    "regression_filter": "16 of 128 rows",
+    "search": "conflict_authorization-1 gives 2 rows",
+    "detail": "actual messages and baseline/candidate raw outputs visible",
+    "cost": "both fixture zero costs explicitly separated from real model runs",
+    "empty_search": "0/128 with explanatory empty state; comparison denominator preserved",
+    "json_export": "Browser-downloaded JSON exactly equals saved full comparison while display filter is empty"
+  },
+  "screenshot": "docs/figures/overview.jpg",
+  "scope": "Observed browser interactions, not an automated cross-browser test matrix",
+  "real_model_report": {
+    "url": "http://127.0.0.1:8779",
+    "observed": "12.5% to 93.8% (rounded display), 16/16 paired, INCONCLUSIVE, local cost unknown versus API estimate $0.000332",
+    "failure_detail": "refund_preview-2: local wrong monetary unit; API extra text and duplicate JSON both preserved",
+    "source_notice": "Synthetic scenario inputs distinguished from real model outputs",
+    "screenshot": "docs/figures/real-models.jpg",
+    "console_errors": 0
+  }
+}

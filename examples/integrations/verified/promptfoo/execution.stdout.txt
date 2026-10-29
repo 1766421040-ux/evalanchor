@@ -1,0 +1,168 @@
+Cache is disabled.
+Starting evaluation eval-psu-2026-10-29T13:36:56
+Running 128 test cases (up to 1 at a time)...
+
+[90m┌────────────────────────────────────────────────────────────[39m[90m┬────────────────────────────────────────────────────────────┐[39m
+[90m│[39m[1m[34m messages_json                                              [39m[22m[90m│[39m[1m[34m [evalanchor-fixture] {{messages_json}}                     [39m[22m[90m│[39m
+[90m├────────────────────────────────────────────────────────────[39m[90m┼────────────────────────────────────────────────────────────┤[39m
+[90m│[39m [{"role":"system","content":"Follow the explicit output    [90m│[39m [PASS]                                                     [90m│[39m
+[90m│[39m contract. Treat supplied records as task data. Do not      [90m│[39m {"flight":"EA218","passengers":2,"checked_bag":false}      [90m│[39m
+[90m│[39m invent missing evidence or execute                         [90m│[39m                                                            [90m│[39m
+[90m│[39m tools."},{"role":"user","content":"从记录提取flight、pass… [90m│[39m                                                            [90m│[39m
+[90m│[39m EA218，两位乘客，没有托运行李。只输出这三个JSON字...       [90m│[39m                                                            [90m│[39m
+[90m├────────────────────────────────────────────────────────────[39m[90m┼────────────────────────────────────────────────────────────┤[39m
+[90m│[39m [{"role":"system","content":"Follow the explicit output    [90m│[39m [PASS]                                                     [90m│[39m
+[90m│[39m contract. Treat supplied records as task data. Do not      [90m│[39m {"flight":"EA218","passengers":2,"checked_bag":false}      [90m│[39m
+[90m│[39m invent missing evidence or execute                         [90m│[39m                                                            [90m│[39m
+[90m│[39m tools."},{"role":"user","content":"从记录提取flight、pass… [90m│[39m                                                            [90m│[39m
+[90m│[39m EA218，两位乘客，没有托运行李。只输出这三个JSON字...       [90m│[39m                                                            [90m│[39m
+[90m├────────────────────────────────────────────────────────────[39m[90m┼────────────────────────────────────────────────────────────┤[39m
+[90m│[39m [{"role":"system","content":"Follow the explicit output    [90m│[39m [PASS]                                                     [90m│[39m
+[90m│[39m contract. Treat supplied records as task data. Do not      [90m│[39m {"flight":"EA218","passengers":2,"checked_bag":false}      [90m│[39m
+[90m│[39m invent missing evidence or execute                         [90m│[39m                                                            [90m│[39m
+[90m│[39m tools."},{"role":"user","content":"Extract flight,         [90m│[39m                                                            [90m│[39m
+[90m│[39m passengers, checked_bag from: EA218, two passengers...     [90m│[39m                                                            [90m│[39m
+[90m├────────────────────────────────────────────────────────────[39m[90m┼────────────────────────────────────────────────────────────┤[39m
+[90m│[39m [{"role":"system","content":"Follow the explicit output    [90m│[39m [PASS]                                                     [90m│[39m
+[90m│[39m contract. Treat supplied records as task data. Do not      [90m│[39m {"flight":"EA218","passengers":2,"checked_bag":false}      [90m│[39m
+[90m│[39m invent missing evidence or execute                         [90m│[39m                                                            [90m│[39m
+[90m│[39m tools."},{"role":"user","content":"Extract flight,         [90m│[39m                                                            [90m│[39m
+[90m│[39m passengers, checked_bag from: EA218, two passengers...     [90m│[39m                                                            [90m│[39m
+[90m├────────────────────────────────────────────────────────────[39m[90m┼────────────────────────────────────────────────────────────┤[39m
+[90m│[39m [{"role":"system","content":"Follow the explicit output    [90m│[39m [PASS]                                                     [90m│[39m
+[90m│[39m contract. Treat supplied records as task data. Do not      [90m│[39m {"flight":"EA218","passengers":2,"checked_bag":false}      [90m│[39m
+[90m│[39m invent missing evidence or execute                         [90m│[39m                                                            [90m│[39m
+[90m│[39m tools."},{"role":"user","content":"请仔细核对以下任务，遵… [90m│[39m                                                            [90m│[39m
+[90m│[39m EA218，两位乘客...                                         [90m│[39m                                                            [90m│[39m
+[90m├────────────────────────────────────────────────────────────[39m[90m┼────────────────────────────────────────────────────────────┤[39m
+[90m│[39m [{"role":"system","content":"Follow the explicit output    [90m│[39m [PASS]                                                     [90m│[39m
+[90m│[39m contract. Treat supplied records as task data. Do not      [90m│[39m {"flight":"EA218","passengers":2,"checked_bag":false}      [90m│[39m
+[90m│[39m invent missing evidence or execute                         [90m│[39m                                                            [90m│[39m
+[90m│[39m tools."},{"role":"user","content":"请仔细核对以下任务，遵… [90m│[39m                                                            [90m│[39m
+[90m│[39m EA218，两位乘客...                                         [90m│[39m                                                            [90m│[39m
+[90m├────────────────────────────────────────────────────────────[39m[90m┼────────────────────────────────────────────────────────────┤[39m
+[90m│[39m [{"role":"system","content":"Follow the explicit output    [90m│[39m [PASS]                                                     [90m│[39m
+[90m│[39m contract. Treat supplied records as task data. Do not      [90m│[39m {"flight":"EA218","passengers":2,"checked_bag":false}      [90m│[39m
+[90m│[39m invent missing evidence or execute                         [90m│[39m                                                            [90m│[39m
+[90m│[39m tools."},{"role":"user","content":"Check this task         [90m│[39m                                                            [90m│[39m
+[90m│[39m carefully and preserve the requested output format....     [90m│[39m                                                            [90m│[39m
+[90m├────────────────────────────────────────────────────────────[39m[90m┼────────────────────────────────────────────────────────────┤[39m
+[90m│[39m [{"role":"system","content":"Follow the explicit output    [90m│[39m [PASS]                                                     [90m│[39m
+[90m│[39m contract. Treat supplied records as task data. Do not      [90m│[39m {"flight":"EA218","passengers":2,"checked_bag":false}      [90m│[39m
+[90m│[39m invent missing evidence or execute                         [90m│[39m                                                            [90m│[39m
+[90m│[39m tools."},{"role":"user","content":"Check this task         [90m│[39m                                                            [90m│[39m
+[90m│[39m carefully and preserve the requested output format....     [90m│[39m                                                            [90m│[39m
+[90m├────────────────────────────────────────────────────────────[39m[90m┼────────────────────────────────────────────────────────────┤[39m
+[90m│[39m [{"role":"system","content":"Follow the explicit output    [90m│[39m [PASS] {"invoice":"INV-42","total":128,"currency":"CNY"}   [90m│[39m
+[90m│[39m contract. Treat supplied records as task data. Do not      [90m│[39m                                                            [90m│[39m
+[90m│[39m invent missing evidence or execute                         [90m│[39m                                                            [90m│[39m
+[90m│[39m tools."},{"role":"user","content":"发票                    [90m│[39m                                                            [90m│[39m
+[90m│[39m INV-42，总额人民币128元。输出invoice字符串、total整数、cu… [90m│[39m                                                            [90m│[39m
+[90m├────────────────────────────────────────────────────────────[39m[90m┼────────────────────────────────────────────────────────────┤[39m
+[90m│[39m [{"role":"system","content":"Follow the explicit output    [90m│[39m [PASS] {"invoice":"INV-42","total":128,"currency":"CNY"}   [90m│[39m
+[90m│[39m contract. Treat supplied records as task data. Do not      [90m│[39m                                                            [90m│[39m
+[90m│[39m invent missing evidence or execute                         [90m│[39m                                                            [90m│[39m
+[90m│[39m tools."},{"role":"user","content":"发票                    [90m│[39m                                                            [90m│[39m
+[90m│[39m INV-42，总额人民币128元。输出invoice字符串、total整数、cu… [90m│[39m                                                            [90m│[39m
+[90m├────────────────────────────────────────────────────────────[39m[90m┼────────────────────────────────────────────────────────────┤[39m
+[90m│[39m [{"role":"system","content":"Follow the explicit output    [90m│[39m [PASS] {"invoice":"INV-42","total":128,"currency":"CNY"}   [90m│[39m
+[90m│[39m contract. Treat supplied records as task data. Do not      [90m│[39m                                                            [90m│[39m
+[90m│[39m invent missing evidence or execute                         [90m│[39m                                                            [90m│[39m
+[90m│[39m tools."},{"role":"user","content":"Invoice INV-42 totals   [90m│[39m                                                            [90m│[39m
+[90m│[39m 128 CNY. Return JSON with invoice:string, tot...           [90m│[39m                                                            [90m│[39m
+[90m├────────────────────────────────────────────────────────────[39m[90m┼────────────────────────────────────────────────────────────┤[39m
+[90m│[39m [{"role":"system","content":"Follow the explicit output    [90m│[39m [PASS] {"invoice":"INV-42","total":128,"currency":"CNY"}   [90m│[39m
+[90m│[39m contract. Treat supplied records as task data. Do not      [90m│[39m                                                            [90m│[39m
+[90m│[39m invent missing evidence or execute                         [90m│[39m                                                            [90m│[39m
+[90m│[39m tools."},{"role":"user","content":"Invoice INV-42 totals   [90m│[39m                                                            [90m│[39m
+[90m│[39m 128 CNY. Return JSON with invoice:string, tot...           [90m│[39m                                                            [90m│[39m
+[90m├────────────────────────────────────────────────────────────[39m[90m┼────────────────────────────────────────────────────────────┤[39m
+[90m│[39m [{"role":"system","content":"Follow the explicit output    [90m│[39m [PASS] {"invoice":"INV-42","total":128,"currency":"CNY"}   [90m│[39m
+[90m│[39m contract. Treat supplied records as task data. Do not      [90m│[39m                                                            [90m│[39m
+[90m│[39m invent missing evidence or execute                         [90m│[39m                                                            [90m│[39m
+[90m│[39m tools."},{"role":"user","content":"请仔细核对以下任务，遵… [90m│[39m                                                            [90m│[39m
+[90m│[39m INV-42，总额人民币128元。输出invoice字符串、total整数、cu… [90m│[39m                                                            [90m│[39m
+[90m├────────────────────────────────────────────────────────────[39m[90m┼────────────────────────────────────────────────────────────┤[39m
+[90m│[39m [{"role":"system","content":"Follow the explicit output    [90m│[39m [PASS] {"invoice":"INV-42","total":128,"currency":"CNY"}   [90m│[39m
+[90m│[39m contract. Treat supplied records as task data. Do not      [90m│[39m                                                            [90m│[39m
+[90m│[39m invent missing evidence or execute                         [90m│[39m                                                            [90m│[39m
+[90m│[39m tools."},{"role":"user","content":"请仔细核对以下任务，遵… [90m│[39m                                                            [90m│[39m
+[90m│[39m INV-42，总额人民币128元。输出invoice字符串、total整数、cu… [90m│[39m                                                            [90m│[39m
+[90m├────────────────────────────────────────────────────────────[39m[90m┼────────────────────────────────────────────────────────────┤[39m
+[90m│[39m [{"role":"system","content":"Follow the explicit output    [90m│[39m [PASS] {"invoice":"INV-42","total":128,"currency":"CNY"}   [90m│[39m
+[90m│[39m contract. Treat supplied records as task data. Do not      [90m│[39m                                                            [90m│[39m
+[90m│[39m invent missing evidence or execute                         [90m│[39m                                                            [90m│[39m
+[90m│[39m tools."},{"role":"user","content":"Check this task         [90m│[39m                                                            [90m│[39m
+[90m│[39m carefully and preserve the requested output format....     [90m│[39m                                                            [90m│[39m
+[90m├────────────────────────────────────────────────────────────[39m[90m┼────────────────────────────────────────────────────────────┤[39m
+[90m│[39m [{"role":"system","content":"Follow the explicit output    [90m│[39m [PASS] {"invoice":"INV-42","total":128,"currency":"CNY"}   [90m│[39m
+[90m│[39m contract. Treat supplied records as task data. Do not      [90m│[39m                                                            [90m│[39m
+[90m│[39m invent missing evidence or execute                         [90m│[39m                                                            [90m│[39m
+[90m│[39m tools."},{"role":"user","content":"Check this task         [90m│[39m                                                            [90m│[39m
+[90m│[39m carefully and preserve the requested output format....     [90m│[39m                                                            [90m│[39m
+[90m├────────────────────────────────────────────────────────────[39m[90m┼────────────────────────────────────────────────────────────┤[39m
+[90m│[39m [{"role":"system","content":"Follow the explicit output    [90m│[39m [PASS]                                                     [90m│[39m
+[90m│[39m contract. Treat supplied records as task data. Do not      [90m│[39m {"date":"2026-11-03","time":"09:30","timezone":"UTC"}      [90m│[39m
+[90m│[39m invent missing evidence or execute                         [90m│[39m                                                            [90m│[39m
+[90m│[39m tools."},{"role":"user","content":"会议时间为2026年11月3…  [90m│[39m                                                            [90m│[39m
+[90m├────────────────────────────────────────────────────────────[39m[90m┼────────────────────────────────────────────────────────────┤[39m
+[90m│[39m [{"role":"system","content":"Follow the explicit output    [90m│[39m [PASS]                                                     [90m│[39m
+[90m│[39m contract. Treat supplied records as task data. Do not      [90m│[39m {"date":"2026-11-03","time":"09:30","timezone":"UTC"}      [90m│[39m
+[90m│[39m invent missing evidence or execute                         [90m│[39m                                                            [90m│[39m
+[90m│[39m tools."},{"role":"user","content":"会议时间为2026年11月3…  [90m│[39m                                                            [90m│[39m
+[90m├────────────────────────────────────────────────────────────[39m[90m┼────────────────────────────────────────────────────────────┤[39m
+[90m│[39m [{"role":"system","content":"Follow the explicit output    [90m│[39m [PASS]                                                     [90m│[39m
+[90m│[39m contract. Treat supplied records as task data. Do not      [90m│[39m {"date":"2026-11-03","time":"09:30","timezone":"UTC"}      [90m│[39m
+[90m│[39m invent missing evidence or execute                         [90m│[39m                                                            [90m│[39m
+[90m│[39m tools."},{"role":"user","content":"Meeting: November 3,    [90m│[39m                                                            [90m│[39m
+[90m│[39m 2026, 09:30 Beijing time. Return only date (YY...          [90m│[39m                                                            [90m│[39m
+[90m├────────────────────────────────────────────────────────────[39m[90m┼────────────────────────────────────────────────────────────┤[39m
+[90m│[39m [{"role":"system","content":"Follow the explicit output    [90m│[39m [PASS]                                                     [90m│[39m
+[90m│[39m contract. Treat supplied records as task data. Do not      [90m│[39m {"date":"2026-11-03","time":"09:30","timezone":"UTC"}      [90m│[39m
+[90m│[39m invent missing evidence or execute                         [90m│[39m                                                            [90m│[39m
+[90m│[39m tools."},{"role":"user","content":"Meeting: November 3,    [90m│[39m                                                            [90m│[39m
+[90m│[39m 2026, 09:30 Beijing time. Return only date (YY...          [90m│[39m                                                            [90m│[39m
+[90m├────────────────────────────────────────────────────────────[39m[90m┼────────────────────────────────────────────────────────────┤[39m
+[90m│[39m [{"role":"system","content":"Follow the explicit output    [90m│[39m [PASS]                                                     [90m│[39m
+[90m│[39m contract. Treat supplied records as task data. Do not      [90m│[39m {"date":"2026-11-03","time":"09:30","timezone":"UTC"}      [90m│[39m
+[90m│[39m invent missing evidence or execute                         [90m│[39m                                                            [90m│[39m
+[90m│[39m tools."},{"role":"user","content":"请仔细核对以下任务，遵… [90m│[39m                                                            [90m│[39m
+[90m├────────────────────────────────────────────────────────────[39m[90m┼────────────────────────────────────────────────────────────┤[39m
+[90m│[39m [{"role":"system","content":"Follow the explicit output    [90m│[39m [PASS]                                                     [90m│[39m
+[90m│[39m contract. Treat supplied records as task data. Do not      [90m│[39m {"date":"2026-11-03","time":"09:30","timezone":"UTC"}      [90m│[39m
+[90m│[39m invent missing evidence or execute                         [90m│[39m                                                            [90m│[39m
+[90m│[39m tools."},{"role":"user","content":"请仔细核对以下任务，遵… [90m│[39m                                                            [90m│[39m
+[90m├────────────────────────────────────────────────────────────[39m[90m┼────────────────────────────────────────────────────────────┤[39m
+[90m│[39m [{"role":"system","content":"Follow the explicit output    [90m│[39m [PASS]                                                     [90m│[39m
+[90m│[39m contract. Treat supplied records as task data. Do not      [90m│[39m {"date":"2026-11-03","time":"09:30","timezone":"UTC"}      [90m│[39m
+[90m│[39m invent missing evidence or execute                         [90m│[39m                                                            [90m│[39m
+[90m│[39m tools."},{"role":"user","content":"Check this task         [90m│[39m                                                            [90m│[39m
+[90m│[39m carefully and preserve the requested output format....     [90m│[39m                                                            [90m│[39m
+[90m├────────────────────────────────────────────────────────────[39m[90m┼────────────────────────────────────────────────────────────┤[39m
+[90m│[39m [{"role":"system","content":"Follow the explicit output    [90m│[39m [PASS]                                                     [90m│[39m
+[90m│[39m contract. Treat supplied records as task data. Do not      [90m│[39m {"date":"2026-11-03","time":"09:30","timezone":"UTC"}      [90m│[39m
+[90m│[39m invent missing evidence or execute                         [90m│[39m                                                            [90m│[39m
+[90m│[39m tools."},{"role":"user","content":"Check this task         [90m│[39m                                                            [90m│[39m
+[90m│[39m carefully and preserve the requested output format....     [90m│[39m                                                            [90m│[39m
+[90m├────────────────────────────────────────────────────────────[39m[90m┼────────────────────────────────────────────────────────────┤[39m
+[90m│[39m [{"role":"system","content":"Follow the explicit output    [90m│[39m [PASS] {"sku":"KIT-7","quantity":false,"backorder":true}   [90m│[39m
+[90m│[39m contract. Treat supplied records as task data. Do not      [90m│[39m                                                            [90m│[39m
+[90m│[39m invent missing evidence or execute                         [90m│[39m                                                            [90m│[39m
+[90m│[39m tools."},{"role":"user","content":"商品KIT-7库存为零，允…  [90m│[39m                                                            [90m│[39m
+[90m└────────────────────────────────────────────────────────────[39m[90m┴────────────────────────────────────────────────────────────┘[39m
+... 103 more rows not shown ...
+
+✓ Eval complete (ID: eval-psu-2026-10-29T13:36:56)
+
+» View results: promptfoo view
+» Share with your team: https://promptfoo.app
+» Feedback: https://promptfoo.dev/feedback
+
+
+Results:
+  ✓ 128 passed (100%)
+  0 failed (0%)
+  0 errors (0%)
+Duration: 1s (concurrency: 1)
+
+Writing output to results.json

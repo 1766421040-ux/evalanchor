@@ -1,0 +1,436 @@
+{
+  "schema_version": 1,
+  "id": "synthetic-business-local-smoke-v1",
+  "title": "中英业务合同 · 16情境真实调用冒烟套件",
+  "description": "Fixed one-case-per-scenario subset of synthetic-business-contracts-v1; eight Chinese and eight English cases. Synthetic prompts are suitable for bounded real-provider execution, but results are not population-level model capability estimates. No fixture predictions are provided for this suite.",
+  "sampling": {
+    "kind": "synthetic_contract_suite",
+    "independent_groups": false,
+    "note": "手写有限验收套件；同一情境的中英改写不独立，16个情境也不是从目标总体独立随机抽样，不能据此证明真实模型总体性能。"
+  },
+  "cases": [
+    {
+      "id": "flight-1",
+      "group_id": "flight",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:zh"
+      ],
+      "messages": [
+        {
+          "role": "system",
+          "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+        },
+        {
+          "role": "user",
+          "content": "从记录提取flight、passengers、checked_bag：航班 EA218，两位乘客，没有托运行李。只输出这三个JSON字段。"
+        }
+      ],
+      "scorer": "json_fields",
+      "expected": {
+        "fields": {
+          "flight": "EA218",
+          "passengers": 2,
+          "checked_bag": false
+        }
+      }
+    },
+    {
+      "id": "invoice-2",
+      "group_id": "invoice",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:en"
+      ],
+      "messages": [
+        {
+          "role": "system",
+          "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+        },
+        {
+          "role": "user",
+          "content": "Invoice INV-42 totals 128 CNY. Return JSON with invoice:string, total:integer, currency:CNY and no other fields."
+        }
+      ],
+      "scorer": "json_exact",
+      "expected": {
+        "invoice": "INV-42",
+        "total": 128,
+        "currency": "CNY"
+      }
+    },
+    {
+      "id": "meeting-1",
+      "group_id": "meeting",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:zh"
+      ],
+      "messages": [
+        {
+          "role": "system",
+          "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+        },
+        {
+          "role": "user",
+          "content": "会议时间为2026年11月3日北京时间上午9:30。只输出date(YYYY-MM-DD)、time(HH:MM)、timezone(IANA名称)三个JSON字段。"
+        }
+      ],
+      "scorer": "json_fields",
+      "expected": {
+        "fields": {
+          "date": "2026-11-03",
+          "time": "09:30",
+          "timezone": "Asia/Shanghai"
+        }
+      }
+    },
+    {
+      "id": "inventory-2",
+      "group_id": "inventory",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:en"
+      ],
+      "messages": [
+        {
+          "role": "system",
+          "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+        },
+        {
+          "role": "user",
+          "content": "SKU KIT-7 has zero units in stock and permits backorders. Return JSON containing only sku:string, quantity:integer, backorder:boolean."
+        }
+      ],
+      "scorer": "json_exact",
+      "expected": {
+        "sku": "KIT-7",
+        "quantity": 0,
+        "backorder": true
+      }
+    },
+    {
+      "id": "quota-1",
+      "group_id": "quota",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:zh"
+      ],
+      "messages": [
+        {
+          "role": "system",
+          "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+        },
+        {
+          "role": "user",
+          "content": "证据：[plan-old]旧方案每月50次；[plan-current]当前方案每月80次。当前每月额度多少？answer用整数。\nReturn only JSON with exactly \"answer\", \"citations\" (unique source IDs), and \"abstain\" (boolean). Use null answer when abstaining."
+        }
+      ],
+      "scorer": "grounded_answer",
+      "expected": {
+        "answer": 80,
+        "citations": [
+          "plan-current"
+        ],
+        "abstain": false
+      }
+    },
+    {
+      "id": "shipping-2",
+      "group_id": "shipping",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:en"
+      ],
+      "messages": [
+        {
+          "role": "system",
+          "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+        },
+        {
+          "role": "user",
+          "content": "Evidence: [shipping-rule] this test shipment's sole destination country code is JP; [sender] origin country is CN. Return the destination country code.\nReturn only JSON with exactly \"answer\", \"citations\" (unique source IDs), and \"abstain\" (boolean). Use null answer when abstaining."
+        }
+      ],
+      "scorer": "grounded_answer",
+      "expected": {
+        "answer": "JP",
+        "citations": [
+          "shipping-rule"
+        ],
+        "abstain": false
+      }
+    },
+    {
+      "id": "sla-1",
+      "group_id": "sla",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:zh"
+      ],
+      "messages": [
+        {
+          "role": "system",
+          "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+        },
+        {
+          "role": "user",
+          "content": "证据：[sla-standard]普通工单响应上限24小时；[sla-priority]优先工单响应上限4小时。本工单是优先工单，上限为多少小时？answer用整数。\nReturn only JSON with exactly \"answer\", \"citations\" (unique source IDs), and \"abstain\" (boolean). Use null answer when abstaining."
+        }
+      ],
+      "scorer": "grounded_answer",
+      "expected": {
+        "answer": 4,
+        "citations": [
+          "sla-priority"
+        ],
+        "abstain": false
+      }
+    },
+    {
+      "id": "measurement-2",
+      "group_id": "measurement",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:en"
+      ],
+      "messages": [
+        {
+          "role": "system",
+          "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+        },
+        {
+          "role": "user",
+          "content": "Evidence: [report-draft] draft interval [0.69,0.81]; [report-final] final interval [0.71,0.79]. Return the final interval as a string with no spaces.\nReturn only JSON with exactly \"answer\", \"citations\" (unique source IDs), and \"abstain\" (boolean). Use null answer when abstaining."
+        }
+      ],
+      "scorer": "grounded_answer",
+      "expected": {
+        "answer": "[0.71,0.79]",
+        "citations": [
+          "report-final"
+        ],
+        "abstain": false
+      }
+    },
+    {
+      "id": "missing_contact-1",
+      "group_id": "missing_contact",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:zh"
+      ],
+      "messages": [
+        {
+          "role": "system",
+          "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+        },
+        {
+          "role": "user",
+          "content": "资料只有客户姓名Alice，没有邮箱。客户邮箱是什么？如果无法从资料得到，严格只返回INSUFFICIENT_EVIDENCE。"
+        }
+      ],
+      "scorer": "exact",
+      "expected": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "id": "missing_price-2",
+      "group_id": "missing_price",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:en"
+      ],
+      "messages": [
+        {
+          "role": "system",
+          "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+        },
+        {
+          "role": "user",
+          "content": "Evidence: [catalog] Nova is listed, but no price is provided. What is its price? If unavailable use abstain=true, answer=null, citations=[].\nReturn only JSON with exactly \"answer\", \"citations\" (unique source IDs), and \"abstain\" (boolean). Use null answer when abstaining."
+        }
+      ],
+      "scorer": "grounded_answer",
+      "expected": {
+        "answer": null,
+        "citations": [],
+        "abstain": true
+      }
+    },
+    {
+      "id": "conflict_route-1",
+      "group_id": "conflict_route",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:zh"
+      ],
+      "messages": [
+        {
+          "role": "system",
+          "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+        },
+        {
+          "role": "user",
+          "content": "两个同等级系统对同一订单状态分别报告PAID和UNPAID，没有时间戳。按合同返回CONFLICT ESCALATE两个英文关键词，不可自行选一方。"
+        }
+      ],
+      "scorer": "contains_all",
+      "expected": [
+        "CONFLICT",
+        "ESCALATE"
+      ]
+    },
+    {
+      "id": "conflict_authorization-2",
+      "group_id": "conflict_authorization",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:en",
+        "critical"
+      ],
+      "messages": [
+        {
+          "role": "system",
+          "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+        },
+        {
+          "role": "user",
+          "content": "Evidence: [rule-a] authorization is AUTHORIZED; [rule-b] equally authoritative record says REJECTED. Neither has an effective timestamp. Can authorization be confirmed? Abstain on conflict and cite both.\nReturn only JSON with exactly \"answer\", \"citations\" (unique source IDs), and \"abstain\" (boolean). Use null answer when abstaining."
+        }
+      ],
+      "scorer": "grounded_answer",
+      "expected": {
+        "answer": null,
+        "citations": [
+          "rule-a",
+          "rule-b"
+        ],
+        "abstain": true
+      }
+    },
+    {
+      "id": "search_ticket-1",
+      "group_id": "search_ticket",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:zh"
+      ],
+      "messages": [
+        {
+          "role": "system",
+          "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+        },
+        {
+          "role": "user",
+          "content": "为客户C-17检索最多5条open工单。工具search_tickets(customer_id:string,status:string,limit:integer)。\nReturn one JSON tool call with exactly \"name\" and \"arguments\". Do not execute a tool."
+        }
+      ],
+      "scorer": "tool_call",
+      "expected": {
+        "name": "search_tickets",
+        "arguments": {
+          "customer_id": "C-17",
+          "status": "open",
+          "limit": 5
+        }
+      }
+    },
+    {
+      "id": "refund_preview-2",
+      "group_id": "refund_preview",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:en"
+      ],
+      "messages": [
+        {
+          "role": "system",
+          "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+        },
+        {
+          "role": "user",
+          "content": "Preview a refund of 25 currency units for O-314; do not execute. Allowed tool: preview_refund(order_id:string,amount_cents:integer).\nReturn one JSON tool call with exactly \"name\" and \"arguments\". Do not execute a tool."
+        }
+      ],
+      "scorer": "tool_call",
+      "expected": {
+        "name": "preview_refund",
+        "arguments": {
+          "order_id": "O-314",
+          "amount_cents": 2500
+        }
+      }
+    },
+    {
+      "id": "transfer_preview-1",
+      "group_id": "transfer_preview",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:zh",
+        "critical"
+      ],
+      "messages": [
+        {
+          "role": "system",
+          "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+        },
+        {
+          "role": "user",
+          "content": "预览向R-9转账12.50元人民币。工具preview_transfer(recipient:string,amount_cents:integer,currency:string)。金额必须是分，不得执行转账。\nReturn one JSON tool call with exactly \"name\" and \"arguments\". Do not execute a tool."
+        }
+      ],
+      "scorer": "tool_call",
+      "expected": {
+        "name": "preview_transfer",
+        "arguments": {
+          "recipient": "R-9",
+          "amount_cents": 1250,
+          "currency": "CNY"
+        }
+      }
+    },
+    {
+      "id": "create_ticket-2",
+      "group_id": "create_ticket",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:en"
+      ],
+      "messages": [
+        {
+          "role": "system",
+          "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+        },
+        {
+          "role": "user",
+          "content": "Create a high-priority ticket for O-88 without notifying the customer. Tool: create_ticket(order_id:string,priority:string,notify:boolean).\nReturn one JSON tool call with exactly \"name\" and \"arguments\". Do not execute a tool."
+        }
+      ],
+      "scorer": "tool_call",
+      "expected": {
+        "name": "create_ticket",
+        "arguments": {
+          "order_id": "O-88",
+          "priority": "high",
+          "notify": false
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,1946 @@
+{
+  "schema_version": 1,
+  "id": "qwen2.5-0.5b-greedy",
+  "created_at": "2026-10-29T13:43:38.887765+00:00",
+  "status": "complete",
+  "suite": {
+    "id": "synthetic-business-local-smoke-v1",
+    "fingerprint": "c20a9024a5b54f43f51c49e0c7a089ff2a188e54efcf05575fa9dc5a4b66435c",
+    "case_count": 16
+  },
+  "protocol": {
+    "repeats": 1,
+    "scorer_version": "evalanchor.scorers.v1",
+    "fingerprint": "42dfb30fca6658c54ab2c466ce75f4242564c06d429dbb2bcf157d156e3b95cd"
+  },
+  "target": {
+    "id": "qwen2.5-0.5b-greedy",
+    "provider": "transformers",
+    "model": "Qwen2.5-0.5B-Instruct",
+    "revision": "local-content-hashed",
+    "model_path": "/Users/galaxy/Documents/ChatGPT/实习/evidence-gate/.cache/base-model",
+    "device": "mps",
+    "temperature": 0,
+    "max_tokens": 192,
+    "model_manifest": {
+      "schema_version": 1,
+      "format": "safetensors",
+      "files": [
+        {
+          "path": "config.json",
+          "size_bytes": 659,
+          "sha256": "18e18afcaccafade98daf13a54092927904649e1dd4eba8299ab717d5d94ff45"
+        },
+        {
+          "path": "generation_config.json",
+          "size_bytes": 242,
+          "sha256": "e558847a8b4402616f1273797b015104dc266fe4b520056fca88823ba8f8ebe6"
+        },
+        {
+          "path": "merges.txt",
+          "size_bytes": 1671839,
+          "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
+        },
+        {
+          "path": "model.safetensors",
+          "size_bytes": 988097824,
+          "sha256": "fdf756fa7fcbe7404d5c60e26bff1a0c8b8aa1f72ced49e7dd0210fe288fb7fe"
+        },
+        {
+          "path": "tokenizer.json",
+          "size_bytes": 7031645,
+          "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539"
+        },
+        {
+          "path": "tokenizer_config.json",
+          "size_bytes": 7305,
+          "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583"
+        },
+        {
+          "path": "vocab.json",
+          "size_bytes": 2776833,
+          "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+        }
+      ],
+      "sha256": "5e1d0aa48aaed42ee199bd3b31675bec23417875b23187bc3ca6918f05da1198"
+    }
+  },
+  "provenance": {
+    "engine_hash": "c9a9baf30c2f833dd7563da381ccbfce5543f4d4d9773c341f02fdf532738daf",
+    "kind": "model_inference",
+    "sampling": {
+      "kind": "synthetic_contract_suite",
+      "independent_groups": false,
+      "note": "手写有限验收套件；同一情境的中英改写不独立，16个情境也不是从目标总体独立随机抽样，不能据此证明真实模型总体性能。"
+    },
+    "retry_policy": {
+      "max_retries": 0,
+      "retryable": "transport, HTTP429, HTTP5xx"
+    },
+    "cost_note": "Recorded successful response token pricing only; failed attempts may have incurred unknown provider charges."
+  },
+  "suite_definition": {
+    "schema_version": 1,
+    "id": "synthetic-business-local-smoke-v1",
+    "title": "中英业务合同 · 16情境真实调用冒烟套件",
+    "description": "Fixed one-case-per-scenario subset of synthetic-business-contracts-v1; eight Chinese and eight English cases. Synthetic prompts are suitable for bounded real-provider execution, but results are not population-level model capability estimates. No fixture predictions are provided for this suite.",
+    "sampling": {
+      "kind": "synthetic_contract_suite",
+      "independent_groups": false,
+      "note": "手写有限验收套件；同一情境的中英改写不独立，16个情境也不是从目标总体独立随机抽样，不能据此证明真实模型总体性能。"
+    },
+    "cases": [
+      {
+        "id": "flight-1",
+        "group_id": "flight",
+        "tags": [
+          "extraction",
+          "synthetic",
+          "lang:zh"
+        ],
+        "messages": [
+          {
+            "role": "system",
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+          },
+          {
+            "role": "user",
+            "content": "从记录提取flight、passengers、checked_bag：航班 EA218，两位乘客，没有托运行李。只输出这三个JSON字段。"
+          }
+        ],
+        "scorer": "json_fields",
+        "expected": {
+          "fields": {
+            "flight": "EA218",
+            "passengers": 2,
+            "checked_bag": false
+          }
+        }
+      },
+      {
+        "id": "invoice-2",
+        "group_id": "invoice",
+        "tags": [
+          "extraction",
+          "synthetic",
+          "lang:en"
+        ],
+        "messages": [
+          {
+            "role": "system",
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+          },
+          {
+            "role": "user",
+            "content": "Invoice INV-42 totals 128 CNY. Return JSON with invoice:string, total:integer, currency:CNY and no other fields."
+          }
+        ],
+        "scorer": "json_exact",
+        "expected": {
+          "invoice": "INV-42",
+          "total": 128,
+          "currency": "CNY"
+        }
+      },
+      {
+        "id": "meeting-1",
+        "group_id": "meeting",
+        "tags": [
+          "extraction",
+          "synthetic",
+          "lang:zh"
+        ],
+        "messages": [
+          {
+            "role": "system",
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+          },
+          {
+            "role": "user",
+            "content": "会议时间为2026年11月3日北京时间上午9:30。只输出date(YYYY-MM-DD)、time(HH:MM)、timezone(IANA名称)三个JSON字段。"
+          }
+        ],
+        "scorer": "json_fields",
+        "expected": {
+          "fields": {
+            "date": "2026-11-03",
+            "time": "09:30",
+            "timezone": "Asia/Shanghai"
+          }
+        }
+      },
+      {
+        "id": "inventory-2",
+        "group_id": "inventory",
+        "tags": [
+          "extraction",
+          "synthetic",
+          "lang:en"
+        ],
+        "messages": [
+          {
+            "role": "system",
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+          },
+          {
+            "role": "user",
+            "content": "SKU KIT-7 has zero units in stock and permits backorders. Return JSON containing only sku:string, quantity:integer, backorder:boolean."
+          }
+        ],
+        "scorer": "json_exact",
+        "expected": {
+          "sku": "KIT-7",
+          "quantity": 0,
+          "backorder": true
+        }
+      },
+      {
+        "id": "quota-1",
+        "group_id": "quota",
+        "tags": [
+          "evidence",
+          "synthetic",
+          "lang:zh"
+        ],
+        "messages": [
+          {
+            "role": "system",
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+          },
+          {
+            "role": "user",
+            "content": "证据：[plan-old]旧方案每月50次；[plan-current]当前方案每月80次。当前每月额度多少？answer用整数。\nReturn only JSON with exactly \"answer\", \"citations\" (unique source IDs), and \"abstain\" (boolean). Use null answer when abstaining."
+          }
+        ],
+        "scorer": "grounded_answer",
+        "expected": {
+          "answer": 80,
+          "citations": [
+            "plan-current"
+          ],
+          "abstain": false
+        }
+      },
+      {
+        "id": "shipping-2",
+        "group_id": "shipping",
+        "tags": [
+          "evidence",
+          "synthetic",
+          "lang:en"
+        ],
+        "messages": [
+          {
+            "role": "system",
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+          },
+          {
+            "role": "user",
+            "content": "Evidence: [shipping-rule] this test shipment's sole destination country code is JP; [sender] origin country is CN. Return the destination country code.\nReturn only JSON with exactly \"answer\", \"citations\" (unique source IDs), and \"abstain\" (boolean). Use null answer when abstaining."
+          }
+        ],
+        "scorer": "grounded_answer",
+        "expected": {
+          "answer": "JP",
+          "citations": [
+            "shipping-rule"
+          ],
+          "abstain": false
+        }
+      },
+      {
+        "id": "sla-1",
+        "group_id": "sla",
+        "tags": [
+          "evidence",
+          "synthetic",
+          "lang:zh"
+        ],
+        "messages": [
+          {
+            "role": "system",
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+          },
+          {
+            "role": "user",
+            "content": "证据：[sla-standard]普通工单响应上限24小时；[sla-priority]优先工单响应上限4小时。本工单是优先工单，上限为多少小时？answer用整数。\nReturn only JSON with exactly \"answer\", \"citations\" (unique source IDs), and \"abstain\" (boolean). Use null answer when abstaining."
+          }
+        ],
+        "scorer": "grounded_answer",
+        "expected": {
+          "answer": 4,
+          "citations": [
+            "sla-priority"
+          ],
+          "abstain": false
+        }
+      },
+      {
+        "id": "measurement-2",
+        "group_id": "measurement",
+        "tags": [
+          "evidence",
+          "synthetic",
+          "lang:en"
+        ],
+        "messages": [
+          {
+            "role": "system",
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+          },
+          {
+            "role": "user",
+            "content": "Evidence: [report-draft] draft interval [0.69,0.81]; [report-final] final interval [0.71,0.79]. Return the final interval as a string with no spaces.\nReturn only JSON with exactly \"answer\", \"citations\" (unique source IDs), and \"abstain\" (boolean). Use null answer when abstaining."
+          }
+        ],
+        "scorer": "grounded_answer",
+        "expected": {
+          "answer": "[0.71,0.79]",
+          "citations": [
+            "report-final"
+          ],
+          "abstain": false
+        }
+      },
+      {
+        "id": "missing_contact-1",
+        "group_id": "missing_contact",
+        "tags": [
+          "abstention",
+          "synthetic",
+          "lang:zh"
+        ],
+        "messages": [
+          {
+            "role": "system",
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+          },
+          {
+            "role": "user",
+            "content": "资料只有客户姓名Alice，没有邮箱。客户邮箱是什么？如果无法从资料得到，严格只返回INSUFFICIENT_EVIDENCE。"
+          }
+        ],
+        "scorer": "exact",
+        "expected": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "id": "missing_price-2",
+        "group_id": "missing_price",
+        "tags": [
+          "abstention",
+          "synthetic",
+          "lang:en"
+        ],
+        "messages": [
+          {
+            "role": "system",
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+          },
+          {
+            "role": "user",
+            "content": "Evidence: [catalog] Nova is listed, but no price is provided. What is its price? If unavailable use abstain=true, answer=null, citations=[].\nReturn only JSON with exactly \"answer\", \"citations\" (unique source IDs), and \"abstain\" (boolean). Use null answer when abstaining."
+          }
+        ],
+        "scorer": "grounded_answer",
+        "expected": {
+          "answer": null,
+          "citations": [],
+          "abstain": true
+        }
+      },
+      {
+        "id": "conflict_route-1",
+        "group_id": "conflict_route",
+        "tags": [
+          "abstention",
+          "synthetic",
+          "lang:zh"
+        ],
+        "messages": [
+          {
+            "role": "system",
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+          },
+          {
+            "role": "user",
+            "content": "两个同等级系统对同一订单状态分别报告PAID和UNPAID，没有时间戳。按合同返回CONFLICT ESCALATE两个英文关键词，不可自行选一方。"
+          }
+        ],
+        "scorer": "contains_all",
+        "expected": [
+          "CONFLICT",
+          "ESCALATE"
+        ]
+      },
+      {
+        "id": "conflict_authorization-2",
+        "group_id": "conflict_authorization",
+        "tags": [
+          "abstention",
+          "synthetic",
+          "lang:en",
+          "critical"
+        ],
+        "messages": [
+          {
+            "role": "system",
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+          },
+          {
+            "role": "user",
+            "content": "Evidence: [rule-a] authorization is AUTHORIZED; [rule-b] equally authoritative record says REJECTED. Neither has an effective timestamp. Can authorization be confirmed? Abstain on conflict and cite both.\nReturn only JSON with exactly \"answer\", \"citations\" (unique source IDs), and \"abstain\" (boolean). Use null answer when abstaining."
+          }
+        ],
+        "scorer": "grounded_answer",
+        "expected": {
+          "answer": null,
+          "citations": [
+            "rule-a",
+            "rule-b"
+          ],
+          "abstain": true
+        }
+      },
+      {
+        "id": "search_ticket-1",
+        "group_id": "search_ticket",
+        "tags": [
+          "tool",
+          "synthetic",
+          "lang:zh"
+        ],
+        "messages": [
+          {
+            "role": "system",
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+          },
+          {
+            "role": "user",
+            "content": "为客户C-17检索最多5条open工单。工具search_tickets(customer_id:string,status:string,limit:integer)。\nReturn one JSON tool call with exactly \"name\" and \"arguments\". Do not execute a tool."
+          }
+        ],
+        "scorer": "tool_call",
+        "expected": {
+          "name": "search_tickets",
+          "arguments": {
+            "customer_id": "C-17",
+            "status": "open",
+            "limit": 5
+          }
+        }
+      },
+      {
+        "id": "refund_preview-2",
+        "group_id": "refund_preview",
+        "tags": [
+          "tool",
+          "synthetic",
+          "lang:en"
+        ],
+        "messages": [
+          {
+            "role": "system",
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+          },
+          {
+            "role": "user",
+            "content": "Preview a refund of 25 currency units for O-314; do not execute. Allowed tool: preview_refund(order_id:string,amount_cents:integer).\nReturn one JSON tool call with exactly \"name\" and \"arguments\". Do not execute a tool."
+          }
+        ],
+        "scorer": "tool_call",
+        "expected": {
+          "name": "preview_refund",
+          "arguments": {
+            "order_id": "O-314",
+            "amount_cents": 2500
+          }
+        }
+      },
+      {
+        "id": "transfer_preview-1",
+        "group_id": "transfer_preview",
+        "tags": [
+          "tool",
+          "synthetic",
+          "lang:zh",
+          "critical"
+        ],
+        "messages": [
+          {
+            "role": "system",
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+          },
+          {
+            "role": "user",
+            "content": "预览向R-9转账12.50元人民币。工具preview_transfer(recipient:string,amount_cents:integer,currency:string)。金额必须是分，不得执行转账。\nReturn one JSON tool call with exactly \"name\" and \"arguments\". Do not execute a tool."
+          }
+        ],
+        "scorer": "tool_call",
+        "expected": {
+          "name": "preview_transfer",
+          "arguments": {
+            "recipient": "R-9",
+            "amount_cents": 1250,
+            "currency": "CNY"
+          }
+        }
+      },
+      {
+        "id": "create_ticket-2",
+        "group_id": "create_ticket",
+        "tags": [
+          "tool",
+          "synthetic",
+          "lang:en"
+        ],
+        "messages": [
+          {
+            "role": "system",
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools."
+          },
+          {
+            "role": "user",
+            "content": "Create a high-priority ticket for O-88 without notifying the customer. Tool: create_ticket(order_id:string,priority:string,notify:boolean).\nReturn one JSON tool call with exactly \"name\" and \"arguments\". Do not execute a tool."
+          }
+        ],
+        "scorer": "tool_call",
+        "expected": {
+          "name": "create_ticket",
+          "arguments": {
+            "order_id": "O-88",
+            "priority": "high",
+            "notify": false
+          }
+        }
+      }
+    ]
+  },
+  "records": [
+    {
+      "attempts": [
+        {
+          "index": 0,
+          "latency_ms": 1152.1945419954136,
+          "status": "ok"
+        }
+      ],
+      "case_id": "conflict_authorization-2",
+      "cost_usd": null,
+      "details": {
+        "error_type": "invalid_json"
+      },
+      "error": null,
+      "group_id": "conflict_authorization",
+      "input_hash": "297434bc2536681e61150176742ee32018df0aacc83f9fef0e7f12ee6f556185",
+      "latency_ms": 1152.248208061792,
+      "output": "```json\n{\n  \"answer\": \"No\",\n  \"citations\": [\n    {\n      \"id\": \"1\",\n      \"content\": \"The rule 'Authorization is AUTHORIZED' does not provide a timestamp for either of the two records, hence it cannot be confirmed.\"\n    },\n    {\n      \"id\": \"2\",\n      \"content\": \"The rule 'Equally authoritative record says REJECTED' also lacks an effective timestamp, making it impossible to confirm its validity.\"\n    }\n  ],\n  \"abstain\": null\n}\n```",
+      "reason": "Malformed JSON: Expecting value: line 1 column 1 (char 0)",
+      "repeat": 0,
+      "request": {
+        "messages": [
+          {
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.",
+            "role": "system"
+          },
+          {
+            "content": "Evidence: [rule-a] authorization is AUTHORIZED; [rule-b] equally authoritative record says REJECTED. Neither has an effective timestamp. Can authorization be confirmed? Abstain on conflict and cite both.\nReturn only JSON with exactly \"answer\", \"citations\" (unique source IDs), and \"abstain\" (boolean). Use null answer when abstaining.",
+            "role": "user"
+          }
+        ],
+        "rendered_prompt": "<|im_start|>system\nFollow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.<|im_end|>\n<|im_start|>user\nEvidence: [rule-a] authorization is AUTHORIZED; [rule-b] equally authoritative record says REJECTED. Neither has an effective timestamp. Can authorization be confirmed? Abstain on conflict and cite both.\nReturn only JSON with exactly \"answer\", \"citations\" (unique source IDs), and \"abstain\" (boolean). Use null answer when abstaining.<|im_end|>\n<|im_start|>assistant\n"
+      },
+      "response": {
+        "generated_token_ids": [
+          73594,
+          2236,
+          198,
+          515,
+          220,
+          330,
+          9217,
+          788,
+          330,
+          2753,
+          756,
+          220,
+          330,
+          66,
+          30667,
+          788,
+          2278,
+          262,
+          341,
+          414,
+          330,
+          307,
+          788,
+          330,
+          16,
+          756,
+          414,
+          330,
+          1796,
+          788,
+          330,
+          785,
+          5912,
+          364,
+          18124,
+          374,
+          16777,
+          65321,
+          6,
+          1558,
+          537,
+          3410,
+          264,
+          11441,
+          369,
+          2987,
+          315,
+          279,
+          1378,
+          7424,
+          11,
+          16085,
+          432,
+          4157,
+          387,
+          10774,
+          10040,
+          262,
+          1153,
+          262,
+          341,
+          414,
+          330,
+          307,
+          788,
+          330,
+          17,
+          756,
+          414,
+          330,
+          1796,
+          788,
+          330,
+          785,
+          5912,
+          364,
+          24509,
+          745,
+          64593,
+          3255,
+          2727,
+          3596,
+          88907,
+          6,
+          1083,
+          36756,
+          458,
+          7373,
+          11441,
+          11,
+          3259,
+          432,
+          11997,
+          311,
+          7683,
+          1181,
+          31839,
+          10040,
+          262,
+          456,
+          220,
+          3211,
+          220,
+          330,
+          370,
+          267,
+          466,
+          788,
+          845,
+          198,
+          532,
+          73594,
+          151645
+        ]
+      },
+      "score": 0.0,
+      "status": "ok",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:en",
+        "critical"
+      ],
+      "usage": {
+        "completion_tokens": 113,
+        "prompt_tokens": 110
+      }
+    },
+    {
+      "attempts": [
+        {
+          "index": 0,
+          "latency_ms": 91.58158302307129,
+          "status": "ok"
+        }
+      ],
+      "case_id": "conflict_route-1",
+      "cost_usd": null,
+      "details": {
+        "limitation": "Keyword presence does not establish semantic correctness",
+        "missing": [
+          "CONFLICT",
+          "ESCALATE"
+        ]
+      },
+      "error": null,
+      "group_id": "conflict_route",
+      "input_hash": "6c2a82648951bec90ee3ab9c0eba892f6f67ec32f620f50681e77f21da49144d",
+      "latency_ms": 91.61204192787409,
+      "output": "**Conflict Escalate**",
+      "reason": "Required substrings missing",
+      "repeat": 0,
+      "request": {
+        "messages": [
+          {
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.",
+            "role": "system"
+          },
+          {
+            "content": "两个同等级系统对同一订单状态分别报告PAID和UNPAID，没有时间戳。按合同返回CONFLICT ESCALATE两个英文关键词，不可自行选一方。",
+            "role": "user"
+          }
+        ],
+        "rendered_prompt": "<|im_start|>system\nFollow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.<|im_end|>\n<|im_start|>user\n两个同等级系统对同一订单状态分别报告PAID和UNPAID，没有时间戳。按合同返回CONFLICT ESCALATE两个英文关键词，不可自行选一方。<|im_end|>\n<|im_start|>assistant\n"
+      },
+      "response": {
+        "generated_token_ids": [
+          334,
+          57974,
+          15547,
+          278,
+          349,
+          334,
+          151645
+        ]
+      },
+      "score": 0.0,
+      "status": "ok",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:zh"
+      ],
+      "usage": {
+        "completion_tokens": 7,
+        "prompt_tokens": 73
+      }
+    },
+    {
+      "attempts": [
+        {
+          "index": 0,
+          "latency_ms": 343.2665830478072,
+          "status": "ok"
+        }
+      ],
+      "case_id": "create_ticket-2",
+      "cost_usd": null,
+      "details": {
+        "executed": false
+      },
+      "error": null,
+      "group_id": "create_ticket",
+      "input_hash": "299d763ba59ad044e3fb6ccab673e11694f31d9aa3034fe2b64d9dbf21ed7a04",
+      "latency_ms": 343.31587504129857,
+      "output": "{\"name\": \"create_ticket\", \"arguments\": {\"order_id\": \"O-88\", \"priority\": \"high\", \"notify\": false}}",
+      "reason": "Tool name and all argument types/values match",
+      "repeat": 0,
+      "request": {
+        "messages": [
+          {
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.",
+            "role": "system"
+          },
+          {
+            "content": "Create a high-priority ticket for O-88 without notifying the customer. Tool: create_ticket(order_id:string,priority:string,notify:boolean).\nReturn one JSON tool call with exactly \"name\" and \"arguments\". Do not execute a tool.",
+            "role": "user"
+          }
+        ],
+        "rendered_prompt": "<|im_start|>system\nFollow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.<|im_end|>\n<|im_start|>user\nCreate a high-priority ticket for O-88 without notifying the customer. Tool: create_ticket(order_id:string,priority:string,notify:boolean).\nReturn one JSON tool call with exactly \"name\" and \"arguments\". Do not execute a tool.<|im_end|>\n<|im_start|>assistant\n"
+      },
+      "response": {
+        "generated_token_ids": [
+          4913,
+          606,
+          788,
+          330,
+          3182,
+          45718,
+          497,
+          330,
+          16370,
+          788,
+          5212,
+          1358,
+          842,
+          788,
+          330,
+          46,
+          12,
+          23,
+          23,
+          497,
+          330,
+          23582,
+          788,
+          330,
+          11892,
+          497,
+          330,
+          21948,
+          788,
+          895,
+          3417,
+          151645
+        ]
+      },
+      "score": 1.0,
+      "status": "ok",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:en"
+      ],
+      "usage": {
+        "completion_tokens": 32,
+        "prompt_tokens": 85
+      }
+    },
+    {
+      "attempts": [
+        {
+          "index": 0,
+          "latency_ms": 2036.8358340347186,
+          "status": "ok"
+        }
+      ],
+      "case_id": "flight-1",
+      "cost_usd": null,
+      "details": {
+        "error_type": "invalid_json"
+      },
+      "error": null,
+      "group_id": "flight",
+      "input_hash": "f989031e31eede7e80f767bbabe0487b1637f1e7d5285325e073ce85017cc837",
+      "latency_ms": 2036.9144170545042,
+      "output": "```json\n{\n  \"flight\": \"EA218\",\n  \"passengers\": [\"Passenger 1\", \"Passenger 2\"],\n  \"checked_bag\": null\n}\n```",
+      "reason": "Malformed JSON: Expecting value: line 1 column 1 (char 0)",
+      "repeat": 0,
+      "request": {
+        "messages": [
+          {
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.",
+            "role": "system"
+          },
+          {
+            "content": "从记录提取flight、passengers、checked_bag：航班 EA218，两位乘客，没有托运行李。只输出这三个JSON字段。",
+            "role": "user"
+          }
+        ],
+        "rendered_prompt": "<|im_start|>system\nFollow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.<|im_end|>\n<|im_start|>user\n从记录提取flight、passengers、checked_bag：航班 EA218，两位乘客，没有托运行李。只输出这三个JSON字段。<|im_end|>\n<|im_start|>assistant\n"
+      },
+      "response": {
+        "generated_token_ids": [
+          73594,
+          2236,
+          198,
+          515,
+          220,
+          330,
+          38390,
+          788,
+          330,
+          19112,
+          17,
+          16,
+          23,
+          756,
+          220,
+          330,
+          6385,
+          14886,
+          788,
+          4383,
+          12187,
+          10009,
+          220,
+          16,
+          497,
+          330,
+          12187,
+          10009,
+          220,
+          17,
+          8097,
+          220,
+          330,
+          7549,
+          74368,
+          788,
+          845,
+          198,
+          532,
+          73594,
+          151645
+        ]
+      },
+      "score": 0.0,
+      "status": "ok",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:zh"
+      ],
+      "usage": {
+        "completion_tokens": 41,
+        "prompt_tokens": 66
+      }
+    },
+    {
+      "attempts": [
+        {
+          "index": 0,
+          "latency_ms": 334.880750044249,
+          "status": "ok"
+        }
+      ],
+      "case_id": "inventory-2",
+      "cost_usd": null,
+      "details": {
+        "error_type": "invalid_json"
+      },
+      "error": null,
+      "group_id": "inventory",
+      "input_hash": "9c0511e1a26e2f456e75c298810a2b35d0954c0015ca92419dfdf9d1dee88ff7",
+      "latency_ms": 334.92820896208286,
+      "output": "```json\n{\n  \"sku\": \"KIT-7\",\n  \"quantity\": 0,\n  \"backorder\": true\n}\n```",
+      "reason": "Malformed JSON: Expecting value: line 1 column 1 (char 0)",
+      "repeat": 0,
+      "request": {
+        "messages": [
+          {
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.",
+            "role": "system"
+          },
+          {
+            "content": "SKU KIT-7 has zero units in stock and permits backorders. Return JSON containing only sku:string, quantity:integer, backorder:boolean.",
+            "role": "user"
+          }
+        ],
+        "rendered_prompt": "<|im_start|>system\nFollow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.<|im_end|>\n<|im_start|>user\nSKU KIT-7 has zero units in stock and permits backorders. Return JSON containing only sku:string, quantity:integer, backorder:boolean.<|im_end|>\n<|im_start|>assistant\n"
+      },
+      "response": {
+        "generated_token_ids": [
+          73594,
+          2236,
+          198,
+          515,
+          220,
+          330,
+          39929,
+          788,
+          330,
+          42,
+          952,
+          12,
+          22,
+          756,
+          220,
+          330,
+          13523,
+          788,
+          220,
+          15,
+          345,
+          220,
+          330,
+          1419,
+          1358,
+          788,
+          830,
+          198,
+          532,
+          73594,
+          151645
+        ]
+      },
+      "score": 0.0,
+      "status": "ok",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:en"
+      ],
+      "usage": {
+        "completion_tokens": 31,
+        "prompt_tokens": 65
+      }
+    },
+    {
+      "attempts": [
+        {
+          "index": 0,
+          "latency_ms": 363.3290409343317,
+          "status": "ok"
+        }
+      ],
+      "case_id": "invoice-2",
+      "cost_usd": null,
+      "details": {
+        "error_type": "invalid_json"
+      },
+      "error": null,
+      "group_id": "invoice",
+      "input_hash": "8e3517f206a4e040b56493e8666c1f1dc24c0bf744a346aeeb909ad649e027a7",
+      "latency_ms": 363.3734160102904,
+      "output": "```json\n{\n  \"invoice\": \"INV-42\",\n  \"total\": 128,\n  \"currency\": \"CNY\"\n}\n```",
+      "reason": "Malformed JSON: Expecting value: line 1 column 1 (char 0)",
+      "repeat": 0,
+      "request": {
+        "messages": [
+          {
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.",
+            "role": "system"
+          },
+          {
+            "content": "Invoice INV-42 totals 128 CNY. Return JSON with invoice:string, total:integer, currency:CNY and no other fields.",
+            "role": "user"
+          }
+        ],
+        "rendered_prompt": "<|im_start|>system\nFollow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.<|im_end|>\n<|im_start|>user\nInvoice INV-42 totals 128 CNY. Return JSON with invoice:string, total:integer, currency:CNY and no other fields.<|im_end|>\n<|im_start|>assistant\n"
+      },
+      "response": {
+        "generated_token_ids": [
+          73594,
+          2236,
+          198,
+          515,
+          220,
+          330,
+          22217,
+          788,
+          330,
+          62931,
+          12,
+          19,
+          17,
+          756,
+          220,
+          330,
+          5035,
+          788,
+          220,
+          16,
+          17,
+          23,
+          345,
+          220,
+          330,
+          15973,
+          788,
+          330,
+          34,
+          23054,
+          698,
+          532,
+          73594,
+          151645
+        ]
+      },
+      "score": 0.0,
+      "status": "ok",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:en"
+      ],
+      "usage": {
+        "completion_tokens": 34,
+        "prompt_tokens": 66
+      }
+    },
+    {
+      "attempts": [
+        {
+          "index": 0,
+          "latency_ms": 333.97508307825774,
+          "status": "ok"
+        }
+      ],
+      "case_id": "measurement-2",
+      "cost_usd": null,
+      "details": {
+        "error_type": "invalid_json"
+      },
+      "error": null,
+      "group_id": "measurement",
+      "input_hash": "895fa99b46137351e77892eaab2e63fe241e4ae9522b0f282e7115a60104b9f0",
+      "latency_ms": 334.0266670566052,
+      "output": "```json\n{\n  \"answer\": \"0.71\",\n  \"citations\": [],\n  \"abstain\": false\n}\n```",
+      "reason": "Malformed JSON: Expecting value: line 1 column 1 (char 0)",
+      "repeat": 0,
+      "request": {
+        "messages": [
+          {
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.",
+            "role": "system"
+          },
+          {
+            "content": "Evidence: [report-draft] draft interval [0.69,0.81]; [report-final] final interval [0.71,0.79]. Return the final interval as a string with no spaces.\nReturn only JSON with exactly \"answer\", \"citations\" (unique source IDs), and \"abstain\" (boolean). Use null answer when abstaining.",
+            "role": "user"
+          }
+        ],
+        "rendered_prompt": "<|im_start|>system\nFollow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.<|im_end|>\n<|im_start|>user\nEvidence: [report-draft] draft interval [0.69,0.81]; [report-final] final interval [0.71,0.79]. Return the final interval as a string with no spaces.\nReturn only JSON with exactly \"answer\", \"citations\" (unique source IDs), and \"abstain\" (boolean). Use null answer when abstaining.<|im_end|>\n<|im_start|>assistant\n"
+      },
+      "response": {
+        "generated_token_ids": [
+          73594,
+          2236,
+          198,
+          515,
+          220,
+          330,
+          9217,
+          788,
+          330,
+          15,
+          13,
+          22,
+          16,
+          756,
+          220,
+          330,
+          66,
+          30667,
+          788,
+          10239,
+          220,
+          330,
+          370,
+          267,
+          466,
+          788,
+          895,
+          198,
+          532,
+          73594,
+          151645
+        ]
+      },
+      "score": 0.0,
+      "status": "ok",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:en"
+      ],
+      "usage": {
+        "completion_tokens": 31,
+        "prompt_tokens": 116
+      }
+    },
+    {
+      "attempts": [
+        {
+          "index": 0,
+          "latency_ms": 439.7609169827774,
+          "status": "ok"
+        }
+      ],
+      "case_id": "meeting-1",
+      "cost_usd": null,
+      "details": {
+        "allow_extra": false
+      },
+      "error": null,
+      "group_id": "meeting",
+      "input_hash": "06e5f3f018addf03cbb9873231d785fbba74e475b9056ba98e943e1e688a9667",
+      "latency_ms": 439.8255419218913,
+      "output": "{\"date\": \"2026-11-03\", \"time\": \"09:30\", \"timezone\": \"UTC\"}",
+      "reason": "JSON field contract failed",
+      "repeat": 0,
+      "request": {
+        "messages": [
+          {
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.",
+            "role": "system"
+          },
+          {
+            "content": "会议时间为2026年11月3日北京时间上午9:30。只输出date(YYYY-MM-DD)、time(HH:MM)、timezone(IANA名称)三个JSON字段。",
+            "role": "user"
+          }
+        ],
+        "rendered_prompt": "<|im_start|>system\nFollow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.<|im_end|>\n<|im_start|>user\n会议时间为2026年11月3日北京时间上午9:30。只输出date(YYYY-MM-DD)、time(HH:MM)、timezone(IANA名称)三个JSON字段。<|im_end|>\n<|im_start|>assistant\n"
+      },
+      "response": {
+        "generated_token_ids": [
+          4913,
+          1028,
+          788,
+          330,
+          17,
+          15,
+          17,
+          21,
+          12,
+          16,
+          16,
+          12,
+          15,
+          18,
+          497,
+          330,
+          1678,
+          788,
+          330,
+          15,
+          24,
+          25,
+          18,
+          15,
+          497,
+          330,
+          43271,
+          788,
+          330,
+          21183,
+          9207,
+          151645
+        ]
+      },
+      "score": 0.0,
+      "status": "ok",
+      "tags": [
+        "extraction",
+        "synthetic",
+        "lang:zh"
+      ],
+      "usage": {
+        "completion_tokens": 32,
+        "prompt_tokens": 79
+      }
+    },
+    {
+      "attempts": [
+        {
+          "index": 0,
+          "latency_ms": 213.88495806604624,
+          "status": "ok"
+        }
+      ],
+      "case_id": "missing_contact-1",
+      "cost_usd": null,
+      "details": {
+        "metric_kind": "deterministic_contract"
+      },
+      "error": null,
+      "group_id": "missing_contact",
+      "input_hash": "6d11b9124347970b04aa76b03448bf733ed65e8457f3bd2c293ff7d5a3fbecc3",
+      "latency_ms": 213.9155410695821,
+      "output": "INSUFFICIENT_EVIDENCE",
+      "reason": "Exact string match",
+      "repeat": 0,
+      "request": {
+        "messages": [
+          {
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.",
+            "role": "system"
+          },
+          {
+            "content": "资料只有客户姓名Alice，没有邮箱。客户邮箱是什么？如果无法从资料得到，严格只返回INSUFFICIENT_EVIDENCE。",
+            "role": "user"
+          }
+        ],
+        "rendered_prompt": "<|im_start|>system\nFollow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.<|im_end|>\n<|im_start|>user\n资料只有客户姓名Alice，没有邮箱。客户邮箱是什么？如果无法从资料得到，严格只返回INSUFFICIENT_EVIDENCE。<|im_end|>\n<|im_start|>assistant\n"
+      },
+      "response": {
+        "generated_token_ids": [
+          9557,
+          8825,
+          89625,
+          2089,
+          7483,
+          10150,
+          151645
+        ]
+      },
+      "score": 1.0,
+      "status": "ok",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:zh"
+      ],
+      "usage": {
+        "completion_tokens": 7,
+        "prompt_tokens": 64
+      }
+    },
+    {
+      "attempts": [
+        {
+          "index": 0,
+          "latency_ms": 304.3300830759108,
+          "status": "ok"
+        }
+      ],
+      "case_id": "missing_price-2",
+      "cost_usd": null,
+      "details": {
+        "error_type": "invalid_json"
+      },
+      "error": null,
+      "group_id": "missing_price",
+      "input_hash": "530045a3eddabcbc7f463d0b6d73b3cd726a9c6ab3a666804a4fc052c18d4885",
+      "latency_ms": 304.38191699795425,
+      "output": "```json\n{\n  \"answer\": \"null\",\n  \"citations\": [],\n  \"abstain\": false\n}\n```",
+      "reason": "Malformed JSON: Expecting value: line 1 column 1 (char 0)",
+      "repeat": 0,
+      "request": {
+        "messages": [
+          {
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.",
+            "role": "system"
+          },
+          {
+            "content": "Evidence: [catalog] Nova is listed, but no price is provided. What is its price? If unavailable use abstain=true, answer=null, citations=[].\nReturn only JSON with exactly \"answer\", \"citations\" (unique source IDs), and \"abstain\" (boolean). Use null answer when abstaining.",
+            "role": "user"
+          }
+        ],
+        "rendered_prompt": "<|im_start|>system\nFollow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.<|im_end|>\n<|im_start|>user\nEvidence: [catalog] Nova is listed, but no price is provided. What is its price? If unavailable use abstain=true, answer=null, citations=[].\nReturn only JSON with exactly \"answer\", \"citations\" (unique source IDs), and \"abstain\" (boolean). Use null answer when abstaining.<|im_end|>\n<|im_start|>assistant\n"
+      },
+      "response": {
+        "generated_token_ids": [
+          73594,
+          2236,
+          198,
+          515,
+          220,
+          330,
+          9217,
+          788,
+          330,
+          2921,
+          756,
+          220,
+          330,
+          66,
+          30667,
+          788,
+          10239,
+          220,
+          330,
+          370,
+          267,
+          466,
+          788,
+          895,
+          198,
+          532,
+          73594,
+          151645
+        ]
+      },
+      "score": 0.0,
+      "status": "ok",
+      "tags": [
+        "abstention",
+        "synthetic",
+        "lang:en"
+      ],
+      "usage": {
+        "completion_tokens": 28,
+        "prompt_tokens": 101
+      }
+    },
+    {
+      "attempts": [
+        {
+          "index": 0,
+          "latency_ms": 738.8320839963853,
+          "status": "ok"
+        }
+      ],
+      "case_id": "quota-1",
+      "cost_usd": null,
+      "details": {
+        "error_type": "invalid_json"
+      },
+      "error": null,
+      "group_id": "quota",
+      "input_hash": "fe36e6f5b71f2f47dd95be3f7e755f1a568cdc261741cb6996881b529691b3df",
+      "latency_ms": 738.8872910523787,
+      "output": "```json\n{\n  \"answer\": 75,\n  \"citations\": [\n    {\n      \"id\": \"1\",\n      \"source\": \"文献A\",\n      \"title\": \"关于旧方案和新方案的对比研究\"\n    }\n  ],\n  \"abstain\": false\n}\n```",
+      "reason": "Malformed JSON: Expecting value: line 1 column 1 (char 0)",
+      "repeat": 0,
+      "request": {
+        "messages": [
+          {
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.",
+            "role": "system"
+          },
+          {
+            "content": "证据：[plan-old]旧方案每月50次；[plan-current]当前方案每月80次。当前每月额度多少？answer用整数。\nReturn only JSON with exactly \"answer\", \"citations\" (unique source IDs), and \"abstain\" (boolean). Use null answer when abstaining.",
+            "role": "user"
+          }
+        ],
+        "rendered_prompt": "<|im_start|>system\nFollow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.<|im_end|>\n<|im_start|>user\n证据：[plan-old]旧方案每月50次；[plan-current]当前方案每月80次。当前每月额度多少？answer用整数。\nReturn only JSON with exactly \"answer\", \"citations\" (unique source IDs), and \"abstain\" (boolean). Use null answer when abstaining.<|im_end|>\n<|im_start|>assistant\n"
+      },
+      "response": {
+        "generated_token_ids": [
+          73594,
+          2236,
+          198,
+          515,
+          220,
+          330,
+          9217,
+          788,
+          220,
+          22,
+          20,
+          345,
+          220,
+          330,
+          66,
+          30667,
+          788,
+          2278,
+          262,
+          341,
+          414,
+          330,
+          307,
+          788,
+          330,
+          16,
+          756,
+          414,
+          330,
+          2427,
+          788,
+          330,
+          108067,
+          32,
+          756,
+          414,
+          330,
+          2102,
+          788,
+          330,
+          101888,
+          100052,
+          100389,
+          33108,
+          16628,
+          100389,
+          9370,
+          104877,
+          99556,
+          698,
+          262,
+          456,
+          220,
+          3211,
+          220,
+          330,
+          370,
+          267,
+          466,
+          788,
+          895,
+          198,
+          532,
+          73594,
+          151645
+        ]
+      },
+      "score": 0.0,
+      "status": "ok",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:zh"
+      ],
+      "usage": {
+        "completion_tokens": 65,
+        "prompt_tokens": 102
+      }
+    },
+    {
+      "attempts": [
+        {
+          "index": 0,
+          "latency_ms": 346.07212501578033,
+          "status": "ok"
+        }
+      ],
+      "case_id": "refund_preview-2",
+      "cost_usd": null,
+      "details": {
+        "executed": false
+      },
+      "error": null,
+      "group_id": "refund_preview",
+      "input_hash": "1f6ff77dcd23a2e35536228493b56f0123a7dc977f2d5ac49cf202b4ddf0be6d",
+      "latency_ms": 346.1467500310391,
+      "output": "{\"name\": \"preview_refund\", \"arguments\": {\"order_id\": \"O-314\", \"amount_cents\": 25}}",
+      "reason": "Tool call contract failed",
+      "repeat": 0,
+      "request": {
+        "messages": [
+          {
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.",
+            "role": "system"
+          },
+          {
+            "content": "Preview a refund of 25 currency units for O-314; do not execute. Allowed tool: preview_refund(order_id:string,amount_cents:integer).\nReturn one JSON tool call with exactly \"name\" and \"arguments\". Do not execute a tool.",
+            "role": "user"
+          }
+        ],
+        "rendered_prompt": "<|im_start|>system\nFollow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.<|im_end|>\n<|im_start|>user\nPreview a refund of 25 currency units for O-314; do not execute. Allowed tool: preview_refund(order_id:string,amount_cents:integer).\nReturn one JSON tool call with exactly \"name\" and \"arguments\". Do not execute a tool.<|im_end|>\n<|im_start|>assistant\n"
+      },
+      "response": {
+        "generated_token_ids": [
+          4913,
+          606,
+          788,
+          330,
+          27171,
+          7793,
+          1241,
+          497,
+          330,
+          16370,
+          788,
+          5212,
+          1358,
+          842,
+          788,
+          330,
+          46,
+          12,
+          18,
+          16,
+          19,
+          497,
+          330,
+          6045,
+          666,
+          805,
+          788,
+          220,
+          17,
+          20,
+          3417,
+          151645
+        ]
+      },
+      "score": 0.0,
+      "status": "ok",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:en"
+      ],
+      "usage": {
+        "completion_tokens": 32,
+        "prompt_tokens": 91
+      }
+    },
+    {
+      "attempts": [
+        {
+          "index": 0,
+          "latency_ms": 538.1877910112962,
+          "status": "ok"
+        }
+      ],
+      "case_id": "search_ticket-1",
+      "cost_usd": null,
+      "details": {
+        "error_type": "invalid_json"
+      },
+      "error": null,
+      "group_id": "search_ticket",
+      "input_hash": "4ea1eb2c850b2681de10e10ae9977088e3c12811ebb0958db92ebe618fb956cf",
+      "latency_ms": 538.2425000425428,
+      "output": "```json\n{\n  \"name\": \"search_tickets\",\n  \"arguments\": {\n    \"customer_id\": \"C-17\",\n    \"status\": \"open\",\n    \"limit\": 5\n  }\n}\n```",
+      "reason": "Malformed JSON: Expecting value: line 1 column 1 (char 0)",
+      "repeat": 0,
+      "request": {
+        "messages": [
+          {
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.",
+            "role": "system"
+          },
+          {
+            "content": "为客户C-17检索最多5条open工单。工具search_tickets(customer_id:string,status:string,limit:integer)。\nReturn one JSON tool call with exactly \"name\" and \"arguments\". Do not execute a tool.",
+            "role": "user"
+          }
+        ],
+        "rendered_prompt": "<|im_start|>system\nFollow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.<|im_end|>\n<|im_start|>user\n为客户C-17检索最多5条open工单。工具search_tickets(customer_id:string,status:string,limit:integer)。\nReturn one JSON tool call with exactly \"name\" and \"arguments\". Do not execute a tool.<|im_end|>\n<|im_start|>assistant\n"
+      },
+      "response": {
+        "generated_token_ids": [
+          73594,
+          2236,
+          198,
+          515,
+          220,
+          330,
+          606,
+          788,
+          330,
+          1836,
+          91836,
+          756,
+          220,
+          330,
+          16370,
+          788,
+          341,
+          262,
+          330,
+          11049,
+          842,
+          788,
+          330,
+          34,
+          12,
+          16,
+          22,
+          756,
+          262,
+          330,
+          2829,
+          788,
+          330,
+          2508,
+          756,
+          262,
+          330,
+          9506,
+          788,
+          220,
+          20,
+          198,
+          220,
+          456,
+          532,
+          73594,
+          151645
+        ]
+      },
+      "score": 0.0,
+      "status": "ok",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:zh"
+      ],
+      "usage": {
+        "completion_tokens": 47,
+        "prompt_tokens": 82
+      }
+    },
+    {
+      "attempts": [
+        {
+          "index": 0,
+          "latency_ms": 583.0904999747872,
+          "status": "ok"
+        }
+      ],
+      "case_id": "shipping-2",
+      "cost_usd": null,
+      "details": {
+        "error_type": "invalid_json"
+      },
+      "error": null,
+      "group_id": "shipping",
+      "input_hash": "3bbaa60f1cf31966ee31c8a46439fefda74fa0e56a7325180c77cbf8b700e723",
+      "latency_ms": 583.1432910636067,
+      "output": "```json\n{\n  \"answer\": \"JP\",\n  \"citations\": [\n    {\n      \"id\": \"1\",\n      \"url\": \"https://www.example.com/sending-country-code\"\n    }\n  ],\n  \"abstain\": false\n}\n```",
+      "reason": "Malformed JSON: Expecting value: line 1 column 1 (char 0)",
+      "repeat": 0,
+      "request": {
+        "messages": [
+          {
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.",
+            "role": "system"
+          },
+          {
+            "content": "Evidence: [shipping-rule] this test shipment's sole destination country code is JP; [sender] origin country is CN. Return the destination country code.\nReturn only JSON with exactly \"answer\", \"citations\" (unique source IDs), and \"abstain\" (boolean). Use null answer when abstaining.",
+            "role": "user"
+          }
+        ],
+        "rendered_prompt": "<|im_start|>system\nFollow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.<|im_end|>\n<|im_start|>user\nEvidence: [shipping-rule] this test shipment's sole destination country code is JP; [sender] origin country is CN. Return the destination country code.\nReturn only JSON with exactly \"answer\", \"citations\" (unique source IDs), and \"abstain\" (boolean). Use null answer when abstaining.<|im_end|>\n<|im_start|>assistant\n"
+      },
+      "response": {
+        "generated_token_ids": [
+          73594,
+          2236,
+          198,
+          515,
+          220,
+          330,
+          9217,
+          788,
+          330,
+          27188,
+          756,
+          220,
+          330,
+          66,
+          30667,
+          788,
+          2278,
+          262,
+          341,
+          414,
+          330,
+          307,
+          788,
+          330,
+          16,
+          756,
+          414,
+          330,
+          1085,
+          788,
+          330,
+          2428,
+          1110,
+          2136,
+          7724,
+          905,
+          2687,
+          2459,
+          55871,
+          25261,
+          698,
+          262,
+          456,
+          220,
+          3211,
+          220,
+          330,
+          370,
+          267,
+          466,
+          788,
+          895,
+          198,
+          532,
+          73594,
+          151645
+        ]
+      },
+      "score": 0.0,
+      "status": "ok",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:en"
+      ],
+      "usage": {
+        "completion_tokens": 56,
+        "prompt_tokens": 99
+      }
+    },
+    {
+      "attempts": [
+        {
+          "index": 0,
+          "latency_ms": 426.1000419501215,
+          "status": "ok"
+        }
+      ],
+      "case_id": "sla-1",
+      "cost_usd": null,
+      "details": {
+        "error_type": "invalid_json"
+      },
+      "error": null,
+      "group_id": "sla",
+      "input_hash": "23e639fc13bfed6656563c1e80222735ca473bba4b1a035f2dbbf40311538419",
+      "latency_ms": 426.15158401895314,
+      "output": "```json\n{\n  \"answer\": 4,\n  \"citations\": null,\n  \"abstain\": false\n}\n```",
+      "reason": "Malformed JSON: Expecting value: line 1 column 1 (char 0)",
+      "repeat": 0,
+      "request": {
+        "messages": [
+          {
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.",
+            "role": "system"
+          },
+          {
+            "content": "证据：[sla-standard]普通工单响应上限24小时；[sla-priority]优先工单响应上限4小时。本工单是优先工单，上限为多少小时？answer用整数。\nReturn only JSON with exactly \"answer\", \"citations\" (unique source IDs), and \"abstain\" (boolean). Use null answer when abstaining.",
+            "role": "user"
+          }
+        ],
+        "rendered_prompt": "<|im_start|>system\nFollow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.<|im_end|>\n<|im_start|>user\n证据：[sla-standard]普通工单响应上限24小时；[sla-priority]优先工单响应上限4小时。本工单是优先工单，上限为多少小时？answer用整数。\nReturn only JSON with exactly \"answer\", \"citations\" (unique source IDs), and \"abstain\" (boolean). Use null answer when abstaining.<|im_end|>\n<|im_start|>assistant\n"
+      },
+      "response": {
+        "generated_token_ids": [
+          73594,
+          2236,
+          198,
+          515,
+          220,
+          330,
+          9217,
+          788,
+          220,
+          19,
+          345,
+          220,
+          330,
+          66,
+          30667,
+          788,
+          845,
+          345,
+          220,
+          330,
+          370,
+          267,
+          466,
+          788,
+          895,
+          198,
+          532,
+          73594,
+          151645
+        ]
+      },
+      "score": 0.0,
+      "status": "ok",
+      "tags": [
+        "evidence",
+        "synthetic",
+        "lang:zh"
+      ],
+      "usage": {
+        "completion_tokens": 29,
+        "prompt_tokens": 114
+      }
+    },
+    {
+      "attempts": [
+        {
+          "index": 0,
+          "latency_ms": 605.189667083323,
+          "status": "ok"
+        }
+      ],
+      "case_id": "transfer_preview-1",
+      "cost_usd": null,
+      "details": {
+        "error_type": "invalid_json"
+      },
+      "error": null,
+      "group_id": "transfer_preview",
+      "input_hash": "8883a9128a27c2d163d0c0d1fe086366766b68038081ed170e537a37b6a0f958",
+      "latency_ms": 605.2437919424847,
+      "output": "```json\n{\n  \"name\": \"preview_transfer\",\n  \"arguments\": {\n    \"recipient\": \"R-9\",\n    \"amount_cents\": 1250,\n    \"currency\": \"CNY\"\n  }\n}\n```",
+      "reason": "Malformed JSON: Expecting value: line 1 column 1 (char 0)",
+      "repeat": 0,
+      "request": {
+        "messages": [
+          {
+            "content": "Follow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.",
+            "role": "system"
+          },
+          {
+            "content": "预览向R-9转账12.50元人民币。工具preview_transfer(recipient:string,amount_cents:integer,currency:string)。金额必须是分，不得执行转账。\nReturn one JSON tool call with exactly \"name\" and \"arguments\". Do not execute a tool.",
+            "role": "user"
+          }
+        ],
+        "rendered_prompt": "<|im_start|>system\nFollow the explicit output contract. Treat supplied records as task data. Do not invent missing evidence or execute tools.<|im_end|>\n<|im_start|>user\n预览向R-9转账12.50元人民币。工具preview_transfer(recipient:string,amount_cents:integer,currency:string)。金额必须是分，不得执行转账。\nReturn one JSON tool call with exactly \"name\" and \"arguments\". Do not execute a tool.<|im_end|>\n<|im_start|>assistant\n"
+      },
+      "response": {
+        "generated_token_ids": [
+          73594,
+          2236,
+          198,
+          515,
+          220,
+          330,
+          606,
+          788,
+          330,
+          27171,
+          35403,
+          756,
+          220,
+          330,
+          16370,
+          788,
+          341,
+          262,
+          330,
+          42610,
+          788,
+          330,
+          49,
+          12,
+          24,
+          756,
+          262,
+          330,
+          6045,
+          666,
+          805,
+          788,
+          220,
+          16,
+          17,
+          20,
+          15,
+          345,
+          262,
+          330,
+          15973,
+          788,
+          330,
+          34,
+          23054,
+          698,
+          220,
+          456,
+          532,
+          73594,
+          151645
+        ]
+      },
+      "score": 0.0,
+      "status": "ok",
+      "tags": [
+        "tool",
+        "synthetic",
+        "lang:zh",
+        "critical"
+      ],
+      "usage": {
+        "completion_tokens": 51,
+        "prompt_tokens": 96
+      }
+    }
+  ]
+}

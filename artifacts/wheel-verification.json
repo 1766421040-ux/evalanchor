@@ -1,0 +1,12 @@
+{
+  "python": "3.12.14",
+  "wheel_sha256": "e27a5186514238d56ff6dca9d003431ad0b9b85fb0edd147ad5dddec2c4aa09a",
+  "install": "fresh venv; --no-index --no-deps",
+  "execution": "outside source checkout",
+  "observed_decisions": [
+    "fail",
+    "inconclusive"
+  ],
+  "report_included": true,
+  "network_or_model_calls": 0
+}

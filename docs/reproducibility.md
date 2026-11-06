@@ -1,4 +1,4 @@
-# 0.2 交付、恢复和离线复核
+# 0.3 交付、恢复和离线复核
 
 所有命令在 macOS / Linux、Python 3.12+ 环境中从项目根目录运行。实验审核不需要 API 密钥、模型权重、SQLite 账本或 `calls/` 缓存；完整请求、响应和工具执行结果已在 `experiment.json` 内。
 
@@ -18,9 +18,9 @@ PYTHONPATH=src python3 -m evalanchor arena serve --workspace experiments --port 
 
 `python scripts/restore_evidence.py --verify-only` 只检查已经恢复的明文文件，不创建或修改任何文件。SHA256 是清单一致性检查，不构成签名或生成过程真实性证明。
 
-## 三层核验
+## 发布核验
 
-1. `scripts/verify_release.py --v1-only` 保留历史框架日志哈希、严格输出重评分、两组演示对比、Qwen/Luna 静态结果核验。这个选项不表示整个 0.2 发布通过。
+1. `scripts/verify_release.py --v1-only` 保留历史框架日志哈希、严格输出重评分、两组演示对比、Qwen/Luna 静态结果核验。这个选项不表示整个发布通过。
 2. `scripts/verify_v2.py` 默认要求全部发布实验。每个实验先独立重放工具与业务状态，再调用分析器重新评分和汇总，逐字段核对内嵌 `analysis` 与独立 `analysis.json`。主测试与资源敏感性测试还必须匹配冻结的任务、配置、提示、执行器和协议。
 3. 同一脚本从公开 `budget-receipt.json` 重建每个请求的状态链和整数纳美元总额，核对每一步请求/响应摘要、响应 ID、结算费用及整个 campaign 的历史前缀。计费未知和孤立的收费尝试继续保留，不能悄悄按零费用处理。
 
@@ -33,6 +33,8 @@ python scripts/verify_release.py
 ```
 
 预算使用逐请求向上取整的整数纳美元。其总和可能略大于把原始浮点估价直接求和的值；核验按每笔结算金额逐一检查，不能把正常舍入差异当作漏账，也不能用大容差掩盖真实差额。费用是公开费率下的用量估算，未核验服务商账单。
+
+v0.3 额外通过 `scripts/verify_v3.py` 重新计算四组升级判断，严格对比公开 JSON、Markdown、政策和证据指纹。缺少文件、决定变化或报告内容不一致都会失败；历史证据版本仍为 v0.2。
 
 ## 维护压缩证据
 
@@ -60,9 +62,9 @@ python -m build
 python scripts/package_release.py
 ```
 
-wheel 仅安装库、CLI 和两个 HTML 模板。源码发行包和完整 ZIP 包含文档、测试及公开明文证据；完整 ZIP 另提供 `RELEASE_MANIFEST.json` 的逐文件校验清单。源码 ZIP 不递归已有 `dist/`，也不包括嵌套 ZIP、压缩传输副本、`calls/`、SQLite、虚拟环境、模型权重或密钥。已有同名 ZIP 不会被覆盖。
+wheel 仅安装库、CLI 和两个 HTML 模板。源码发行包、wheel 与完整 ZIP 共用文件发布策略 `release_policy.py`；用虚构密钥文件进行实际构建测试，并拒绝被跟随的源码符号链接。文件名过滤无法发现藏在普通源码字符串内的密钥，发布前仍需检查具体改动。源码发行包和完整 ZIP 包含文档、测试及公开明文证据；完整 ZIP 另提供 `RELEASE_MANIFEST.json` 的逐文件校验清单。源码 ZIP 不递归已有 `dist/`，也不包括嵌套 ZIP、压缩传输副本、`calls/`、SQLite、虚拟环境、模型权重或密钥。已有同名 ZIP 不会被覆盖。
 
-本版本的输出名称分别为 `dist/evalanchor-0.2.0-py3-none-any.whl`、`dist/evalanchor-0.2.0.tar.gz` 和 `dist/evalanchor-0.2.0.zip`。wheel 是安装包；后两者是不同格式的源码交付，解压后均从 `evalanchor-0.2.0/` 根目录复核。
+本版本的输出名称分别为 `dist/evalanchor-0.3.0-py3-none-any.whl`、`dist/evalanchor-0.3.0.tar.gz` 和 `dist/evalanchor-0.3.0.zip`。wheel 是安装包；后两者是不同格式的源码交付，解压后均从 `evalanchor-0.3.0/` 根目录复核。
 
 完整 ZIP 已包含明文证据和恢复清单，因此恢复命令可以直接检查已存在的正确文件，不需要重复保存 gzip 或 base64 分块。源代码归档中的命令仍以归档根目录为起点。
 

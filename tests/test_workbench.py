@@ -9,7 +9,7 @@ import pytest
 
 from evalanchor.workbench import (
     MAX_REQUEST_BYTES, WorkbenchError, create_workbench_server,
-    dashboard_payload, export_dashboard, load_experiments,
+    dashboard_payload, diagnose_record, export_dashboard, load_experiments,
 )
 
 
@@ -96,6 +96,109 @@ def test_list_and_details_do_not_read_arbitrary_paths(server):
         status, raw, _ = request(port, "GET", path)
         assert status in (400, 404)
         assert b"not served" not in raw
+
+
+def test_live_page_only_embeds_catalog_and_summary_omits_raw_traces(server):
+    _, _, port = server
+    data = page_data(port)
+    catalog = data["experiments"][0]
+    assert catalog["lazy"] is True
+    assert catalog["experiment"]["record_count"] == 1
+    assert "records" not in catalog["experiment"]
+    assert "customer request" not in json.dumps(data)
+    status, raw, _ = request(port, "GET", "/api/experiments/trial-one/summary")
+    assert status == 200
+    summary = json.loads(raw)
+    assert summary["fingerprint"] == catalog["fingerprint"]
+    assert summary["summary_only"] is True
+    row = summary["experiment"]["records"][0]
+    assert row["record_index"] == 0 and row["step_count"] == 1
+    assert row["diagnosis"]["code"] == "unsafe_action"
+    assert row["tool_names"] == ["refund"]
+    assert "steps" not in row and "final_state" not in row
+    assert "customer request" not in raw.decode()
+    assert summary["upgrades"] == []  # UI fixtures never pass as model evidence.
+
+
+def test_record_endpoint_binds_index_to_current_artifact_fingerprint(server):
+    _, path, port = server
+    fingerprint = page_data(port)["experiments"][0]["fingerprint"]
+    url = f"/api/experiments/trial-one/records/0/{fingerprint}"
+    status, raw, _ = request(port, "GET", url)
+    assert status == 200
+    result = json.loads(raw)
+    assert result["record"] == experiment()["records"][0]
+    assert result["fingerprint"] == fingerprint and result["case"] is None
+    for index in ("-1", "00", "1", "99999999999999999999999999999"):
+        assert request(port, "GET", f"/api/experiments/trial-one/records/{index}/{fingerprint}")[0] == 404
+    assert request(port, "GET", "/api/experiments/trial-one/records/0/stale")[0] == 409
+    value = experiment()
+    value["records"].reverse()
+    value["records"][0]["status"] = "interrupted"
+    path.write_text(json.dumps(value))
+    assert request(port, "GET", url)[0] == 409
+
+
+@pytest.mark.parametrize("grade,status,expected", [
+    ({"task_success": True}, "completed", ["success"]),
+    ({"task_success": False, "goal_satisfied": True, "finished": False}, "turn_limit", ["missing_finish", "turn_limit"]),
+    ({"task_success": False, "goal_satisfied": True, "finished": True}, "completed", ["receipt_contract"]),
+    ({"task_success": False, "goal_satisfied": False, "finished": True}, "completed", ["goal_unmet"]),
+    ({"task_success": False, "goal_satisfied": False}, "model_error", ["execution_stopped", "goal_unmet"]),
+    ({"task_success": True, "attempted_violations": 1}, "completed", ["unsafe_action"]),
+    ({"task_success": False, "attempted_violations": 1, "goal_satisfied": True, "finished": True}, "completed", ["unsafe_action"]),
+])
+def test_failure_diagnosis_keeps_observed_components_without_changing_grades(grade, status, expected):
+    row = {"grade": {**grade, "failures": ["original reason"]}, "status": status}
+    before = copy.deepcopy(row)
+    result = diagnose_record(row)
+    assert result["codes"] == expected
+    assert result["reasons"] == ["original reason"]
+    assert row == before
+
+
+def test_summary_and_export_include_audited_decisions_without_rewriting_evidence(server, monkeypatch):
+    from evalanchor.agent_runner import run_experiment, default_configs
+    from evalanchor.orderops import benchmark_suite, build_cases
+    from test_agent_runner import ScriptedClient
+    import evalanchor.upgrade as upgrade
+
+    root, _, port = server
+    case = build_cases("dev")[0]
+    native = run_experiment(benchmark_suite(), default_configs()[:2], root / "decisions",
+                            client=ScriptedClient([case]), case_ids=[case["id"]], split="dev")
+    path = root / "decisions" / "experiment.json"
+    original_bytes = path.read_bytes()
+    calls = []
+    assess = upgrade.assess_upgrades
+
+    def spy(value):
+        calls.append(value["id"])
+        return assess(value)
+
+    monkeypatch.setattr(upgrade, "assess_upgrades", spy)
+    status, raw, _ = request(port, "GET", "/api/experiments/decisions/summary")
+    assert status == 200
+    summary = json.loads(raw)
+    assert len(summary["upgrades"]) == 2
+    assert all(row["decision"] == "inconclusive" for row in summary["upgrades"])
+    assert all(row["retrospective"] is True for row in summary["upgrades"])
+    record = summary["experiment"]["records"][0]
+    status, raw, _ = request(port, "GET", f"/api/experiments/decisions/records/{record['record_index']}/{summary['fingerprint']}")
+    assert status == 200
+    assert json.loads(raw)["case"]["id"] == case["id"]
+    payload = dashboard_payload(root)
+    exported = next(item for item in payload["experiments"] if item["experiment"]["id"] == "decisions")
+    assert exported["experiment"] == native
+    assert exported["upgrades"] == summary["upgrades"]
+    assert "steps" in exported["experiment"]["records"][0]
+    assert calls == ["decisions"]  # One audit-backed batch, reused for the same source/implementation.
+    import evalanchor.workbench as workbench
+    identity = workbench._validator_identity()
+    monkeypatch.setattr(workbench, "_validator_identity", lambda: (*identity, ("changed-validator",)))
+    assert request(port, "GET", "/api/experiments/decisions/summary")[0] == 200
+    assert calls == ["decisions", "decisions"]  # Implementation changes invalidate decisions as well as source audits.
+    assert path.read_bytes() == original_bytes
 
 
 def test_only_review_api_can_write_and_requires_origin_and_token(server):

@@ -25,6 +25,7 @@ _ID = re.compile(r"[A-Za-z0-9][A-Za-z0-9_.-]{0,127}\Z")
 _REVIEW_DB = ".evalanchor-reviews.sqlite3"
 _CACHE: dict = {}
 _CACHE_LOCK = threading.Lock()
+_UPGRADE_CACHE: dict = {}
 
 
 class WorkbenchError(ValueError):
@@ -56,7 +57,94 @@ def _stat_key(path):
 def _validator_identity():
     source = Path(__file__).parent
     return tuple((name, _stat_key(source / name)) for name in
-                 ("workbench.py", "agent_runner.py", "agent_analysis.py", "orderops.py", "agent_api.py", "contracts.py"))
+                 ("workbench.py", "agent_runner.py", "agent_analysis.py", "orderops.py", "agent_api.py", "contracts.py",
+                  "budget.py", "store.py", "metrics.py", "upgrade.py"))
+
+
+def diagnose_record(record: dict) -> dict:
+    """Describe observed failure components; never infer a model's intent."""
+    grade = record.get("grade", {})
+    status = record.get("status")
+    labels = []
+    if grade.get("attempted_violations") or grade.get("executed_violations"):
+        labels.append(("unsafe_action", "存在违规尝试或执行"))
+    if status in {"model_error", "budget_exhausted", "interrupted"}:
+        labels.append(("execution_stopped", "请求、预算或执行中断"))
+    if not grade.get("task_success"):
+        if grade.get("goal_satisfied") is False:
+            labels.append(("goal_unmet", "业务目标状态未满足"))
+        if grade.get("goal_satisfied") is True and grade.get("finished") is False:
+            labels.append(("missing_finish", "目标状态成立，但未提交有效结果"))
+        elif (grade.get("goal_satisfied") is True and grade.get("finished") is True and
+              (not (grade.get("attempted_violations") or grade.get("executed_violations")) or
+               any(reason in {
+                   "Final outcome differs from required disposition", "Required final facts are missing or wrong",
+                   "Final facts contain unsupported or false claims", "Unobserved evidence IDs in final",
+                   "Required observed evidence was not cited",
+                   "Final facts are not supported by cited successful target-order observations",
+               } for reason in grade.get("failures", [])))):
+            labels.append(("receipt_contract", "目标状态成立，但结果回执不符合合同"))
+        if status == "turn_limit":
+            labels.append(("turn_limit", "达到执行步数上限"))
+        if not labels:
+            labels.append(("other_failure", "未完成，需要查看评分证据"))
+    if not labels:
+        labels.append(("success", "满足本次任务合同"))
+    return {"code": labels[0][0], "label": labels[0][1],
+            "codes": [code for code, _ in labels], "labels": [label for _, label in labels],
+            "reasons": list(grade.get("failures", [])),
+            "basis": "Recorded status and replayed grade components; not a causal or intent judgment."}
+
+
+def _catalog_item(item):
+    experiment = item["experiment"]
+    return {**{key: value for key, value in item.items() if key != "experiment"},
+            "lazy": True,
+            "experiment": {**{key: experiment[key] for key in
+                           ("id", "status", "configs", "protocol", "benchmark_hash") if key in experiment},
+                           "record_count": len(experiment["records"])}}
+
+
+def _summary_item(item):
+    """Keep browser search/filters small; original payload is fetched on selection."""
+    experiment = item["experiment"]
+    records = []
+    fields = ("case_id", "config_id", "group_id", "repeat", "family", "split", "status",
+              "grade", "estimated_cost_usd", "known_cost_subtotal_usd", "latency_ms", "failure")
+    for index, record in enumerate(experiment["records"]):
+        row = {key: record[key] for key in fields if key in record}
+        row.update({"record_index": index, "step_count": len(record.get("steps", [])),
+                    "diagnosis": diagnose_record(record),
+                    "tool_names": sorted({call.get("name", "") for step in record.get("steps", [])
+                                          for call in step.get("tool_calls", [])})})
+        records.append(row)
+    summary = {key: experiment[key] for key in
+               ("id", "status", "configs", "protocol", "benchmark_hash", "budget_snapshot", "provenance", "analysis")
+               if key in experiment}
+    summary["records"] = records
+    return {**{key: value for key, value in item.items() if key != "experiment"},
+            **_upgrade_payload(item),
+            "lazy": False, "summary_only": True, "experiment": summary}
+
+
+def _upgrade_payload(item):
+    experiment = item["experiment"]
+    if "benchmark" not in experiment or "protocol" not in experiment:
+        return {"upgrades": [], "upgrade_error": "合成界面夹具不产生升级决策。"}
+    from .upgrade import assess_upgrades
+    key = (item["fingerprint"], _validator_identity())
+    with _CACHE_LOCK:
+        if key in _UPGRADE_CACHE:
+            return _UPGRADE_CACHE[key]
+    try:
+        value = {"upgrades": assess_upgrades(experiment)}
+    except (ValueError, KeyError, TypeError) as exc:
+        value = {"upgrades": [], "upgrade_error": str(exc)}
+    with _CACHE_LOCK:
+        if len(_UPGRADE_CACHE) >= 128:
+            _UPGRADE_CACHE.pop(next(iter(_UPGRADE_CACHE)))
+        _UPGRADE_CACHE[key] = value
+    return value
 
 
 def _verify_experiment(experiment):
@@ -192,6 +280,12 @@ def _reviews(workspace: Path) -> list[dict]:
 def dashboard_payload(workspace: str | Path, *, mode="export", token=None) -> dict:
     root = Path(workspace).resolve()
     experiments, warnings, invalid = _load_catalog(root)
+    if mode == "live":
+        experiments = [_catalog_item(item) for item in experiments]
+    else:
+        experiments = [{**item, **_upgrade_payload(item),
+                        "diagnoses": [diagnose_record(row) for row in item["experiment"]["records"]]}
+                       for item in experiments]
     return {"mode": mode, "experiments": experiments, "warnings": warnings,
             "invalid_experiments": invalid, "reviews": _reviews(root), "generated_at": _now(), "review_token": token}
 
@@ -306,17 +400,33 @@ def create_workbench_server(workspace: str | Path, port=8780) -> ThreadingHTTPSe
                     # Listing contains light metadata; details are a separate API.
                     payload["experiments"] = [{"id": item["experiment"]["id"], "fingerprint": item["fingerprint"],
                         "status": item["experiment"].get("status"), "benchmark_hash": item["experiment"].get("benchmark_hash"),
-                        "configs": item["experiment"]["configs"], "record_count": len(item["experiment"]["records"]),
+                        "configs": item["experiment"]["configs"], "record_count": item["experiment"]["record_count"],
+                        "protocol": item["experiment"].get("protocol"),
                         "source": item["source"], "verification": item["verification"]} for item in payload["experiments"]]
                     payload.pop("review_token", None)
                     return self._send(200, payload)
                 prefix = "/api/experiments/"
-                if route.startswith(prefix) and _identifier(route[len(prefix):]):
-                    identity = route[len(prefix):]
+                parts = route[len(prefix):].split("/") if route.startswith(prefix) else []
+                if parts and _identifier(parts[0]):
+                    identity = parts[0]
                     items, _, invalid = _load_catalog(root)
                     item = next((item for item in items if item["experiment"]["id"] == identity), None)
                     if item:
-                        return self._send(200, {**item, "reviews": [review for review in _reviews(root) if review["experiment_id"] == identity]})
+                        if len(parts) == 1:
+                            return self._send(200, {**item, "reviews": [review for review in _reviews(root) if review["experiment_id"] == identity]})
+                        if parts[1:] == ["summary"]:
+                            return self._send(200, _summary_item(item))
+                        if len(parts) == 4 and parts[1] == "records" and re.fullmatch(r"0|[1-9][0-9]{0,8}", parts[2]):
+                            if parts[3] != item["fingerprint"]:
+                                return self._send(409, {"error": "Experiment changed; refresh before opening its trace"})
+                            index = int(parts[2])
+                            rows = item["experiment"]["records"]
+                            if index < len(rows):
+                                record = rows[index]
+                                case = next((case for case in item["experiment"].get("benchmark", {}).get("cases", [])
+                                             if case.get("id") == record.get("case_id")), None)
+                                return self._send(200, {"record": record, "case": case,
+                                                       "diagnosis": diagnose_record(record), "fingerprint": item["fingerprint"]})
                     rejected = next((item for item in invalid if item["id"] == identity), None)
                     if rejected:
                         return self._send(422, {"status": "invalid", **rejected})

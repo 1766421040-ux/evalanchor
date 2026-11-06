@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "retrospective": true,
+  "new_model_requests": 0,
+  "examples": [
+    {
+      "name": "blocked-family",
+      "source": "experiments/test-v2/experiment.json",
+      "baseline": "terra-direct",
+      "candidate": "terra-checklist",
+      "decision": "fail",
+      "report_fingerprint": "09e0fd7fb009ac0aeaa456f6105e5d9f6e6075abe3e67981d882c98e06125513"
+    },
+    {
+      "name": "expensive-quality",
+      "source": "experiments/test-v2/experiment.json",
+      "baseline": "luna-direct",
+      "candidate": "terra-direct",
+      "decision": "fail",
+      "report_fingerprint": "2ab2e071e3ca479d15e9db3ba2e990d435348bd9f80ec721455f38f5d0d3fd5b"
+    },
+    {
+      "name": "bounded-cost-tradeoff",
+      "source": "experiments/test-v2/experiment.json",
+      "baseline": "terra-direct",
+      "candidate": "luna-direct",
+      "decision": "pass",
+      "report_fingerprint": "0910390110387f6fa60df5d15b0e1357792004aa953cae6c8c9393a4c3f2e8fd"
+    },
+    {
+      "name": "development-insufficient",
+      "source": "experiments/dev-v2/experiment.json",
+      "baseline": "luna-direct",
+      "candidate": "terra-direct",
+      "decision": "inconclusive",
+      "report_fingerprint": "319cf750bb05e20e0abc9b2fddc9fb3cd7a4042a3614b1ccacf589787fcb556c"
+    }
+  ]
+}

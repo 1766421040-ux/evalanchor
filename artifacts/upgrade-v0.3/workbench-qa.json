@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "kind": "workbench_software_qa_not_model_experiment",
+  "observed_at": "2026-11-07T00:07:22.190418+08:00",
+  "model_requests": 0,
+  "http_tests": {
+    "command": ".venv/bin/python -m pytest tests/test_workbench.py -q",
+    "passed": 22,
+    "scope": "loopback HTTP, artifact binding, readonly export, diagnostic categories, validator/decision cache invalidation, existing auth checks"
+  },
+  "payload_measurements": {
+    "initial_html_bytes": 51982,
+    "previous_compact_experiments_bytes": 76021765,
+    "initial_reduction_fraction": 0.9993162221371735,
+    "test_summary_bytes": 914076,
+    "single_record_bytes": 135778,
+    "report_count": 12,
+    "records": 384,
+    "raw_steps_present_in_summary": false,
+    "checks_include_pair_regression_cap": true,
+    "baseline_note": "Previous five full experiments serialized compactly, excluding the old HTML template. Current HTML measured from GET / on the five-experiment workspace. Selected summaries and raw traces are separate on-demand requests.",
+    "server_scope": "Transport is lazy; the server still audits the workspace catalog and caches validated experiments. This measurement does not claim reduced server memory or cold-start audit cost."
+  },
+  "browser_checks": {
+    "tool": "playwright-cli via local playwright skill",
+    "viewport": {
+      "width": 1600,
+      "height": 1100
+    },
+    "delayed_old_experiment_response_does_not_replace_new_selection": true,
+    "missing_finish_filter_records": 35,
+    "candidate_to_baseline_to_candidate_trace_navigation": true,
+    "pair_case": "test-authorization-1-challenge",
+    "pair_repeat": 1,
+    "baseline": "luna-direct",
+    "candidate": "luna-checklist",
+    "candidate_diagnosis": "目标状态成立，但结果回执不符合合同",
+    "source_failure": "Required observed evidence was not cited",
+    "readonly_export": {
+      "opened_trace": true,
+      "save_review_disabled": true,
+      "refresh_disabled": true,
+      "api_requests": 0,
+      "delivery": "Exact standalone HTML served by a temporary loopback-only static handler because the browser CLI blocks file URLs. Direct file opening was not tested.",
+      "console": "Only optional favicon.ico 404; no JavaScript application error observed."
+    }
+  },
+  "screenshots": [
+    {
+      "path": "docs/figures/upgrade-workbench.png",
+      "sha256": "49774047dfae26345f5fa4d6e1e5eeee3480c7b63f11ef9b23924bcb1292e345",
+      "bytes": 152685,
+      "visually_inspected": true
+    },
+    {
+      "path": "docs/figures/upgrade-paired-trace.png",
+      "sha256": "dd996350382a615eb16837fcfc8436fc4ebdb6f4f4b63e970a174a58007cd9a0",
+      "bytes": 93347,
+      "visually_inspected": true
+    }
+  ],
+  "source_sha256": {
+    "src/evalanchor/workbench.py": "f4a831a78b94a04a32965cf857a0adff0bf6caa6349cf70d6d131b19ee105489",
+    "src/evalanchor/templates/workbench.html": "aea0e5f3c6c4ffe1086e11e2babb1a5f2acca0284b4636ea3cfafbae4086f1ed",
+    "tests/test_workbench.py": "bed95d6c92f922088cdc980fdc2dea534e481da2ea21c70cc5e5305e9e2239a8"
+  },
+  "scope": "Checks validate this software workflow against preserved v0.2 evidence; no new model performance claim."
+}

@@ -1,4 +1,4 @@
-# EvalAnchor 0.2
+# EvalAnchor 0.3
 
 [![Verify evidence and software](https://github.com/1766421040-ux/evalanchor/actions/workflows/verify.yml/badge.svg)](https://github.com/1766421040-ux/evalanchor/actions/workflows/verify.yml)
 
@@ -11,6 +11,24 @@ Agent 说“退款完成”，不代表钱退到了正确订单；平均分提�
 [产品目标](docs/product-goal.md) · [选题与最近邻审查](research/v2-goal-review.md) · [订单数据卡](docs/orderops-data-card.md) · [实验协议](docs/v2-experiment-design.md) · [交付与复现](docs/reproducibility.md)
 
 ![OrderOps 完整测试工作台](docs/figures/orderops-overview.png)
+
+## v0.3：明确回答一次升级是否值得
+
+先指定当前配置和候选配置，再用可编辑政策检查总体质量、每类任务、质量退化、安全、成本与延迟。每项决定都附理由，失败可定位到成对原始轨迹。CLI 返回明确退出码，可用于 CI；网页按需加载摘要和轨迹。五个已发布实验的在线首屏实测约 52 KiB，之前仅紧凑实验数据就约 72.5 MiB；选中实验与轨迹会分别追加读取。
+
+```bash
+# 恢复证据后即可离线运行；此例按默认政策不通过，退出码为 1。
+PYTHONPATH=src python3 -m evalanchor arena assess \
+  experiments/test-v2/experiment.json \
+  --baseline luna-direct --candidate terra-direct \
+  --output runs/upgrade.json --markdown runs/upgrade.md
+```
+
+为什么不通过：Terra direct 多完成 3/96 条任务，但观测费用约为 Luna direct 的 8.55 倍，超过示例政策的 2 倍限制。另一份明确允许最多 4 个百分点质量损失、3 个退化配对的降本政策，则接受反向切换。政策表达业务取舍；这些历史数据上的分析均标明**事后复核**，不追溯改变 v0.2 的接受合同。
+
+![v0.3 升级评审：明确条件与退化案例](docs/figures/upgrade-workbench.png)
+
+[使用说明与四个决定例子](docs/upgrade-decisions.md) · [先审查再改进的记录](docs/review-v0.3.md) · [更新日志](CHANGELOG.md)
 
 ## 先看已经保存的实验
 
@@ -80,7 +98,7 @@ OrderOps 使用虚构订单、客户会话、政策、物流信息和用户事�
 
 运行器使用原生 Responses 工具调用：模型收到真实工具结果后继续决策。模型别名、请求参数、提示快照、环境/工具版本、原始响应和用量都随实验保存。恢复已保存的模型回执不会重新发送相同请求；未知网络结果不能被自动当作免费失败重试。
 
-整个 campaign 共用持久预算账本。每次请求在发送前原子预留费用，已知费用结算，未知收费保留全部预留；线程、进程重启和新实验目录都不重置余额。本轮账本上限为 **4.75 美元**，用户总授权为 5 美元。它是以有效请求费用上界为前提的本地承诺限制，不能代替服务商账户账单硬上限。
+整个 campaign 共用持久预算账本。每次请求在发送前原子预留费用，已知费用结算，未知收费保留全部预留；线程、进程重启和新实验目录都不重置余额。历史 v0.2 活动账本上限为 **4.75 美元**，其用户总授权为 5 美元。v0.3 新活动使用自己明确指定的编号和预算。它是以有效请求费用上界为前提的本地承诺限制，不能代替服务商账户账单硬上限。
 
 ```bash
 python3.12 -m venv .venv
@@ -93,10 +111,10 @@ evalanchor arena oracle --output runs/oracle-check.json
 
 # 默认只展示计划，不读取密钥、不发请求。
 evalanchor arena run --split dev --output runs/my-development \
-  --ledger runs/my-campaign.sqlite3 --budget 4.75
+  --ledger runs/my-campaign.sqlite3 --campaign-id my-orderops --budget 4.75
 ```
 
-只有显式加入 `--execute` 才会执行付费请求；同一个 campaign 必须一直使用同一 `--ledger`。不要向已有发布实验目录写入新结果。自己的环境、模型或协议变化需要新实验身份与新的明确预算，而不是修改旧记录重新计分。[执行细节与边界](docs/v2-experiment-design.md)。
+只有显式提供 `--campaign-id`、`--budget` 并加入 `--execute` 才会执行付费请求；同一个 campaign 必须一直使用同一 `--ledger`。不要向已有发布实验目录写入新结果。自己的环境、模型或协议变化需要新实验身份与新的明确预算，而不是修改旧记录重新计分。[执行细节与边界](docs/v2-experiment-design.md)。
 
 计划执行自己的新实验时，先在本机创建密钥配置，再编辑文件填入 `OPENAI_API_KEY`。已有 `.env.local` 时保留原文件；密钥不进入 Git 或公开证据。
 
@@ -147,6 +165,6 @@ scripts/             恢复、离线核验、框架验收与可复现打包
 
 核心运行库使用 Python 标准库；Inspect、Transformers 等是可选集成依赖。`requirements-tested.txt` 记录本机历史验证环境，不是所有平台必须安装的通用依赖锁。
 
-`python scripts/verify_release.py` 默认同时核验 v1 与完整 v2 交付，缺失必需实验会失败，不会静默跳过。`python scripts/package_release.py` 生成带逐文件 SHA256 清单的源码与证据 ZIP，排除密钥、依赖、权重、数据库、冗余调用缓存和嵌套发布包。wheel 用于安装运行库，完整 ZIP 提供研究、测试与可离线重放的证据。
+`python scripts/verify_release.py` 默认核验 v1、完整 v2 交付与 v0.3 的四组升级决定，缺失必需实验会失败，不会静默跳过。`python scripts/package_release.py` 生成带逐文件 SHA256 清单的源码与证据 ZIP，排除密钥、依赖、权重、数据库、冗余调用缓存和嵌套发布包。wheel 用于安装运行库，完整 ZIP 提供研究、测试与可离线重放的证据。
 
-本地完整测试通过 **664 项测试与 13 项子测试**；72/72 个环境任务参考策略可达。CI 配置包括多 Python 版本单元测试、离线证据复核、双框架 fixture 往返及打包后安装验证。配置存在不等于远端运行成功，远端状态以 GitHub Actions 的实际记录为准。源代码和自建数据采用 MIT；上游和模型权利边界见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
+v0.2 历史验证为 664 项测试与 13 项子测试；72/72 个环境任务参考策略可达。v0.3 增加升级政策、按需加载、独立分析及实际构建边界验证。CI 配置包括多 Python 版本单元测试、离线证据复核、双框架 fixture 往返及打包后安装验证。配置存在不等于远端运行成功，远端状态以 GitHub Actions 的实际记录为准。源代码和自建数据采用 MIT；上游和模型权利边界见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。

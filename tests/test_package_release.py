@@ -37,7 +37,7 @@ def test_required_evidence_is_byte_preserved_and_manifest_matches(project):
     result = p.build_release(project)
     with zipfile.ZipFile(result["path"]) as archive:
         names = set(archive.namelist())
-        assert all(name.startswith("evalanchor-0.2.0/") for name in names)
+        assert all(name.startswith(p.ARCHIVE_PREFIX + "/") for name in names)
         for relative in p.REQUIRED_EVIDENCE:
             assert archive.read(p.archive_name(relative)) == (project / relative).read_bytes()
         assert p.archive_name(".github/workflows/ci.yml") in names
@@ -149,3 +149,82 @@ def test_symlinked_dist_is_rejected(project, tmp_path_factory):
     (project / "dist").symlink_to(tmp_path_factory.mktemp("outside-dist"), target_is_directory=True)
     with pytest.raises(p.PackagingError, match="dist directory"):
         p.build_release(project)
+
+
+def _build_fixture(tmp_path):
+    """Build a real PEP 517 distribution with harmless credential-name probes."""
+    import importlib.util
+    import sys
+    import subprocess
+    import shutil
+
+    if any(importlib.util.find_spec(name) is None for name in ('build', 'setuptools', 'wheel')):
+        pytest.skip('Install .[build] to run the actual offline distribution regressions')
+    source = Path(__file__).parents[1]
+    for name in ('pyproject.toml', 'MANIFEST.in', 'README.md', 'LICENSE', 'setup.py', 'release_policy.py'):
+        shutil.copy2(source / name, tmp_path / name)
+    package = tmp_path / 'src/evalanchor'
+    (package / 'templates').mkdir(parents=True)
+    shutil.copy2(source / 'src/evalanchor/__init__.py', package / '__init__.py')
+    (package / 'templates/workbench.html').write_text('public template')
+    return lambda *args: subprocess.run(
+        [sys.executable, '-m', 'build', '--no-isolation', *args, str(tmp_path), '--outdir', str(tmp_path / 'dist')],
+        capture_output=True, text=True,
+    )
+
+
+def test_real_sdist_and_rebuilt_wheel_share_public_file_policy(tmp_path):
+    import tarfile
+    import tomllib
+
+    build = _build_fixture(tmp_path)
+    probes = [
+        'artifacts/access_token.json', 'artifacts/api_keys/customer.json',
+        'examples/credentials/demo.json', 'scripts/private_key.py',
+        'docs/private-key.md', 'artifacts/keys/session.json',
+        'artifacts/tokens/session.json', 'src/evalanchor/private_key.py',
+        'src/evalanchor/templates/access_token.html',
+        'src/evalanchor/keys/__init__.py',
+    ]
+    marker = b'SYNTHETIC-SECRET-FIXTURE-NO-REAL-CREDENTIAL'
+    for name in probes:
+        path = tmp_path / name
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(marker)
+    # A stale egg-info manifest must not bypass the current policy.
+    egg = tmp_path / 'src/evalanchor.egg-info'
+    egg.mkdir()
+    (egg / 'SOURCES.txt').write_text('\n'.join(probes) + '\n')
+    result = build()
+    assert result.returncode == 0, result.stdout + result.stderr
+    version = tomllib.loads((tmp_path / 'pyproject.toml').read_text())['project']['version']
+    with tarfile.open(tmp_path / f'dist/evalanchor-{version}.tar.gz') as archive:
+        assert not any(name.endswith('/' + probe) for name in archive.getnames() for probe in probes)
+        assert any(name.endswith('/release_policy.py') for name in archive.getnames())
+        assert not any(marker in archive.extractfile(item).read() for item in archive.getmembers() if item.isfile())
+    # python -m build builds this wheel FROM the generated sdist by default.
+    with zipfile.ZipFile(tmp_path / f'dist/evalanchor-{version}-py3-none-any.whl') as archive:
+        assert 'evalanchor/templates/workbench.html' in archive.namelist()
+        assert not any(marker in archive.read(name) for name in archive.namelist())
+        assert f'Version: {version}\n'.encode() in archive.read(f'evalanchor-{version}.dist-info/METADATA')
+
+
+def test_real_sdist_refuses_public_source_symlink(tmp_path):
+    build = _build_fixture(tmp_path)
+    (tmp_path / 'outside.py').write_text('SYNTHETIC-OUTSIDE-FILE')
+    (tmp_path / 'src/evalanchor/linked.py').symlink_to(tmp_path / 'outside.py')
+    result = build('--sdist')
+    assert result.returncode != 0
+    assert 'Symlink refused' in result.stdout + result.stderr
+    assert not list((tmp_path / 'dist').glob('*.tar.gz'))
+
+
+def test_real_wheel_refuses_excluded_stale_build_output(tmp_path):
+    build = _build_fixture(tmp_path)
+    stale = tmp_path / 'build/lib/evalanchor/private_key.py'
+    stale.parent.mkdir(parents=True)
+    stale.write_text('SYNTHETIC-STALE-SECRET')
+    result = build('--wheel')
+    assert result.returncode != 0
+    assert 'Unsafe stale build output' in result.stdout + result.stderr
+    assert not list((tmp_path / 'dist').glob('*.whl'))

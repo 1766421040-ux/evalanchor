@@ -11,21 +11,23 @@ import argparse
 import hashlib
 import json
 import os
-import re
 import stat
 import tempfile
 import zipfile
 from pathlib import Path, PurePosixPath
 
-ARCHIVE_PREFIX = "evalanchor-0.2.0"
-ROOT_FILES = frozenset({
-    "README.md", "LICENSE", "THIRD_PARTY_NOTICES.md", "CONTRIBUTING.md",
-    "Makefile", "pyproject.toml", "MANIFEST.in", "requirements-tested.txt",
-    ".gitignore", ".env.example",
-})
-DIRECTORIES = frozenset({"src", "tests", "scripts", "docs", "research", "examples", "artifacts", "experiments", "evidence", ".github"})
-EXPERIMENT_FILES = frozenset({"experiment.json", "analysis.json", "budget-receipt.json", "failed-requests.json", "index.html", "dashboard.html"})
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from release_policy import ROOT_FILES, DIRECTORIES, excluded, release_version
+
+ARCHIVE_PREFIX = f"evalanchor-{release_version()}"
 REQUIRED_EVIDENCE = frozenset({
+    "scripts/verify_v3.py", "scripts/build_upgrade_examples.py",
+    "src/evalanchor/upgrade.py", "src/evalanchor/campaign.py",
+    "artifacts/upgrade-v0.3/index.json",
+    *{f"artifacts/upgrade-v0.3/{name}.{suffix}"
+      for name in ("blocked-family", "expensive-quality", "bounded-cost-tradeoff", "development-insufficient")
+      for suffix in ("json", "md")},
     "src/evalanchor/__init__.py",
     "examples/integrations/verified/receipt.json",
     "examples/integrations/verified/inspect/verified.eval",
@@ -76,18 +78,6 @@ REQUIRED_EVIDENCE = frozenset({
     *{f"experiments/{identity}/{name}" for identity in ("pilot-v2", "dev-v2", "dev-terminal-v2", "test-v2", "test-long-v2")
       for name in ("experiment.json", "analysis.json", "budget-receipt.json")},
 })
-EXCLUDED_COMPONENTS = frozenset({
-    "__pycache__", "node_modules", "site-packages", "dist-packages", "venv",
-    "secrets", "secret", "credentials", "credential", "keys", "key",
-    "api_keys", "api-keys", "vault", "keychain", "密钥", "凭据", "calls",
-    "dist", "build",
-})
-EXCLUDED_SUFFIXES = frozenset({
-    ".pyc", ".pyo", ".lock", ".pem", ".key", ".p12", ".pfx", ".jks",
-    ".keystore", ".kdbx", ".der", ".crt", ".safetensors", ".bin", ".pt",
-    ".pth", ".onnx", ".gguf", ".ckpt", ".h5", ".dylib", ".so",
-    ".zip", ".whl", ".tar", ".gz", ".bz2", ".xz", ".7z",
-})
 FIXED_TIMESTAMP = (1980, 1, 1, 0, 0, 0)
 
 
@@ -104,34 +94,6 @@ def archive_name(relative: str | PurePosixPath) -> str:
     if PurePosixPath(value).is_absolute():
         raise PackagingError("Archive member must be relative")
     return f"{ARCHIVE_PREFIX}/{value}"
-
-
-def excluded(relative: PurePosixPath) -> bool:
-    """Filename-only filtering: excluded secrets are never opened to inspect."""
-    if len(relative.parts) == 1 and relative.name in ROOT_FILES:
-        return False
-    if len(relative.parts) >= 2 and relative.parts[0] == "evidence" and relative.parts[1] in {"objects", "parts"}:
-        return True
-    if relative.parts and relative.parts[0] == "experiments":
-        if len(relative.parts) > 3 or (len(relative.parts) == 3 and relative.name not in EXPERIMENT_FILES):
-            return True
-    for index, component in enumerate(relative.parts):
-        lowered = component.casefold()
-        if component.startswith(".") and not (index == 0 and component == ".github"):
-            return True
-        if lowered in EXCLUDED_COMPONENTS:
-            return True
-        if "secret" in lowered or "credential" in lowered or lowered in {"auth.json", "token.json", "tokens.json", "key.json", "keys.json", "id_rsa", "id_ed25519"}:
-            return True
-        if re.search(r"(?:^|[_.-])(?:api[-_]?key|access[-_]?token|refresh[-_]?token|private[-_]?key)(?:[_.-]|$)", lowered):
-            return True
-        if lowered.endswith(".env") or lowered.startswith("trace.log"):
-            return True
-    name = relative.name.casefold()
-    return (
-        PurePosixPath(name).suffix in EXCLUDED_SUFFIXES
-        or bool(re.search(r"\.(?:db|sqlite|sqlite3)(?:-(?:wal|shm|journal))?$", name))
-    )
 
 
 def _zip_info(relative: str) -> zipfile.ZipInfo:

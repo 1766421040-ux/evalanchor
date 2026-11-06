@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "evalanchor"
-version = "0.2.0"
+version = "0.3.0"
 description = "Replayable Agent evaluation, finite-suite release decisions, and cost evidence"
 readme = "README.md"
 requires-python = ">=3.12"
@@ -16,7 +16,7 @@ dependencies = []
 test = ["pytest>=8,<10"]
 inspect = ["inspect-ai>=0.3,<0.4"]
 local = ["transformers>=4.49,<5", "torch>=2.5", "accelerate>=1"]
-build = ["build>=1,<2"]
+build = ["build>=1,<2", "setuptools>=75", "wheel"]
 
 [project.scripts]
 evalanchor = "evalanchor.cli:main"

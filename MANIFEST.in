@@ -1,10 +1,10 @@
-include LICENSE THIRD_PARTY_NOTICES.md CONTRIBUTING.md Makefile requirements-tested.txt .env.example .gitignore
+include setup.py release_policy.py CHANGELOG.md LICENSE THIRD_PARTY_NOTICES.md CONTRIBUTING.md Makefile requirements-tested.txt .env.example .gitignore
 recursive-include .github *.yml
 recursive-include docs *.md *.jpg *.png *.svg *.html *.json *.pdf
 recursive-include research *.md
 recursive-include examples *.json *.py *.md *.eval *.txt
 recursive-include scripts *.py
-recursive-include artifacts *.json *.html *.csv
+recursive-include artifacts *.json *.html *.csv *.md
 recursive-include tests *.py
 include experiments/*/experiment.json
 include experiments/*/analysis.json

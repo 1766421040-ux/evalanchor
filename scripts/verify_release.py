@@ -11,6 +11,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'src'))
 
+from evalanchor import __version__
 from evalanchor.contracts import audit_run, read_json
 from evalanchor.analysis import compare_runs
 
@@ -86,10 +87,12 @@ def main(argv=None):
     parser.add_argument('--root', type=Path, default=ROOT)
     parser.add_argument('--v1-only', action='store_true', help='Verify retained v0.1 evidence only; not a v0.2 release check')
     args = parser.parse_args(argv)
-    result = {'verified': True, 'version': '0.2.0', 'v1': verify_v1(args.root)}
+    result = {'verified': True, 'version': __version__, 'v1': verify_v1(args.root)}
     if not args.v1_only:
         from verify_v2 import verify_release_v2
         result['v2'] = verify_release_v2(args.root)
+        from verify_v3 import verify_release_v3
+        result['v3'] = verify_release_v3(args.root)
     result['release_verified'] = not args.v1_only
     print(json.dumps(result, ensure_ascii=False, indent=2))
     return 0
